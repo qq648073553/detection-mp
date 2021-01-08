@@ -1,0 +1,15 @@
+		<view class="entry-container" style="border-bottom: {{ isBottom ? 'none' : '1px solid #e1e1e1' }}" bindtap="goArticleDetail">
+			<view class="entry-icon" style="display: {{ isIcon ? 'block' : 'none' }}">
+				<image src="{{iconUrl}}" style="width: 100%; height: 100%" mode="aspectFit"></image>
+			</view>
+			<view class="entry-content">
+				<view class="entry-title">{{title}}</view>
+				<view class="entry-tip">
+					{{match + " " + time}}
+				</view>
+				<view class="entry-tip">
+					<van-icon name="eye-o" /> {{collectionCount}}
+					<van-icon name="good-job-o" /> {{goodCount}}
+				</view>
+			</view>
+		</view>

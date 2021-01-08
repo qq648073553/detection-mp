@@ -1,0 +1,21 @@
+/**app.wxss**/
+
+:not(not) {
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #000;
+}
+.container {
+  min-height: 100vh;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; */
+  padding-bottom: 53px;
+  background-color: #fff;
+
+}
+
+@import "/assets/styles/icon.wxss"
+
+

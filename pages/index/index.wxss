@@ -1,0 +1,41 @@
+.index-pic-big{
+    width: 100vw;
+}
+.index-content{
+    padding: 30rpx 30rpx;
+}
+.index-module {
+    margin-bottom: 30rpx;
+}
+.van-cell {
+    padding: 10px 0 !important;
+}
+.van-cell__title {
+    font-size: 35rpx;
+    font-weight: 600;
+}
+.van-icon-arrow:before {
+    color: #969799;
+}
+
+
+.fd-card{
+    display: flex;
+    align-items: center;
+    height: 200rpx;
+    border-radius: 5px;
+    box-shadow: 0 2rpx 12rpx rgba(0,0,0,.1);
+    padding: 30rpx 20rpx;
+}
+.fd-card .card-icon {
+    color: #B7C7FC;
+    font-size: 80rpx;
+    margin-right: 30rpx;
+}
+.fd-card .card-title {
+    font-size: 35rpx;
+}
+.index-support{
+    color: #DCDCDC;
+    text-align: center;
+}

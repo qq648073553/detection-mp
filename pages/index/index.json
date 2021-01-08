@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText":"检测系统",
+  "usingComponents": {
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
+  }
+}

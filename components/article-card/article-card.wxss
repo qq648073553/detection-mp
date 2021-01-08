@@ -1,0 +1,28 @@
+.entry-container{
+  background-color: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 30rpx 0;
+  /* border-bottom: 1px solid #e1e1e1; */
+}
+.entry-icon{
+  width: 30%;
+  padding: 0 20rpx;
+}
+.entry-content{
+  width: 70%;
+  padding-left: 15rpx;
+  flex:1
+}
+.entry-title{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 30rpx;
+}
+.entry-tip{
+  font-size: 24rpx;
+  line-height: 60rpx;
+  color: #e5e5e5;
+}
+
