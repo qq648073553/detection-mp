@@ -1,2 +1,16 @@
-<!--pages/function-list/function-list.wxml-->
-<text>pages/function-list/function-list.wxml</text>
+<!--pages/experts/experts.wxml-->
+<view class="container list-container">
+    <view class="list-aside">
+        <van-sidebar active-key="{{ activeKey }}" bind:change="onChange" class="custom-class">
+            <van-sidebar-item title="检测" class="custom-class" />
+            <van-sidebar-item title="报告" />
+            <van-sidebar-item title="结算" />
+        </van-sidebar>
+    </view>
+    <view class="list-main">
+        <view class="list-item" wx:for="{{activeList}}">
+            <icon class="iconfont {{'icon-' + item.icon}} item-icon" style="color:{{item.color}}"></icon>
+            <view class="item-title">{{item.title}}</view>
+        </view>
+    </view>
+</view>

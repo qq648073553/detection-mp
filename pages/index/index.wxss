@@ -28,7 +28,6 @@
     padding: 30rpx 20rpx;
 }
 .fd-card .card-icon {
-    color: #B7C7FC;
     font-size: 80rpx;
     margin-right: 30rpx;
 }

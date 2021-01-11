@@ -1,1 +1,37 @@
-/* pages/function-list/function-list.wxss */
+.list-container{
+    display: flex;
+    align-items: flex-start;
+}
+.list-aside{
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+.custom-class .van-sidebar {
+    min-height: 100vh;
+    background: #F5F8FF;
+}
+.custom-class .van-sidebar-item--selected {
+    border-color: #3F89E7 ;
+}
+.list-main{
+    flex: 1;
+    padding: 30rpx;
+    overflow: auto scroll;
+}
+.list-item {
+    display: flex;
+    align-items: center;
+    height: 150rpx;
+    padding: 30rpx;
+    background: #F9F9F7;
+    margin-bottom: 20rpx;
+}
+.item-icon {
+    color: #B7C7FC;
+    font-size: 80rpx;
+    margin-right: 30rpx;
+}
+.item-title {
+    font-size: 35rpx;
+}

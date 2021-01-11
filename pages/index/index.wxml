@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container tab-container">
     <image src="../../assets/images/index.jpg" class="index-pic-big"></image>
     <van-notice-bar
             background="#fff"
@@ -6,52 +6,24 @@
             text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
     />
     <view class="index-content">
-        <view class="index-module">
-            <van-cell title="检测业务" border="{{false}}" is-link value="查看更多" url="/pages/function-list/function-list" />
+        <view class="index-module" wx:for="{{business}}">
+            <van-cell title="{{item.title}}" border="{{false}}" is-link value="查看更多" url="/pages/function-list/function-list?type={{item.type}}" />
             <van-row gutter="20">
                 <van-col span="12">
-                    <view class="fd-card" bindtap="goPage" url="/pages/check-in/check-in">
-                        <icon class="iconfont icon-dengji card-icon"></icon>
-                        <view class="card-title">信息登记</view>
+                    <view class="fd-card" bindtap="goPage" data-url="{{item.subList[0].url}}">
+                        <icon class="iconfont {{'icon-' + item.subList[0].icon}} card-icon" style="color:{{item.subList[0].color}}"></icon>
+                        <view class="card-title">{{item.subList[0].title}}</view>
                     </view>
                 </van-col>
                 <van-col span="12">
-                    <view class="fd-card">
-                        信息查看
+                    <view class="fd-card" bindtap="goPage" data-url="{{item.subList[1].url}}">
+                        <icon class="iconfont {{'icon-' + item.subList[1].icon}} card-icon" style="color:{{item.subList[1].color}}"></icon>
+                        <view class="card-title">{{item.subList[1].title}}</view>
                     </view>
                 </van-col>
             </van-row>
         </view>
-        <view class="index-module">
-            <van-cell title="报告业务" border="{{false}}" is-link value="查看更多" url="/pages/function-list/function-list" />
-            <van-row gutter="20">
-                <van-col span="12">
-                    <view class="fd-card">
-                        防伪认证
-                    </view>
-                </van-col>
-                <van-col span="12">
-                    <view class="fd-card">
-                        结果查询
-                    </view>
-                </van-col>
-            </van-row>
-        </view>
-        <view class="index-module">
-            <van-cell title="结算业务" border="{{false}}" is-link value="查看更多" url="/pages/function-list/function-list"/>
-            <van-row gutter="20">
-                <van-col span="12">
-                    <view class="fd-card">
-                        工作量汇总
-                    </view>
-                </van-col>
-                <van-col span="12">
-                    <view class="fd-card">
-                        结算清单
-                    </view>
-                </van-col>
-            </van-row>
-        </view>
+
         <view class="index-support">元准智能科技提供技术支持</view>
     </view>
 </view>

@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/function-list/function-list",
     "pages/add/add",
     "pages/my/my",
-    "pages/function-list/function-list",
     "pages/check-in/check-in"
   ],
   "window": {
