@@ -1,77 +1,105 @@
-Component({
-    options: {
-        styleIsolation: 'shared',
-    },
-    data:{
-        business:[
+// pages/check-in/check-in.js
+Page({
+
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        list:[
             {
-                title: '检测业务',
-                type: 0,
-                subList:[
+                id: 1,
+                ymd:'2020年12月26日',
+                status: '待送检',
+                title: '苏州中心扩建工程1号',
+                remarks: '16:05 | 摘要1 | 摘要2',
+                operations:[
                     {
-                        title: '工程登记',
-                        icon: 'dengji',
-                        color: '#F0641F',
-                        url:'/pages/check-in/check-in'
+                        name:'操作做做',
+                        url:'/pages/index/index'
                     },
                     {
-                        title: '工程查看',
-                        icon: 'chakan',
-                        color: '#3FABFF'
+                        name:'操作1',
+                        url:'/pages/index/index'
                     },
+                    {
+                        name:'操作2',
+                        url:'/pages/index/index'
+                    }
                 ]
             },
             {
-                title: '报告业务',
-                type: 1,
-                subList:[
+                id:2,
+                ymd:'2020年12月26日',
+                status: '待送检',
+                title: '苏州中心扩建工程扩建工程扩建工程扩建工程1号',
+                remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
+                operations:[
                     {
-                        title: '报告检索',
-                        icon: 'jiansuo',
-                        color: '#3FABFF'
+                        name:'操作做做',
+                        url:'/pages/index/index'
                     },
                     {
-                        title: '防伪认证',
-                        icon: 'renzheng',
-                        color: '#F0641F'
-                    },
-                ]
-            },
-            {
-                title: '结算业务',
-                type: 2,
-                subList:[
-                    {
-                        title: '工作量汇总',
-                        icon: 'huizong',
-                        color: '#3FABFF'
-                    },
-                    {
-                        title: '结算清单',
-                        icon: 'jiesuan',
-                        color: '#3DC393'
-                    },
+                        name:'操作1',
+                        url:'/pages/index/index'
+                    }
                 ]
             }
         ]
     },
-    pageLifetimes: {
-      show() {
-        if (typeof this.getTabBar === 'function' &&
-          this.getTabBar()) {
-          this.getTabBar().setData({
-            selected: 0
-          })
-        }
-      }
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+
     },
-    methods: {
-        goPage(event) {
-            wx.navigateTo({
-                url:event.currentTarget.dataset.url
-            })
-        }
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
 
     }
-  })
-  
+})

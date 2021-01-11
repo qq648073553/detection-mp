@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText":"检测系统",
   "usingComponents": {
-    "van-notice-bar": "@vant/weapp/notice-bar/index"
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-tag": "@vant/weapp/tag/index"
   }
 }

@@ -1,38 +1,60 @@
-.index-pic-big{
+.index-pic-big {
     width: 100vw;
 }
 .index-content{
-    padding: 30rpx 30rpx;
+    padding: 20rpx;
 }
-.index-module {
-    margin-bottom: 30rpx;
-}
-.van-cell {
-    padding: 10px 0 !important;
-}
-.van-cell__title {
-    font-size: 35rpx;
-    font-weight: 600;
-}
-.van-icon-arrow:before {
-    color: #969799;
-}
-
-
 .fd-card{
+    height: 300rpx;
+    padding: 0 20rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+    border-radius: 8px;
+}
+.fd-card-header{
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    height: 100rpx;
+    background: #FBFBFB;
+    font: 24rpx bold;
+}
+
+.fd-card-body{
     height: 200rpx;
-    border-radius: 5px;
-    box-shadow: 0 2rpx 12rpx rgba(0,0,0,.1);
-    padding: 30rpx 20rpx;
+    overflow: hidden;
 }
-.fd-card .card-icon {
-    font-size: 80rpx;
-    margin-right: 30rpx;
-}
-.fd-card .card-title {
+.pro-ymd {
     font-size: 35rpx;
+}
+.pro-btn-group {
+    width: max-content;
+    position: absolute;
+}
+.pro-btn{
+    display: table-cell;
+    white-space: normal;
+    width: 70px;
+    padding: 0 20px;
+    background: red;
+    color: #fff;
+    vertical-align: middle;
+    height: 200rpx;
+}
+.pro-title {
+    font-size: 40rpx;
+    font-weight: 500;
+    line-height: 2;
+    margin: 20rpx 0 10rpx;
+}
+.text-line-public {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.pro-remarks {
+    font: 18rpx;
+    color: #C2C2C2;
 }
 .index-support{
     color: #DCDCDC;

@@ -1,4 +1,4 @@
-<view class="container tab-container">
+<view class="container">
     <image src="../../assets/images/index.jpg" class="index-pic-big"></image>
     <van-notice-bar
             background="#fff"
@@ -6,24 +6,25 @@
             text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
     />
     <view class="index-content">
-        <view class="index-module" wx:for="{{business}}">
-            <van-cell title="{{item.title}}" border="{{false}}" is-link value="查看更多" url="/pages/function-list/function-list?type={{item.type}}" />
-            <van-row gutter="20">
-                <van-col span="12">
-                    <view class="fd-card" bindtap="goPage" data-url="{{item.subList[0].url}}">
-                        <icon class="iconfont {{'icon-' + item.subList[0].icon}} card-icon" style="color:{{item.subList[0].color}}"></icon>
-                        <view class="card-title">{{item.subList[0].title}}</view>
-                    </view>
-                </van-col>
-                <van-col span="12">
-                    <view class="fd-card" bindtap="goPage" data-url="{{item.subList[1].url}}">
-                        <icon class="iconfont {{'icon-' + item.subList[1].icon}} card-icon" style="color:{{item.subList[1].color}}"></icon>
-                        <view class="card-title">{{item.subList[1].title}}</view>
-                    </view>
-                </van-col>
-            </van-row>
+        <view class="fd-card" wx:for="{{list}}" wx:key="item.id">
+            <view class="fd-card-header">
+                <view class="pro-ymd">{{item.ymd}}</view>
+                <van-tag type="primary" size="large">{{item.status}}</van-tag>
+            </view>
+            <van-swipe-cell  right-width="{{ item.operations.length * 70 }}">
+                <view class="fd-card-body">
+                    <view class="pro-title text-line-public">{{item.title}}</view>
+                    <view class="pro-remarks text-line-public">{{item.remarks}}</view>
+                </view>
+                <view slot="right">
+                    <view class="pro-btn" wx:for="{{item.operations}}" wx:for-item="operation">{{operation.name}}</view>
+
+                </view>
+            </van-swipe-cell>
         </view>
 
-        <view class="index-support">元准智能科技提供技术支持</view>
+
     </view>
+    <view class="index-support">元准智能科技提供技术支持</view>
+
 </view>

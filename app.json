@@ -12,31 +12,6 @@
     "navigationBarTitleText": "检测系统",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "custom": true,
-    "color": "#C3C3C3",
-    "selectedColor": "#5F80EC",
-    "list": [
-      {
-        "pagePath": "pages/my/my",
-        "iconPath": "assets/images/nav/my.png",
-        "selectedIconPath": "assets/images/nav/my_on.png",
-        "text": "个人中心"
-      },
-      {
-        "pagePath": "pages/add/add",
-        "iconPath": "assets/images/nav/add.png",
-        "selectedIconPath": "assets/images/nav/add_on.png",
-        "text": "新增检测"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "iconPath": "assets/images/nav/home.png",
-        "selectedIconPath": "assets/images/nav/home_on.png",
-        "text": "首页"
-      }
-    ]
-  },
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-icon": "@vant/weapp/icon/index",
