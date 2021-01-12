@@ -14,7 +14,7 @@ Component({
                 "pagePath": "/pages/add/add",
                 "iconPath": "../assets/images/nav/add.png",
                 "selectedIconPath": "../assets/images/nav/add_on.png",
-                "text": "新增检测"
+                "text": "历史工程"
             },
             {
                 "pagePath": "/pages/my/my",
@@ -31,10 +31,9 @@ Component({
             const data = e.currentTarget.dataset
             const url = data.path
             wx.switchTab({url})
-            console.log(data.index)
-            this.setData({
-                selected: data.index
-            })
+            // this.setData({
+            //     selected: data.index
+            // })
         }
     }
 })

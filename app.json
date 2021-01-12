@@ -1,16 +1,19 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/function-list/function-list",
     "pages/add/add",
     "pages/my/my",
-    "pages/check-in/check-in"
+    "pages/function-list/function-list",
+    "pages/delegation-add/delegation-add",
+    "pages/pro-detail/pro-detail",
+    "pages/check-in/check-in",
+    "pages/pro-search/pro-search"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#3FABFF",
     "navigationBarTitleText": "检测系统",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

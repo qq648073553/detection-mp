@@ -18,7 +18,11 @@
 .tab-container {
   padding-bottom: 53px;
 }
-
+.text-line-public {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 @import "/assets/styles/icon.wxss"
 
 

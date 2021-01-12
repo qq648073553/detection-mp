@@ -1,62 +1,35 @@
+.home-container {
+    padding-bottom: 30rpx;
+    height: 100vh;
+    overflow: hidden;
+}
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    padding: 20rpx 30rpx;
+    border-bottom: 3px solid #F5F5F5;
+
+}
 .index-pic-big {
+    margin-top: 20rpx;
     width: 100vw;
 }
 .index-content{
     padding: 20rpx;
-}
-.fd-card{
-    height: 300rpx;
-    padding: 0 20rpx;
-    margin-bottom: 30rpx;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
-    border-radius: 8px;
-}
-.fd-card-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100rpx;
-    background: #FBFBFB;
-    font: 24rpx bold;
-}
-
-.fd-card-body{
-    height: 200rpx;
-    overflow: hidden;
-}
-.pro-ymd {
-    font-size: 35rpx;
-}
-.pro-btn-group {
-    width: max-content;
-    position: absolute;
-}
-.pro-btn{
-    display: table-cell;
-    white-space: normal;
-    width: 70px;
-    padding: 0 20px;
-    background: red;
-    color: #fff;
-    vertical-align: middle;
-    height: 200rpx;
-}
-.pro-title {
-    font-size: 40rpx;
-    font-weight: 500;
-    line-height: 2;
-    margin: 20rpx 0 10rpx;
-}
-.text-line-public {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.pro-remarks {
-    font: 18rpx;
-    color: #C2C2C2;
+    background: #fff;
+    border-radius: 5px;
 }
 .index-support{
     color: #DCDCDC;
     text-align: center;
 }
+.pro-header {
+    width: 100%;
+    position: fixed;
+    top: 120rpx;
+    z-index: 999;
+    background: #fff;
+    transition: all .5s;
+}
+@import "/template/pro-list/index.wxss"

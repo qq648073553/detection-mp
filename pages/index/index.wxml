@@ -1,30 +1,38 @@
-<view class="container">
-    <image src="../../assets/images/index.jpg" class="index-pic-big"></image>
-    <van-notice-bar
-            background="#fff"
-            left-icon="volume-o"
-            text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
-    />
-    <view class="index-content">
-        <view class="fd-card" wx:for="{{list}}" wx:key="item.id">
-            <view class="fd-card-header">
-                <view class="pro-ymd">{{item.ymd}}</view>
-                <van-tag type="primary" size="large">{{item.status}}</van-tag>
-            </view>
-            <van-swipe-cell  right-width="{{ item.operations.length * 70 }}">
-                <view class="fd-card-body">
-                    <view class="pro-title text-line-public">{{item.title}}</view>
-                    <view class="pro-remarks text-line-public">{{item.remarks}}</view>
-                </view>
-                <view slot="right">
-                    <view class="pro-btn" wx:for="{{item.operations}}" wx:for-item="operation">{{operation.name}}</view>
+<import src="/template/pro-list/index.wxml" />
+<view class="container home-container">
+    <van-sticky>
+        <view class="index-header">
+            <van-button plain type="info" style="color:'#fff">新建工程</van-button>
 
-                </view>
-            </van-swipe-cell>
+
+            <van-button icon="contact"  />
+
         </view>
+    </van-sticky>
 
-
+    <view style="display:{{!scrollUpper ? 'block' : 'none'}};transition:all .2s;" >
+        <image src="../../assets/images/index.jpg" class="index-pic-big"></image>
+        <van-notice-bar
+                background="#fff"
+                left-icon="volume-o"
+                text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+        />
     </view>
+    <view class="{{scrollUpper ? 'pro-header' : ''}}">
+        <view class="pro-title">我的工程</view>
+        <van-search
+                bindtap="goSearch"
+                shape="round"
+                placeholder="请输入搜索关键词"
+        />
+    </view>
+    <scroll-view scroll-y="true" style="height: 100vh;"   bindscrolltolower="lower" bindscroll="scroll" >
+
+        <template is="proList" data="{{list:list}}"></template>
+    </scroll-view>
+<!--    <view class="index-content">-->
+<!--       -->
+<!--    </view>-->
     <view class="index-support">元准智能科技提供技术支持</view>
 
 </view>
