@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText":"新增检测",
   "usingComponents": {
+    "van-overlay": "@vant/weapp/overlay/index"
+
   }
 }

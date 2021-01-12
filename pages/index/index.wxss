@@ -21,6 +21,11 @@
     border-radius: 5px;
 }
 .index-support{
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 20px;
     color: #DCDCDC;
     text-align: center;
 }

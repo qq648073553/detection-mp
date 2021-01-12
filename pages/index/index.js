@@ -273,7 +273,7 @@ Page({
                 ]
             }
         ],
-        scrollUpper: true
+        scrollUpper: false
     },
     goSearch() {
         wx.navigateTo({

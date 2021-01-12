@@ -1,1 +1,4 @@
-<text>添加</text>
+<image src="/assets/images/bg.png" class="add"></image>
+<van-overlay show="{{ true }}" >
+
+</van-overlay>
