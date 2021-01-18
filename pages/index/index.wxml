@@ -27,7 +27,7 @@
         </view>
         <van-divider wx:if="{{list.length === 0 || overlayShow}}" contentPosition="center">暂无工程</van-divider>
 
-        <scroll-view wx:else scroll-y="true" style="height: {{scrollHeight}};" lower-threshold="{{scrollBottom}}" bindscrolltoupper="upper" bindscrolltolower="lower">
+        <scroll-view wx:else scroll-y="true" style="height: {{scrollHeight}};">
             <template  is="proList" data="{{list:list}}"></template>
 
         </scroll-view>

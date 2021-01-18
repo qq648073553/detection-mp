@@ -1,4 +1,85 @@
-.add {
-    width: 100vw;
-    height: 100vh;
+.add-container {
+    min-height: 100vh;
+    padding: 10px 10px 0;
+    background: #F3F3F2;
+}
+.add-module{
+    margin-bottom: 20px;
+}
+.module-title{
+    padding: 0 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.module-content{
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+}
+.module-upload{
+    /*background-color: #fff;*/
+    padding:0 100rpx;
+}
+.module-upload .van-uploader__upload{
+    background: #fff;
+}
+.cell{
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 24px;
+    color: #323233;
+    background-color: #fff;
+    padding: 10px 16px;
+}
+.cell::after{
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+    content: " ";
+    pointer-events: none;
+    right: 16px;
+    bottom: 0;
+    left: 16px;
+    border-bottom: 1px solid #ebedf0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+}
+
+.cell--last{
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 24px;
+    color: #323233;
+    background-color: #fff;
+    padding: 10px 16px;
+}
+.cell-label{
+    max-width: 5.2em;
+    min-width: 5.2em;
+    margin-right: 12px;
+    color: #646566;
+}
+
+.cell-placeholder{
+    color: #C8C9CC;
+}
+.cell-value{
+    width: 100%;
+}
+.van-dropdown-menu__title{
+    width: 100%;
+    padding: 0 !important;
+}
+.fd-dropdown-menu{
+    height: 40px;
+}
+.van-dropdown-menu{
+    max-height: 24px;
 }
