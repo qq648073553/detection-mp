@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'iconfont';  /* project id 2316445 */
-  src: url('//at.alicdn.com/t/font_2316445_br9bvq7yhd.eot');
-  src: url('//at.alicdn.com/t/font_2316445_br9bvq7yhd.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_2316445_br9bvq7yhd.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_2316445_br9bvq7yhd.woff') format('woff'),
-  url('//at.alicdn.com/t/font_2316445_br9bvq7yhd.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_2316445_br9bvq7yhd.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_2316445_e4370btvtlr.eot');
+  src: url('//at.alicdn.com/t/font_2316445_e4370btvtlr.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2316445_e4370btvtlr.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_2316445_e4370btvtlr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2316445_e4370btvtlr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2316445_e4370btvtlr.svg#iconfont') format('svg');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -13,6 +13,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-weixin:before {
+  content: "\e702";
+}
+
+.icon-gerenzhongxin-zhong:before {
+  content: "\e605";
 }
 
 .icon-mingxi:before {

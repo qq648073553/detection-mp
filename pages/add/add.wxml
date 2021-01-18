@@ -1,4 +1,1 @@
-<image src="/assets/images/bg.png" class="add"></image>
-<van-overlay show="{{ true }}" >
-
-</van-overlay>
+<text>新增检测</text>

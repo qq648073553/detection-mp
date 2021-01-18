@@ -1,20 +1,22 @@
 <template name="proList">
-    <view class="fd-card" wx:for="{{list}}" wx:key="id" >
-        <view class="fd-card-header" bindtap="goDetail">
-            <view class="pro-ymd">{{item.ymd}}</view>
-            <van-tag color="{{item.status.color}}" size="large">{{item.status.title}}</van-tag>
+    <view id="proList">
+        <view class="fd-card"  wx:for="{{list}}" wx:key="id" >
+            <view class="fd-card-header" bindtap="goDetail">
+                <view class="pro-ymd">{{item.ymd}}</view>
+                <van-tag color="{{item.status.color}}" size="large">{{item.status.title}}</van-tag>
+            </view>
+            <van-swipe-cell   right-width="{{ item.operations.length * 70 }}">
+                <view class="fd-card-body">
+                    <view class="pro-title text-line-public">{{item.title}}</view>
+                    <view class="pro-remarks text-line-public">{{item.remarks}}</view>
+                    <van-tag  plain class="pro-tag" wx:for="{{item.tags}}" wx:for-item="tag" color="{{tag.color}}">{{tag.title}}</van-tag>
+
+                </view>
+                <view slot="right">
+                    <navigator class="pro-btn" wx:for="{{item.operations}}" wx:for-item="operation" style="background:{{operation.color}}" url="{{operation.url}}">{{operation.title}}</navigator>
+
+                </view>
+            </van-swipe-cell>
         </view>
-        <van-swipe-cell   right-width="{{ item.operations.length * 70 }}">
-            <view class="fd-card-body">
-                <view class="pro-title text-line-public">{{item.title}}</view>
-                <view class="pro-remarks text-line-public">{{item.remarks}}</view>
-                <van-tag  plain class="pro-tag" wx:for="{{item.tags}}" wx:for-item="tag" color="{{tag.color}}">{{tag.title}}</van-tag>
-
-            </view>
-            <view slot="right">
-                <navigator class="pro-btn" wx:for="{{item.operations}}" wx:for-item="operation" style="background:{{operation.color}}" url="{{operation.url}}">{{operation.title}}</navigator>
-
-            </view>
-        </van-swipe-cell>
     </view>
 </template>

@@ -2,11 +2,10 @@
 <view class="container home-container">
     <van-sticky>
         <view class="index-header">
-            <van-button plain type="info" style="color:'#fff">新建工程</van-button>
-
-
-            <van-button icon="contact"  />
-
+            <navigator url="/pages/add/add" hover-class="none" >
+                <view class="new-pro-btn">新建工程</view>
+            </navigator>
+            <icon class="iconfont icon-gerenzhongxin-zhong personal-center" bindtap="handlePersonalCenter"/>
         </view>
     </van-sticky>
 
@@ -20,27 +19,32 @@
     </view>
     <view class="{{scrollUpper ? 'pro-header' : ''}}">
         <view class="pro-title">我的工程</view>
-        <van-divider contentPosition="center">暂无工程</van-divider>
+        <navigator url="/pages/pro-search/pro-search" hover-class="none">
+            <van-cell title="请输入搜索关键词" class="index-search" icon="search" border="{{false}}" />
+        </navigator>
+        <view wx:if="{{histories.length > 0}}"  class="index-histories">
+            <view wx:for="{{histories}}" class="history-item">{{item}}</view>
+        </view>
+        <van-divider wx:if="{{list.length === 0 || overlayShow}}" contentPosition="center">暂无工程</van-divider>
 
-        <!--        <van-search-->
-<!--                bindtap="goSearch"-->
-<!--                shape="round"-->
-<!--                placeholder="请输入搜索关键词"-->
-<!--        />-->
+        <scroll-view wx:else scroll-y="true" style="height: {{scrollHeight}};" lower-threshold="{{scrollBottom}}" bindscrolltoupper="upper" bindscrolltolower="lower">
+            <template  is="proList" data="{{list:list}}"></template>
+
+        </scroll-view>
+
     </view>
-<!--    <scroll-view scroll-y="true" style="height: 100vh;"   bindscrolltolower="lower" bindscroll="scroll" >-->
 
-<!--        <template is="proList" data="{{list:list}}"></template>-->
-<!--    </scroll-view>-->
-<!--    <view class="index-content">-->
-<!--       -->
-<!--    </view>-->
-    <view class="index-support">元准智能科技提供技术支持</view>
-    <van-overlay show="{{ show }}" bind:click="onClickHide">
-        <view class="wrapper">
-            <view class="block" catch:tap="noop">
-                <van-button type="primary" size="large">微信手机号快捷登录</van-button>
-                <van-button type="primary" size="large">微信手机号快捷登录</van-button>
+<!--    <view class="index-support">元准智控提供技术支持</view>-->
+    <van-overlay show="{{ overlayShow }}" bind:click="onClickHide" z-index="100">
+        <view class="overlay-wrapper">
+            <view class="overlay-block" catch:tap="noop">
+                <van-button type="primary" size="large" class="wx-login" round block bind:click="wxLogin">
+                    <icon class="iconfont icon-weixin"/>
+                    微信手机号快捷登录
+                </van-button>
+                <navigator url="/pages/phone-login/phone-login" hover-class="none">
+                    <view class="phone-login">输入手机号码登录/注册</view>
+                </navigator>
 
             </view>
         </view>
