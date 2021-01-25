@@ -1,4 +1,4 @@
-// pages/phone-login/phone-login.js
+// pages/login/login.js
 Page({
 
   /**
@@ -7,7 +7,9 @@ Page({
   data: {
 
   },
+  loginByWx() {
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */

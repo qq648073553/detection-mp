@@ -1,0 +1,46 @@
+/* pages/login-phone/login-phone.wxss */
+.login-container-p {
+    width: 90%;
+    margin: 60px auto;
+}
+.login-logo-p{
+    display: block;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px;
+}
+.field-append {
+    display: flex;
+}
+
+.login-line-p {
+    height: 2px;
+    background: #dbdbdb;
+    margin: 5px 0 15px;
+}
+.filed-gap {
+    display: block;
+    margin-bottom: 15px;
+}
+.input-otp {
+    flex: 1;
+    margin-right: 10px;
+}
+.login-otp-btn {
+    color: #9A9A9A;
+}
+.login-switch {
+    font-size: 14px;
+}
+.login-btn-p{
+    margin-top: 50px;
+    width: 90%;
+    border-radius: 18px;
+    height: 40px;
+    color: #fff;
+    background: #4387F6;
+}
+#van-dialog .van-dialog__header {
+    font-weight: bold;
+}
+

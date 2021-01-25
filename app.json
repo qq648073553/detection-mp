@@ -1,14 +1,15 @@
 {
   "pages": [
-    "pages/add/add",
+    "pages/login/login",
+    "pages/login-phone/login-phone",
     "pages/index/index",
+    "pages/add/add",
     "pages/my/my",
     "pages/function-list/function-list",
     "pages/delegation-add/delegation-add",
     "pages/pro-detail/pro-detail",
     "pages/check-in/check-in",
-    "pages/pro-search/pro-search",
-    "pages/phone-login/phone-login"
+    "pages/pro-search/pro-search"
   ],
   "window": {
     "backgroundTextStyle": "light",

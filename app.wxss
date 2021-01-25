@@ -19,6 +19,24 @@
 .tab-container {
   padding-bottom: 53px;
 }
+.btn-text-public {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+button::after{
+  border: none;
+}
+button[plain] {
+  border:none;
+}
+/*.btn-text-public::after{*/
+
+/*  border: none;*/
+
+/*}*/
 .text-line-public {
   overflow: hidden;
   white-space: nowrap;

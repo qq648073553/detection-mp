@@ -1,0 +1,8 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+    <image src="../../assets/images/logo.jpg" class="login-logo"></image>
+    <view class="login-slogan">工程检测平台</view>
+    <view class="login-slogan">线上便捷办公</view>
+    <button bindtap="loginByWx" class="login-btn login-wx-btn" style="margin-top:40px">微信登录</button>
+    <navigator url="/pages/login-phone/login-phone" hover-class="none" class="login-btn login-phone-btn">手机号登录</navigator>
+</view>

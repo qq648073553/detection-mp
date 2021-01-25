@@ -1,0 +1,34 @@
+/* pages/login/login.wxss */
+.login-container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 60rpx;
+}
+.login-logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+.login-slogan {
+    font-size: 18px;
+    margin-top: 20px;
+}
+.login-btn {
+    display: block;
+    width: 90%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 4px;
+    color: #fff;
+    letter-spacing: 4px;
+    margin-top: 30px;
+}
+.login-wx-btn{
+    background: #3EB036;
+}
+.login-phone-btn{
+    background: #4387F6;
+}

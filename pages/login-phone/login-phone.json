@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "登 录 / 注册",
+  "usingComponents": {
+    "van-dialog": "@vant/weapp/dialog/index"
+  }
+}

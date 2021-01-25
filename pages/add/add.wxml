@@ -124,7 +124,7 @@
             <van-icon name="cross" />
         </view>
         <view class="action-body">
-            
+
         </view>
 
     </van-action-sheet>
