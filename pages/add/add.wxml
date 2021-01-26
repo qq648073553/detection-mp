@@ -1,123 +1,145 @@
-<view class="add-container">
-    <view class="add-module">
-        <view class="module-title">
-            工程信息（必填）
-        </view>
-        <view class="module-content">
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="新建工程" showNav ></navbar>
+    <view class="add-container" style="top:{{padBottom}}px">
+        <view class="add-module">
+            <view class="module-title">
+                工程信息（必填）
+            </view>
+            <view class="module-content">
                 <van-field
                         model:value="{{ project.contact }}"
                         clearable
                         label="负责人"
                         placeholder="请输入"
                 />
-            <van-field
-                    model:value="{{ project.phone }}"
-                    clearable
-                    type="number"
-                    label="负责人手机号"
-                    placeholder="请输入"
-            />
-            <van-field
-                    model:value="{{ project.code }}"
-                    clearable
-                    label="工程编号"
-                    placeholder="请输入"
-            />
-            <van-field
-                    model:value="{{ project.title }}"
-                    clearable
-                    label="工程名称"
-                    placeholder="请输入"
-            />
-            <van-field
-                    model:value="{{ project.status }}"
-                    border="{{false}}"
-                    clearable
-                    label="工程状态"
-                    placeholder="请选择"
-            />
+                <van-field
+                        model:value="{{ project.phone }}"
+                        clearable
+                        type="number"
+                        label="负责人手机号"
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ project.code }}"
+                        clearable
+                        label="工程编号"
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ project.title }}"
+                        clearable
+                        label="工程名称"
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ project.location }}"
+                        label="工程地点"
+                        placeholder="请选择"
+                >
+                    <van-icon slot="right-icon" name="arrow" color="#c2c2c2" />
+                </van-field>
+                <van-field
+                        model:value="{{ project.status }}"
+                        border="{{false}}"
+                        label="工程状态"
+                        placeholder="请选择"
+                >
+                    <van-icon slot="right-icon" name="arrow" color="#c2c2c2" />
+                </van-field>
+            </view>
         </view>
+        <view class="add-module">
+            <view class="module-title">
+                合同信息（必填）
+            </view>
+            <view class="module-content">
+                <van-field
+                        model:value="{{ build.contract }}"
+                        clearable
+                        label="合同号"
+                        adjust-position="{{false}}"
+
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ build.buildCom }}"
+                        clearable
+                        adjust-position="{{false}}"
+
+                        label="建设单位"
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ build.constructionCom }}"
+                        clearable
+                        adjust-position="{{false}}"
+
+                        label="施工单位"
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ build.delegationCom }}"
+                        clearable
+                        adjust-position="{{false}}"
+
+                        label="委托单位"
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ build.amountCom }}"
+                        clearable
+                        adjust-position="{{false}}"
+
+                        border="{{false}}"
+                        label="结算单位"
+                        placeholder="请输入"
+                />
+            </view>
+        </view>
+        <view class="add-module">
+            <view class="module-title">
+                监理信息（必填）
+            </view>
+            <view class="module-content">
+                <van-field
+                        model:value="{{ supervision.code }}"
+                        clearable
+                        adjust-position="{{false}}"
+
+                        label="质监编号"
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ supervision.qualityCom }}"
+                        clearable
+                        adjust-position="{{false}}"
+
+                        label="质监单位"
+                        placeholder="请输入"
+                />
+                <van-field
+                        model:value="{{ supervision.supervisionCom }}"
+                        clearable
+                        adjust-position="{{false}}"
+
+                        border="{{false}}"
+                        label="监理单位"
+                        placeholder="请输入"
+                />
+
+            </view>
+        </view>
+        <view class="add-module">
+            <view class="module-title">相关资料</view>
+            <view class="module-upload">
+                <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+            </view>
+        </view>
+
+        <button class="add-btn" bindtap="formSubmit">提 交</button>
+
     </view>
-    <view class="add-module">
-        <view class="module-title">
-            建设信息（必填）
-        </view>
-        <view class="module-content">
-            <van-field
-                    model:value="{{ build.contract }}"
-                    clearable
-                    label="合同号"
-                    placeholder="请输入"
-            />
-            <view class="cell">
-                <view class="cell-label">建设单位</view>
-                <view class="cell-value">
-                    <van-dropdown-menu>
-                        <van-dropdown-item model:value="{{ build.buildCom }}" options="{{ statusOptions }}" />
-                    </van-dropdown-menu>
-                </view>
-            </view>
-            <view class="cell">
-                <view class="cell-label">施工单位</view>
-                <view class="cell-value">
-                    <van-dropdown-menu>
-                        <van-dropdown-item model:value="{{ build.constructionCom }}" options="{{ statusOptions }}" />
-                    </van-dropdown-menu>
-                </view>
-            </view>
-            <view class="cell">
-                <view class="cell-label">委托单位</view>
-                <view class="cell-value">
-                    <van-dropdown-menu>
-                        <van-dropdown-item model:value="{{ build.constructionCom }}" options="{{ statusOptions }}" />
-                    </van-dropdown-menu>
-                </view>
-            </view>
-            <view class="cell--last">
-                <view class="cell-label">结算单位</view>
-                <view class="cell-value">
-                    <van-dropdown-menu>
-                        <van-dropdown-item model:value="{{ build.constructionCom }}" options="{{ statusOptions }}" />
-                    </van-dropdown-menu>
-                </view>
-            </view>
-        </view>
-    </view>
-    <view class="add-module">
-        <view class="module-title">
-            监理信息（必填）
-        </view>
-        <view class="module-content">
-            <van-field
-                    model:value="{{ supervision.code }}"
-                    clearable
-                    label="质监编号"
-                    placeholder="请输入"
-            />
-            <view class="cell">
-                <view class="cell-label">质监单位</view>
-                <view class="cell-value">
-                    <van-dropdown-menu>
-                        <van-dropdown-item model:value="{{ supervision.qualityCom }}" options="{{ statusOptions }}" />
-                    </van-dropdown-menu>
-                </view>
-            </view>
-            <view class="cell--last">
-                <view class="cell-label">监理单位</view>
-                <view class="cell-value">
-                    <van-dropdown-menu>
-                        <van-dropdown-item model:value="{{ supervision.supervisionCom }}" options="{{ statusOptions }}" />
-                    </van-dropdown-menu>
-                </view>
-            </view>
-        </view>
-    </view>
-    <view class="add-module">
-        <view class="module-title">相关资料</view>
-        <view class="module-upload">
-            <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
-        </view>
-    </view>
+
     <van-action-sheet show="{{ actionShow }}">
         <view class="action-header">
             <view class="action-title">{{actionTitle}}</view>

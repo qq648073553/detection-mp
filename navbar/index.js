@@ -20,7 +20,7 @@ Component({
         },
         bgColor:{
             type: String,
-            value: '#7096FE linear-gradient(to right, #7598FE, #799CFD)'
+            value: '#7096FE linear-gradient(to right, #4387F6, #799CFD)'
         },
         iconColor:{
             type: String,

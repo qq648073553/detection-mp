@@ -11,7 +11,7 @@
     border-bottom: 3px solid #F5F5F5;
 }
 .personal-center {
-    color:  #1989FA;
+    color:  #4387F6;
     font-size: 30px;
 }
 .new-pro-btn  {
@@ -20,8 +20,8 @@
     line-height: 30px;
     padding: 0 8px;
     font-size: 12px;
-    color: #1989FA;
-    border: 1px solid #1989FA;
+    color: #4387F6;
+    border: 1px solid #4387F6;
 }
 
 .index-pic-big {
@@ -36,7 +36,7 @@
 }
 
 .custom-class .van-search__content{
-    border: 1px solid #3FABFF;
+    border: 1px solid #4387F6;
     background: #fff;
 }
 .index-search .van-cell {
@@ -70,50 +70,50 @@
 .pro-header {
     width: 100%;
     position: fixed;
-    height: 160px;
+    height: 100px;
     overflow: hidden;
     /*top: 60px;*/
     z-index: 999;
     background: #fff;
     transition: all .5s;
 }
-.overlay-wrapper {
-    position: absolute;
-    top: 120px;
-    width: 100%;
-    height: 100%;
-}
+/*.overlay-wrapper {*/
+/*    position: absolute;*/
+/*    top: 120px;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
 
-.overlay-block {
-    padding: 20px;
-    margin: auto;
-    width: 90%;
-    height: 140px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 12px rgba(0,0,0,.4);
-}
-.wx-login .van-button--round {
-    border-radius: 10px;
-    margin-bottom: 10px;
+/*.overlay-block {*/
+/*    padding: 20px;*/
+/*    margin: auto;*/
+/*    width: 90%;*/
+/*    height: 140px;*/
+/*    background-color: #fff;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 2px 12px rgba(0,0,0,.4);*/
+/*}*/
+/*.wx-login .van-button--round {*/
+/*    border-radius: 10px;*/
+/*    margin-bottom: 10px;*/
 
-}
-.phone-login .van-button{
-    border: none;
-    color: #3EABFE;
-}
-.phone-login{
-    line-height: 30px;
-    text-align: center;
-    color: #3EABFE;
-}
-.wx-login .iconfont {
-    margin-right: 2px;
-    color: #fff;
-}
-.wx-login .van-button__text {
-    color: #fff;
-}
+/*}*/
+/*.phone-login .van-button{*/
+/*    border: none;*/
+/*    color: #3EABFE;*/
+/*}*/
+/*.phone-login{*/
+/*    line-height: 30px;*/
+/*    text-align: center;*/
+/*    color: #3EABFE;*/
+/*}*/
+/*.wx-login .iconfont {*/
+/*    margin-right: 2px;*/
+/*    color: #fff;*/
+/*}*/
+/*.wx-login .van-button__text {*/
+/*    color: #fff;*/
+/*}*/
 .index-support{
     margin: 20px auto;
     color: #DCDCDC;

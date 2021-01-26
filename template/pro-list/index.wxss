@@ -1,5 +1,5 @@
 .fd-card{
-    height: 300rpx;
+    height: 240rpx;
     margin-bottom: 30rpx;
     /*box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);*/
     /*border-radius: 8px;*/
@@ -15,9 +15,15 @@
 }
 
 .fd-card-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 20rpx;
-    height: 200rpx;
+    height: 80px;
     overflow: hidden;
+}
+.fd-card-ellipsis {
+    transform: rotateZ(90deg);
 }
 .pro-ymd {
     font-size: 35rpx;
@@ -33,10 +39,9 @@
     padding: 0 20px;
     color: #fff;
     vertical-align: middle;
-    height: 200rpx;
+    height: 80px;
 }
 .pro-title {
-    padding: 0 20rpx;
     font-size: 40rpx;
     font-weight: 500;
     line-height: 2;

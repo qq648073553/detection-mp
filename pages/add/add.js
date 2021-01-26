@@ -1,3 +1,4 @@
+const App = getApp();
 Page({
     data: {
         project: {
@@ -25,26 +26,36 @@ Page({
             { value: 0, text: '已完成' },
             { value: 1, text: '未完成' }
         ],
+        padBottom: 0,
         fileList:[],
-        actionShow: true,
+        actionShow: false,
         actionTitle: '建设单位'
     },
     afterRead(){
 
     },
+    formSubmit() {
 
+    },
+    setPadding(e) {
+        console.log(e)
+        this.setData({
+            padBottom:(e.target.offsetTop - this.data.navHeight - 10) * -1
+        })
+    },
+    onLoad: function (options) {
+        this.setData({
+            navHeight: App.globalData.navHeight,
+            padBottom:App.globalData.navHeight,
+        })
+    },
+    onShow() {
+        wx.onKeyboardHeightChange(res => {
+            const height = (res.height * -1) || this.data.navHeight
+            this.setData({
+                padBottom:height
+            })
+        })
+    }
 })
 
-// Component({
-//     pageLifetimes: {
-//       show() {
-//         if (typeof this.getTabBar === 'function' &&
-//           this.getTabBar()) {
-//           this.getTabBar().setData({
-//             selected: 1
-//           })
-//         }
-//       }
-//     }
-//   })
-  

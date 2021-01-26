@@ -18,6 +18,11 @@ App({
   },
   globalData: {
     userInfo: null,
-    isLogined: false
+    isLogined: false,
+    proStatus: {
+      beforeConfirm: 0,
+      confirmed: 1,
+      official: 2
+    }
   }
 })
