@@ -28,6 +28,7 @@ Page({
         ],
         padBottom: 0,
         fileList:[],
+        lastScroll:0,
         actionShow: false,
         actionTitle: '建设单位'
     },
@@ -37,10 +38,17 @@ Page({
     formSubmit() {
 
     },
-    setPadding(e) {
-        console.log(e)
+    // setPadding(e) {
+    //     console.log(e)
+    //     const value = Math.min(e.target.offsetTop - this.data.navHeight - 10, 338)
+    //     this.setData({
+    //         padBottom:value * -1
+    //     })
+    // },
+    setHeight(e) {
+
         this.setData({
-            padBottom:(e.target.offsetTop - this.data.navHeight - 10) * -1
+            padBottom:e.detail.height * -1
         })
     },
     onLoad: function (options) {
@@ -51,11 +59,43 @@ Page({
     },
     onShow() {
         wx.onKeyboardHeightChange(res => {
-            const height = (res.height * -1) || this.data.navHeight
-            this.setData({
-                padBottom:height
-            })
+            if(res.height === 0){
+                const scrollTop = this.data.lastScroll
+                console.log(scrollTop)
+                this.setData({
+                    padBottom:this.data.navHeight
+                },()=>{
+                        wx.pageScrollTo({
+                            scrollTop:scrollTop,
+                            fail(err) {
+                                console.log(err)
+
+                            }
+                        })
+                })
+            }
+            // ()=>{
+            //     console.log('beforeScroll')
+            //     wx.pageScrollTo({
+            //         scrollTop:scrollTop,
+            //         fail(err) {
+            //             console.log(err)
+            //
+            //         }
+            //     })
+            // })
+            // const height = (res.height * -1) || this.data.navHeight
+            // this.setData({
+            //     padBottom:height
+            // })
         })
+    },
+    onPageScroll(obj) {
+        if(obj.scrollTop !== 0){
+            this.setData({
+                lastScroll:obj.scrollTop
+            })
+        }
     }
 })
 

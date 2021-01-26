@@ -70,11 +70,14 @@ Page({
     },
 
     lower(e) {
-        if(!this.data.scrollUpper) {
-            this.setData({
-                scrollUpper: true,
-            })
-        }
+        wx.navigateTo({
+            url:'/pages/pro-search/pro-search'
+        })
+        // if(!this.data.scrollUpper) {
+        //     this.setData({
+        //         scrollUpper: true,
+        //     })
+        // }
 
     },
     wxLogin() {
@@ -153,7 +156,7 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        this.lower()
     },
 
     /**

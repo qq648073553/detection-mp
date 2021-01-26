@@ -1,5 +1,9 @@
 <!--pages/pro-search/pro-search.wxml-->
 <import src="/template/pro-list/index.wxml" />
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="我的工程" showNav ></navbar>
+
+</view>
 <van-sticky>
     <van-search
             class="custom-class"
@@ -11,5 +15,5 @@
 </van-sticky>
 
 <view class="search-content">
-    <template is="proList" data="{{list:list}}"></template>
+    <template  is="proList" data="{{list:list, proStatus:proStatus}}"></template>
 </view>

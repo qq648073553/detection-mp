@@ -57,22 +57,23 @@
                         model:value="{{ build.contract }}"
                         clearable
                         label="合同号"
-                        adjust-position="{{false}}"
 
+                        adjust-position="{{false}}"
                         placeholder="请输入"
                 />
                 <van-field
                         model:value="{{ build.buildCom }}"
                         clearable
                         adjust-position="{{false}}"
-
                         label="建设单位"
+
                         placeholder="请输入"
                 />
                 <van-field
                         model:value="{{ build.constructionCom }}"
                         clearable
                         adjust-position="{{false}}"
+                        bind:focus="setHeight"
 
                         label="施工单位"
                         placeholder="请输入"
@@ -81,6 +82,7 @@
                         model:value="{{ build.delegationCom }}"
                         clearable
                         adjust-position="{{false}}"
+                        bind:focus="setHeight"
 
                         label="委托单位"
                         placeholder="请输入"
@@ -89,6 +91,7 @@
                         model:value="{{ build.amountCom }}"
                         clearable
                         adjust-position="{{false}}"
+                        bind:focus="setHeight"
 
                         border="{{false}}"
                         label="结算单位"
@@ -105,7 +108,7 @@
                         model:value="{{ supervision.code }}"
                         clearable
                         adjust-position="{{false}}"
-
+                        bind:focus="setHeight"
                         label="质监编号"
                         placeholder="请输入"
                 />
@@ -113,6 +116,7 @@
                         model:value="{{ supervision.qualityCom }}"
                         clearable
                         adjust-position="{{false}}"
+                        bind:focus="setHeight"
 
                         label="质监单位"
                         placeholder="请输入"
@@ -121,6 +125,7 @@
                         model:value="{{ supervision.supervisionCom }}"
                         clearable
                         adjust-position="{{false}}"
+                        bind:focus="setHeight"
 
                         border="{{false}}"
                         label="监理单位"

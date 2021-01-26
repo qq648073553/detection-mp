@@ -1,6 +1,6 @@
 
 <view class="container" style="padding-top:{{navHeight}}px">
-    <navbar page-name="我的工程" showNav="{{scrollUpper}}" customBack bind:back="scrollBottom"></navbar>
+    <navbar page-name="检测系统" showNav="{{scrollUpper}}" customBack bind:back="scrollBottom"></navbar>
 
     <import src="/template/pro-list/index.wxml" />
    <view class="home-container">
@@ -43,7 +43,7 @@
 
        </view>
        <van-divider wx:if="{{list.length === 0 || overlayShow}}" contentPosition="center">暂无工程</van-divider>
-                  <scroll-view wx:else scroll-y="true" style="height: {{scrollHeight}}px;margin-top: {{scrollUpper ? 100 : 0}}px" bindscrolltolower="lower"  >
+                  <scroll-view wx:else scroll-y="true" style="height: {{scrollHeight}}px;margin-top: {{scrollUpper ? 100 : 0}}px;padding-top:10px" bindscrolltolower="lower"  >
                       <template  is="proList" data="{{list:list, proStatus:proStatus}}"></template>
 
 
