@@ -6,6 +6,6 @@
     border-radius: 5px;
 }
 .custom-class .van-search__content{
-    border: 1px solid #3FABFF;
+    border: 1px solid #4387F6;
     background: #fff;
 }

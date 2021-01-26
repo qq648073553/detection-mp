@@ -15,16 +15,6 @@ Page({
                 status: 0,
                 title: '苏州中心扩建工程1号',
                 remarks: '16:05 | 待受理',
-                // tags: [
-                //     {
-                //         title:'标签1',
-                //         color:'#3FABFF'
-                //     },
-                //     {
-                //         title: '标签2',
-                //         color: '#F0641F'
-                //     }
-                // ],
             },
             {
                 id:2,
@@ -39,25 +29,19 @@ Page({
                 status: 2,
                 title: '苏州中心扩建工程3号',
                 remarks: '16:05 | 已受理 | 委托10 | 报告200'
+            },
+            {
+                id: 4,
+                ymd:'2020年12月28日',
+                status: 2,
+                title: '苏州中心扩建工程3号',
+                remarks: '16:05 | 已受理 | 委托10 | 报告200'
             }
         ],
-        scrollUpper: false,
-        scrollHeight: 600,
         value: '',
         histories:['苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影']
     },
-    scrollTop() {
-        this.setData({
-            scrollUpper: true,
 
-        })
-    },
-    scrollBottom() {
-        this.setData({
-            scrollUpper: false
-        })
-        this.initScrollHeight()
-    },
     goSearch() {
         wx.navigateTo({
             url:'/pages/pro-search/pro-search'
@@ -83,16 +67,7 @@ Page({
     wxLogin() {
 
     },
-    initScrollHeight() {
-        const query = wx.createSelectorQuery()
-        query.select('#proList').boundingClientRect()
-        query.exec((res) => {
-            const height = Math.min(res[0].height, 600)
-            this.setData({
-                scrollHeight: height
-            })
-        })
-    },
+
     noop(e) {
         console.log(e)
     },
@@ -120,7 +95,6 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        this.initScrollHeight()
 
     },
 
@@ -166,19 +140,7 @@ Page({
 
     },
     onPageScroll(obj) {
-        // if(obj.scrollTop > 150 && !this.data.scrollUpper) {
-        //     this.scrollTop()
-        // }
-        // console.log(document.getElementById('#index-inform'))
-        // if(obj.scrollTop > 100 && this.data.informDisplay !== 'none') {
-        //     this.setData({
-        //         informDisplay: 'none'
-        //     })
-        // }else if(obj.scrollTop < 100 && this.data.informDisplay !== 'block'){
-        //     this.setData({
-        //         informDisplay: 'block'
-        //     })
-        // }
+
     }
 
 })

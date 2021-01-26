@@ -1,10 +1,9 @@
+<import src="/template/pro-list/index.wxml" />
 
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="检测系统" showNav="{{scrollUpper}}" customBack bind:back="scrollBottom"></navbar>
 
-    <import src="/template/pro-list/index.wxml" />
    <view class="home-container">
-       <view class="home-container-top" style="display:{{!scrollUpper ? 'block' : 'none'}};transition:all .5s;">
            <view class="index-header">
                <navigator url="/pages/add/add" hover-class="none" >
                    <view class="new-pro-btn">新建工程</view>
@@ -17,53 +16,21 @@
                    left-icon="volume-o"
                    text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
            />
+
+
+
+       <navigator url="/pages/pro-search/pro-search" hover-class="none">
+           <van-cell title="请输入搜索关键词" class="index-search" icon="search" border="{{false}}" />
+       </navigator>
+       <view wx:if="{{histories.length > 0}}"  class="index-histories">
+           <view wx:for="{{histories}}" class="history-item">{{item}}</view>
        </view>
 
-
-<!--       <view style="display:{{!scrollUpper ? 'block' : 'none'}};transition:all .2s;" >-->
-<!--         -->
-<!--       </view>-->
-       <view class="{{scrollUpper ? 'pro-header' : ''}}" style="top:{{navHeight}}px">
-<!--           <view class="pro-title">我的工程</view>-->
-           <van-search
-                   class="custom-class"
-                   value="{{searchValue}}"
-                   shape="round"
-                   background="#fff"
-                   placeholder="请输入搜索关键词"
-                   bind:focus="scrollTop"
-           />
-<!--           <navigator url="/pages/pro-search/pro-search" hover-class="none">-->
-<!--               <van-cell title="请输入搜索关键词" class="index-search" icon="search" border="{{false}}" />-->
-<!--           </navigator>-->
-           <view wx:if="{{histories.length > 0}}"  class="index-histories">
-               <view wx:for="{{histories}}" class="history-item">{{item}}</view>
-           </view>
-
-
-       </view>
        <van-divider wx:if="{{list.length === 0 || overlayShow}}" contentPosition="center">暂无工程</van-divider>
-                  <scroll-view wx:else scroll-y="true" style="height: {{scrollHeight}}px;margin-top: {{scrollUpper ? 100 : 0}}px;padding-top:10px" bindscrolltolower="lower"  >
-                      <template  is="proList" data="{{list:list, proStatus:proStatus}}"></template>
+       <template  is="proList" data="{{list:list, proStatus:proStatus}}"></template>
 
 
-                  </scroll-view>
 
    </view>
 
-<!--    <view class="index-support">元准智控提供技术支持</view>-->
-<!--    <van-overlay show="{{ overlayShow }}" bind:click="onClickHide" z-index="100">-->
-<!--        <view class="overlay-wrapper">-->
-<!--            <view class="overlay-block" catch:tap="noop">-->
-<!--                <van-button type="primary" size="large" class="wx-login" round block bind:click="wxLogin">-->
-<!--                    <icon class="iconfont icon-weixin"/>-->
-<!--                    微信手机号快捷登录-->
-<!--                </van-button>-->
-<!--                <navigator url="/pages/phone-login/phone-login" hover-class="none">-->
-<!--                    <view class="phone-login">输入手机号码登录/注册</view>-->
-<!--                </navigator>-->
-
-<!--            </view>-->
-<!--        </view>-->
-<!--    </van-overlay>-->
 </view>

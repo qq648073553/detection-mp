@@ -38,13 +38,6 @@ Page({
     formSubmit() {
 
     },
-    // setPadding(e) {
-    //     console.log(e)
-    //     const value = Math.min(e.target.offsetTop - this.data.navHeight - 10, 338)
-    //     this.setData({
-    //         padBottom:value * -1
-    //     })
-    // },
     setHeight(e) {
 
         this.setData({
@@ -69,25 +62,10 @@ Page({
                             scrollTop:scrollTop,
                             fail(err) {
                                 console.log(err)
-
                             }
                         })
                 })
             }
-            // ()=>{
-            //     console.log('beforeScroll')
-            //     wx.pageScrollTo({
-            //         scrollTop:scrollTop,
-            //         fail(err) {
-            //             console.log(err)
-            //
-            //         }
-            //     })
-            // })
-            // const height = (res.height * -1) || this.data.navHeight
-            // this.setData({
-            //     padBottom:height
-            // })
         })
     },
     onPageScroll(obj) {
