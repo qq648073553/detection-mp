@@ -1,23 +1,26 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/login/login",
     "pages/login-phone/login-phone",
-    "pages/index/index",
     "pages/add/add",
     "pages/my/my",
     "pages/function-list/function-list",
     "pages/delegation-add/delegation-add",
     "pages/pro-detail/pro-detail",
     "pages/check-in/check-in",
-    "pages/pro-search/pro-search"
+    "pages/pro-search/pro-search",
+    "navbar/index"
   ],
   "window": {
+    "navigationStyle": "custom",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3FABFF",
     "navigationBarTitleText": "检测系统",
     "navigationBarTextStyle": "white"
   },
   "usingComponents": {
+    "navbar": "/navbar/index",
     "van-button": "@vant/weapp/button/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-notify": "@vant/weapp/notify/index",

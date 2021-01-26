@@ -1,4 +1,6 @@
 .home-container {
+    /*max-height: 100vh;*/
+    /*overflow: hidden;*/
     /*padding-bottom: 30rpx;*/
 }
 .index-header {
@@ -32,6 +34,11 @@
     background: #fff;
     border-radius: 5px;
 }
+
+.custom-class .van-search__content{
+    border: 1px solid #3FABFF;
+    background: #fff;
+}
 .index-search .van-cell {
     background: #F7F8FA;
     border-radius: 20px;
@@ -63,7 +70,9 @@
 .pro-header {
     width: 100%;
     position: fixed;
-    top: 0;
+    height: 160px;
+    overflow: hidden;
+    /*top: 60px;*/
     z-index: 999;
     background: #fff;
     transition: all .5s;

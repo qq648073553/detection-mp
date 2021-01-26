@@ -6,13 +6,14 @@
   color: #000;
 }
 .container {
-  min-height: 100vh;
+  /*max-height: 100vh;*/
+  /*overflow: hidden;*/
   /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between; */
   /*padding-bottom: 53px;*/
-  background-color: #fff;
+  /*background-color: #fff;*/
 
 }
 

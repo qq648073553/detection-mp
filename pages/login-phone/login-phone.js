@@ -1,6 +1,7 @@
 // pages/login-phone/login-phone.js
 const Utils = require('../..//utils/util')
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+const App = getApp();
 
 Page({
 
@@ -48,10 +49,18 @@ Page({
       }
       }, 1000)
   },
+  login() {
+    wx.redirectTo({
+      url: '/pages/index/index'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      navHeight: App.globalData.navHeight
+    })
 
   },
 

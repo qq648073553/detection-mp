@@ -1,10 +1,13 @@
 // pages/check-in/check-in.js
+const App = getApp();
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        searchValue: '',
         list:[
             {
                 id: 1,
@@ -33,252 +36,92 @@ Page({
                     }
                 ]
             },
-            // {
-            //     id:2,
-            //     ymd:'2020年12月26日',
-            //     status: {
-            //         title: '待检测',
-            //         color: '#F0641F'
-            //     },
-            //     title: '苏州中心扩建工程2号',
-            //     remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
-            //     tags: [
-            //         {
-            //             title:'标签1',
-            //             color:'#3FABFF'
-            //         },
-            //         {
-            //             title: '标签2',
-            //             color: '#F0641F'
-            //         }
-            //     ],
-            //     operations:[
-            //         {
-            //             title:'操作1',
-            //             url:'/pages/index/index',
-            //             color: '#00AEFD'
-            //         },
-            //         {
-            //             title:'操作2',
-            //             url:'/pages/index/index',
-            //             color: '#0094FE'
-            //         }
-            //     ]
-            // },
-            // {
-            //     id: 3,
-            //     ymd:'2020年12月26日',
-            //     status: {
-            //         title: '待送检',
-            //         color: '#3FABFF'
-            //     },
-            //     title: '苏州中心扩建工程3号',
-            //     remarks: '16:05 | 摘要1 | 摘要2',
-            //     tags: [
-            //         {
-            //             title:'标签1',
-            //             color:'#3FABFF'
-            //         },
-            //         {
-            //             title: '标签2',
-            //             color: '#F0641F'
-            //         }
-            //     ],
-            //     operations:[
-            //         {
-            //             title:'操作1',
-            //             url:'/pages/delegation-add/delegation-add',
-            //             color: '#00AEFD'
-            //         },
-            //         {
-            //             title:'操作2',
-            //             url:'/pages/check-in/check-in',
-            //             color: '#0094FE'
-            //         },
-            //         {
-            //             title:'操作3',
-            //             url:'/pages/index/index',
-            //             color: '#FE606F'
-            //         }
-            //     ]
-            // },
-            // {
-            //     id:4,
-            //     ymd:'2020年12月26日',
-            //     status: {
-            //         title: '待检测',
-            //         color: '#F0641F'
-            //     },
-            //     title: '苏州中心扩建工程4号',
-            //     remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
-            //     tags: [
-            //         {
-            //             title:'标签1',
-            //             color:'#3FABFF'
-            //         },
-            //         {
-            //             title: '标签2',
-            //             color: '#F0641F'
-            //         }
-            //     ],
-            //     operations:[
-            //         {
-            //             title:'操作1',
-            //             url:'/pages/index/index',
-            //             color: '#00AEFD'
-            //         },
-            //         {
-            //             title:'操作2',
-            //             url:'/pages/index/index',
-            //             color: '#0094FE'
-            //         }
-            //     ]
-            // },
-            // {
-            //     id: 5,
-            //     ymd:'2020年12月26日',
-            //     status: {
-            //         title: '待送检',
-            //         color: '#3FABFF'
-            //     },
-            //     title: '苏州中心扩建工程5号',
-            //     remarks: '16:05 | 摘要1 | 摘要2',
-            //     tags: [
-            //         {
-            //             title:'标签1',
-            //             color:'#3FABFF'
-            //         },
-            //         {
-            //             title: '标签2',
-            //             color: '#F0641F'
-            //         }
-            //     ],
-            //     operations:[
-            //         {
-            //             title:'操作1',
-            //             url:'/pages/delegation-add/delegation-add',
-            //             color: '#00AEFD'
-            //         },
-            //         {
-            //             title:'操作2',
-            //             url:'/pages/check-in/check-in',
-            //             color: '#0094FE'
-            //         },
-            //         {
-            //             title:'操作3',
-            //             url:'/pages/index/index',
-            //             color: '#FE606F'
-            //         }
-            //     ]
-            // },
-            // {
-            //     id:6,
-            //     ymd:'2020年12月26日',
-            //     status: {
-            //         title: '待检测',
-            //         color: '#F0641F'
-            //     },
-            //     title: '苏州中心扩建工程6号',
-            //     remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
-            //     tags: [
-            //         {
-            //             title:'标签1',
-            //             color:'#3FABFF'
-            //         },
-            //         {
-            //             title: '标签2',
-            //             color: '#F0641F'
-            //         }
-            //     ],
-            //     operations:[
-            //         {
-            //             title:'操作1',
-            //             url:'/pages/index/index',
-            //             color: '#00AEFD'
-            //         },
-            //         {
-            //             title:'操作2',
-            //             url:'/pages/index/index',
-            //             color: '#0094FE'
-            //         }
-            //     ]
-            // },
-            // {
-            //     id: 7,
-            //     ymd:'2020年12月26日',
-            //     status: {
-            //         title: '待送检',
-            //         color: '#3FABFF'
-            //     },
-            //     title: '苏州中心扩建工程7号',
-            //     remarks: '16:05 | 摘要1 | 摘要2',
-            //     tags: [
-            //         {
-            //             title:'标签1',
-            //             color:'#3FABFF'
-            //         },
-            //         {
-            //             title: '标签2',
-            //             color: '#F0641F'
-            //         }
-            //     ],
-            //     operations:[
-            //         {
-            //             title:'操作1',
-            //             url:'/pages/delegation-add/delegation-add',
-            //             color: '#00AEFD'
-            //         },
-            //         {
-            //             title:'操作2',
-            //             url:'/pages/check-in/check-in',
-            //             color: '#0094FE'
-            //         },
-            //         {
-            //             title:'操作3',
-            //             url:'/pages/index/index',
-            //             color: '#FE606F'
-            //         }
-            //     ]
-            // },
-            // {
-            //     id:8,
-            //     ymd:'2020年12月26日',
-            //     status: {
-            //         title: '待检测',
-            //         color: '#F0641F'
-            //     },
-            //     title: '苏州中心扩建工程8号',
-            //     remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
-            //     tags: [
-            //         {
-            //             title:'标签1',
-            //             color:'#3FABFF'
-            //         },
-            //         {
-            //             title: '标签2',
-            //             color: '#F0641F'
-            //         }
-            //     ],
-            //     operations:[
-            //         {
-            //             title:'操作1',
-            //             url:'/pages/index/index',
-            //             color: '#00AEFD'
-            //         },
-            //         {
-            //             title:'操作2',
-            //             url:'/pages/index/index',
-            //             color: '#0094FE'
-            //         }
-            //     ]
-            // }
+            {
+                id:2,
+                ymd:'2020年12月26日',
+                status: {
+                    title: '待检测',
+                    color: '#F0641F'
+                },
+                title: '苏州中心扩建工程2号',
+                remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
+                tags: [
+                    {
+                        title:'标签1',
+                        color:'#3FABFF'
+                    },
+                    {
+                        title: '标签2',
+                        color: '#F0641F'
+                    }
+                ],
+                operations:[
+                    {
+                        title:'操作1',
+                        url:'/pages/index/index',
+                        color: '#00AEFD'
+                    },
+                    {
+                        title:'操作2',
+                        url:'/pages/index/index',
+                        color: '#0094FE'
+                    }
+                ]
+            },
+            {
+                id: 3,
+                ymd:'2020年12月26日',
+                status: {
+                    title: '待送检',
+                    color: '#3FABFF'
+                },
+                title: '苏州中心扩建工程3号',
+                remarks: '16:05 | 摘要1 | 摘要2',
+                tags: [
+                    {
+                        title:'标签1',
+                        color:'#3FABFF'
+                    },
+                    {
+                        title: '标签2',
+                        color: '#F0641F'
+                    }
+                ],
+                operations:[
+                    {
+                        title:'操作1',
+                        url:'/pages/delegation-add/delegation-add',
+                        color: '#00AEFD'
+                    },
+                    {
+                        title:'操作2',
+                        url:'/pages/check-in/check-in',
+                        color: '#0094FE'
+                    },
+                    {
+                        title:'操作3',
+                        url:'/pages/index/index',
+                        color: '#FE606F'
+                    }
+                ]
+            }
         ],
         scrollUpper: false,
-        scrollBottom: 0,
-        overlayShow: false,
-        scrollHeight: '400px',
+        scrollHeight: 600,
         value: '',
         histories:['苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影']
+    },
+    scrollTop() {
+        this.setData({
+            scrollUpper: true,
+
+        })
+    },
+    scrollBottom() {
+        this.setData({
+            scrollUpper: false
+        })
+        this.initScrollHeight()
     },
     goSearch() {
         wx.navigateTo({
@@ -290,328 +133,39 @@ Page({
             url:'/pages/pro-detail/pro-detail'
         })
     },
-    upper(e) {
-        this.setData({
-            scrollUpper: false,
-            scrollHeight: '400px'
-        })
-    },
+
     lower(e) {
-        // console.log('lower')
-        // if(this.data.scrollHeight === '400px') {
-        //     const query = wx.createSelectorQuery()
-        //     query.select('.container').boundingClientRect()
-        //     query.select('#proList').boundingClientRect()
-        //     query.exec((res) => {
-        //         const height = Math.min(res[0].height, res[1].height) - 20
-        //         this.setData({
-        //             list:[
-        //                 {
-        //                     id: 1,
-        //                     ymd:'2020年12月26日',
-        //                     status: {
-        //                         title: '待送检',
-        //                         color: '#3FABFF'
-        //                     },
-        //                     title: '苏州中心扩建工程1号',
-        //                     remarks: '16:05 | 摘要1 | 摘要2',
-        //                     tags: [
-        //                         {
-        //                             title:'标签1',
-        //                             color:'#3FABFF'
-        //                         },
-        //                         {
-        //                             title: '标签2',
-        //                             color: '#F0641F'
-        //                         }
-        //                     ],
-        //                     operations:[
-        //                         {
-        //                             title:'检测预约',
-        //                             url:'/pages/delegation-add/delegation-add',
-        //                             color: '#00AEFD'
-        //                         }
-        //                     ]
-        //                 },
-        //                 {
-        //                     id:2,
-        //                     ymd:'2020年12月26日',
-        //                     status: {
-        //                         title: '待检测',
-        //                         color: '#F0641F'
-        //                     },
-        //                     title: '苏州中心扩建工程2号',
-        //                     remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
-        //                     tags: [
-        //                         {
-        //                             title:'标签1',
-        //                             color:'#3FABFF'
-        //                         },
-        //                         {
-        //                             title: '标签2',
-        //                             color: '#F0641F'
-        //                         }
-        //                     ],
-        //                     operations:[
-        //                         {
-        //                             title:'操作1',
-        //                             url:'/pages/index/index',
-        //                             color: '#00AEFD'
-        //                         },
-        //                         {
-        //                             title:'操作2',
-        //                             url:'/pages/index/index',
-        //                             color: '#0094FE'
-        //                         }
-        //                     ]
-        //                 },
-        //                 {
-        //                     id: 3,
-        //                     ymd:'2020年12月26日',
-        //                     status: {
-        //                         title: '待送检',
-        //                         color: '#3FABFF'
-        //                     },
-        //                     title: '苏州中心扩建工程3号',
-        //                     remarks: '16:05 | 摘要1 | 摘要2',
-        //                     tags: [
-        //                         {
-        //                             title:'标签1',
-        //                             color:'#3FABFF'
-        //                         },
-        //                         {
-        //                             title: '标签2',
-        //                             color: '#F0641F'
-        //                         }
-        //                     ],
-        //                     operations:[
-        //                         {
-        //                             title:'操作1',
-        //                             url:'/pages/delegation-add/delegation-add',
-        //                             color: '#00AEFD'
-        //                         },
-        //                         {
-        //                             title:'操作2',
-        //                             url:'/pages/check-in/check-in',
-        //                             color: '#0094FE'
-        //                         },
-        //                         {
-        //                             title:'操作3',
-        //                             url:'/pages/index/index',
-        //                             color: '#FE606F'
-        //                         }
-        //                     ]
-        //                 },
-        //                 {
-        //                     id:4,
-        //                     ymd:'2020年12月26日',
-        //                     status: {
-        //                         title: '待检测',
-        //                         color: '#F0641F'
-        //                     },
-        //                     title: '苏州中心扩建工程4号',
-        //                     remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
-        //                     tags: [
-        //                         {
-        //                             title:'标签1',
-        //                             color:'#3FABFF'
-        //                         },
-        //                         {
-        //                             title: '标签2',
-        //                             color: '#F0641F'
-        //                         }
-        //                     ],
-        //                     operations:[
-        //                         {
-        //                             title:'操作1',
-        //                             url:'/pages/index/index',
-        //                             color: '#00AEFD'
-        //                         },
-        //                         {
-        //                             title:'操作2',
-        //                             url:'/pages/index/index',
-        //                             color: '#0094FE'
-        //                         }
-        //                     ]
-        //                 },
-        //                 {
-        //                     id: 5,
-        //                     ymd:'2020年12月26日',
-        //                     status: {
-        //                         title: '待送检',
-        //                         color: '#3FABFF'
-        //                     },
-        //                     title: '苏州中心扩建工程5号',
-        //                     remarks: '16:05 | 摘要1 | 摘要2',
-        //                     tags: [
-        //                         {
-        //                             title:'标签1',
-        //                             color:'#3FABFF'
-        //                         },
-        //                         {
-        //                             title: '标签2',
-        //                             color: '#F0641F'
-        //                         }
-        //                     ],
-        //                     operations:[
-        //                         {
-        //                             title:'操作1',
-        //                             url:'/pages/delegation-add/delegation-add',
-        //                             color: '#00AEFD'
-        //                         },
-        //                         {
-        //                             title:'操作2',
-        //                             url:'/pages/check-in/check-in',
-        //                             color: '#0094FE'
-        //                         },
-        //                         {
-        //                             title:'操作3',
-        //                             url:'/pages/index/index',
-        //                             color: '#FE606F'
-        //                         }
-        //                     ]
-        //                 },
-        //                 {
-        //                     id:6,
-        //                     ymd:'2020年12月26日',
-        //                     status: {
-        //                         title: '待检测',
-        //                         color: '#F0641F'
-        //                     },
-        //                     title: '苏州中心扩建工程6号',
-        //                     remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
-        //                     tags: [
-        //                         {
-        //                             title:'标签1',
-        //                             color:'#3FABFF'
-        //                         },
-        //                         {
-        //                             title: '标签2',
-        //                             color: '#F0641F'
-        //                         }
-        //                     ],
-        //                     operations:[
-        //                         {
-        //                             title:'操作1',
-        //                             url:'/pages/index/index',
-        //                             color: '#00AEFD'
-        //                         },
-        //                         {
-        //                             title:'操作2',
-        //                             url:'/pages/index/index',
-        //                             color: '#0094FE'
-        //                         }
-        //                     ]
-        //                 },
-        //                 {
-        //                     id: 7,
-        //                     ymd:'2020年12月26日',
-        //                     status: {
-        //                         title: '待送检',
-        //                         color: '#3FABFF'
-        //                     },
-        //                     title: '苏州中心扩建工程7号',
-        //                     remarks: '16:05 | 摘要1 | 摘要2',
-        //                     tags: [
-        //                         {
-        //                             title:'标签1',
-        //                             color:'#3FABFF'
-        //                         },
-        //                         {
-        //                             title: '标签2',
-        //                             color: '#F0641F'
-        //                         }
-        //                     ],
-        //                     operations:[
-        //                         {
-        //                             title:'操作1',
-        //                             url:'/pages/delegation-add/delegation-add',
-        //                             color: '#00AEFD'
-        //                         },
-        //                         {
-        //                             title:'操作2',
-        //                             url:'/pages/check-in/check-in',
-        //                             color: '#0094FE'
-        //                         },
-        //                         {
-        //                             title:'操作3',
-        //                             url:'/pages/index/index',
-        //                             color: '#FE606F'
-        //                         }
-        //                     ]
-        //                 },
-        //                 {
-        //                     id:8,
-        //                     ymd:'2020年12月26日',
-        //                     status: {
-        //                         title: '待检测',
-        //                         color: '#F0641F'
-        //                     },
-        //                     title: '苏州中心扩建工程8号',
-        //                     remarks: '16:05 | 摘要1 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2 | 摘要2',
-        //                     tags: [
-        //                         {
-        //                             title:'标签1',
-        //                             color:'#3FABFF'
-        //                         },
-        //                         {
-        //                             title: '标签2',
-        //                             color: '#F0641F'
-        //                         }
-        //                     ],
-        //                     operations:[
-        //                         {
-        //                             title:'操作1',
-        //                             url:'/pages/index/index',
-        //                             color: '#00AEFD'
-        //                         },
-        //                         {
-        //                             title:'操作2',
-        //                             url:'/pages/index/index',
-        //                             color: '#0094FE'
-        //                         }
-        //                     ]
-        //                 }
-        //             ],
-        //             scrollUpper: true,
-        //             scrollHeight: height + 'px'
-        //         })
-        //     })
-        // }
+        if(!this.data.scrollUpper) {
+            this.setData({
+                scrollUpper: true,
+            })
+        }
 
-
-    },
-    onClickHide() {
-        this.setData({
-            overlayShow: false
-        })
     },
     wxLogin() {
 
     },
+    initScrollHeight() {
+        const query = wx.createSelectorQuery()
+        query.select('#proList').boundingClientRect()
+        query.exec((res) => {
+            const height = Math.min(res[0].height, 600)
+            this.setData({
+                scrollHeight: height
+            })
+        })
+    },
     noop(e) {
         console.log(e)
-    },
-    handlePersonalCenter() {
-        if(getApp().globalData.isLogined && !this.data.overlayShow) {
-            wx.navigateTo({
-                url: '/pages/phone-login/phone-login'
-            })
-        }else {
-            this.setData({
-                overlayShow: true
-            })
-        }
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        if(getApp().globalData.isLogined) {
-            this.setData({
-                overlayShow:true
-            })
-        }
+        this.setData({
+            navHeight: App.globalData.navHeight
+        })
+
         wx.getStorage({
             key: 'histories',
             success (res) {
@@ -627,14 +181,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        const query = wx.createSelectorQuery()
-        query.select('#proList').boundingClientRect()
-        query.exec((res) => {
-            const height = Math.min(res[0].height, 400)
-            this.setData({
-                scrollHeight: height + 'px'
-            })
-        })
+        this.initScrollHeight()
 
     },
 
@@ -680,6 +227,9 @@ Page({
 
     },
     onPageScroll(obj) {
+        // if(obj.scrollTop > 150 && !this.data.scrollUpper) {
+        //     this.scrollTop()
+        // }
         // console.log(document.getElementById('#index-inform'))
         // if(obj.scrollTop > 100 && this.data.informDisplay !== 'none') {
         //     this.setData({

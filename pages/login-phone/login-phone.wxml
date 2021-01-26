@@ -1,24 +1,28 @@
 <!--pages/login-phone/login-phone.wxml-->
-<van-dialog id="van-dialog" />
-<view class="login-container-p">
-    <image src="../../assets/images/logo.jpg" class="login-logo-p"></image>
-    <label class="filed-gap">手机号</label>
-    <input model:value="{{phone}}" type="number" placeholder="请输入手机号" ></input>
-    <view class="login-line-p"></view>
-    <block wx:if="{{loginByOtp}}">
-        <label class="filed-gap">验证码</label>
-        <view class="field-append">
-            <input model:value="{{otp}}" type="number" placeholder="请输入验证码" class="input-otp"></input>
-            <button class="btn-text-public" style="color:#9a9a9a" plain bindtap="getOtp">{{otpText}}</button>
-        </view>
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="登录/注册" show-nav></navbar>
+    <van-dialog id="van-dialog" />
+    <view class="login-container-p">
+        <image src="../../assets/images/logo.jpg" class="login-logo-p"></image>
+        <label class="filed-gap">手机号</label>
+        <input model:value="{{phone}}" type="number" placeholder="请输入手机号" ></input>
         <view class="login-line-p"></view>
-        <button class="btn-text-public login-switch" plain bindtap="loginSwitch">密码登录</button>
-    </block>
-    <block wx:else>
-        <label class="filed-gap">密码</label>
-        <input model:value="{{password}}" password placeholder="请输入密码" ></input>
-        <view class="login-line-p"></view>
-        <button class="btn-text-public login-switch" plain bindtap="loginSwitch">验证码登录</button>
-    </block>
-    <button class="login-btn-p">登 录</button>
+        <block wx:if="{{loginByOtp}}">
+            <label class="filed-gap">验证码</label>
+            <view class="field-append">
+                <input model:value="{{otp}}" type="number" placeholder="请输入验证码" class="input-otp"></input>
+                <button class="btn-text-public" style="color:#9a9a9a" plain bindtap="getOtp">{{otpText}}</button>
+            </view>
+            <view class="login-line-p"></view>
+            <button class="btn-text-public login-switch" plain bindtap="loginSwitch">密码登录</button>
+        </block>
+        <block wx:else>
+            <label class="filed-gap">密码</label>
+            <input model:value="{{password}}" password placeholder="请输入密码" ></input>
+            <view class="login-line-p"></view>
+            <button class="btn-text-public login-switch" plain bindtap="loginSwitch">验证码登录</button>
+        </block>
+        <button class="login-btn-p" bindtap="login">登 录</button>
+    </view>
 </view>
+

@@ -1,4 +1,6 @@
 // pages/login/login.js
+const App = getApp();
+
 Page({
 
   /**
@@ -8,13 +10,17 @@ Page({
 
   },
   loginByWx() {
-
+    wx.redirectTo({
+      url: '/pages/index/index'
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      navHeight: App.globalData.navHeight
+    })
   },
 
   /**
