@@ -1,0 +1,84 @@
+/* pages/pro-delegation/pro-delegation.wxss */
+.pro-dg-container{
+    background: #F3F3F2;
+    height: 100vh;
+    overflow: hidden;
+}
+.pro-module {
+    position: relative;
+    height: 27%;
+    min-height: 135px;
+    background: #fff;
+    border-radius: 8px;
+    margin: 30px 10px;
+    padding: 15px;
+}
+.pro-m-header {
+    position: relative;
+    height: 35px;
+    line-height: 35px;
+}
+.pro-m-title {
+    font-size: 20px;
+}
+.dg-add-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    width: 180rpx;
+    border-radius: 6px;
+    color: #fff;
+    background: #4387F6;
+}
+
+.pro-m-body {
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    height: 67%;
+    justify-content: space-between;
+
+}
+.pro-m-nav{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+.pro-m-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    height: 80%;
+}
+.link-num {
+    padding: 20px 0 10px;
+    font-size: 45rpx;
+    text-align: center;
+}
+.link-message {
+    font-size: 28rpx;
+    background: #F3F3F3;
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+.link-small {
+    height: 50rpx;
+    line-height: 50rpx;
+}
+.link-medium {
+    margin: auto;
+    height: 100rpx;
+    line-height: 100rpx;
+}

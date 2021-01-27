@@ -1,0 +1,30 @@
+.fd-card{
+    padding: 0 10px;
+    height: 240rpx;
+}
+.fd-card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100rpx;
+    /*padding: 0 20rpx;*/
+    /*background: #FBFBFB;*/
+    font: 24rpx bold;
+}
+.pro-title {
+    font-size: 40rpx;
+    font-weight: 500;
+    /*line-height: 2;*/
+    /*margin: 10rpx 0 10rpx;*/
+}
+
+
+
+.pro-remarks {
+    font: 18rpx;
+    color: #C2C2C2;
+    margin-bottom: 20rpx;
+}
+.pro-tag {
+    margin-right: 20rpx;
+}

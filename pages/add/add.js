@@ -39,9 +39,9 @@ Page({
 
     },
     setHeight(e) {
-
+        const height = Math.max(e.detail.height, this.data.lastScroll)
         this.setData({
-            padBottom:e.detail.height * -1
+            padBottom:height * -1
         })
     },
     onLoad: function (options) {
@@ -54,7 +54,6 @@ Page({
         wx.onKeyboardHeightChange(res => {
             if(res.height === 0){
                 const scrollTop = this.data.lastScroll
-                console.log(scrollTop)
                 this.setData({
                     padBottom:this.data.navHeight
                 },()=>{

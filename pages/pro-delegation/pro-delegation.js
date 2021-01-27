@@ -1,4 +1,4 @@
-// pages/pro-detail/pro-detail.js
+// pages/pro-delegation/pro-delegation.js
 const App = getApp();
 
 Page({
@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    proId:null,
+    status: null,
+    proTitle: '苏州中心'
   },
 
   /**

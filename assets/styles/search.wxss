@@ -1,0 +1,26 @@
+.search-content{
+    padding: 20rpx;
+    background: #fff;
+    border-radius: 5px;
+}
+.custom-class .van-search__content{
+    border: 1px solid #4387F6;
+    background: #fff;
+}
+.index-histories {
+    width: 90%;
+    padding-left: 10px;
+    margin: 10px auto;
+    display: flex;
+    overflow: hidden;
+    flex-flow: row nowrap;
+}
+.index-histories .history-item{
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #000;
+    border-radius: 5px;
+    background: #F5F5F5;
+    padding: 5px;
+    margin-right: 10px;
+}

@@ -1,11 +1,3 @@
 /* pages/pro-search/pro-search.wxss */
 @import "/template/pro-list/index.wxss";
-.search-content{
-    padding: 20rpx;
-    background: #fff;
-    border-radius: 5px;
-}
-.custom-class .van-search__content{
-    border: 1px solid #4387F6;
-    background: #fff;
-}
+@import "/assets/styles/search.wxss";

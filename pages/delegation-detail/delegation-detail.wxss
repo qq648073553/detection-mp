@@ -1,0 +1,45 @@
+.deg-detail-container {
+    background: #F3F3F2;
+}
+.deg-detail-top{
+    font-size: 40rpx;
+    height: 200rpx;
+    font-weight: bold;
+    line-height: 200rpx;
+    text-align: center;
+}
+.deg-detail-banner{
+    height: 150rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #4387F6;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.deg-status{
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 40rpx;
+}
+.deg-date{
+    color: #fff;
+}
+.deg-detail-btn{
+    display: inline-block;
+    color: #fff;
+    margin-right: 15px;
+    font-size: 40rpx;
+}
+.deg-detail-flag{
+    background: #F9FBFF;
+    line-height: 60rpx;
+    padding: 0 15px;
+}
+
+.desc-class .van-step__title view:nth-child(2){
+    margin-top: 5px;
+    text-indent: 5px;
+    color: #A1A1A1;
+}

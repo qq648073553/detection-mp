@@ -1,0 +1,65 @@
+<!--pages/pro-delegation/pro-delegation.wxml-->
+
+<view class="container pro-dg-container" style="padding-top:{{navHeight}}px;">
+    <navbar page-name="{{proTitle}}" showNav showHome></navbar>
+    <view class="pro-module">
+        <view class="pro-m-header">
+            <view class="pro-m-title">委托</view>
+            <navigator url="/pages/delegation-add/delegation-add" hover-class="none" class="dg-add-btn">新 增</navigator>
+        </view>
+        <view class="pro-m-body">
+            <navigator url="/pages/delegation-list/delegation-list?status=0" hover-class="none" class="pro-m-nav">
+                <view class="pro-m-link">
+                    <view class="link-num" style="color:#DA6324">78</view>
+                    <view class="link-message link-small text-line-public">待受理</view>
+                </view>
+            </navigator>
+            <navigator url="/pages/delegation-list/delegation-list?status=0" class="pro-m-nav" hover-class="none">
+                <view class="pro-m-link">
+                    <view class="link-num" style="color:#AE202C">1010</view>
+                    <view class="link-message link-small text-line-public">已受理</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <view class="pro-module">
+        <view class="pro-m-header">
+            <view class="pro-m-title">报告</view>
+        </view>
+        <view class="pro-m-body">
+            <navigator url="/pages/delegation-list/delegation-list?status=0" hover-class="none" class="pro-m-nav">
+                <view class="pro-m-link">
+                    <view class="link-num" style="color:#103047">100</view>
+                    <view class="link-message link-small text-line-public">出具报告中</view>
+                </view>
+            </navigator>
+            <navigator url="/pages/delegation-list/delegation-list?status=0" class="pro-m-nav" hover-class="none">
+                <view class="pro-m-link">
+                    <view class="link-num" style="color:#38C4C4">0</view>
+                    <view class="link-message link-small text-line-public">已出具报告</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <view class="pro-module">
+        <view class="pro-m-header">
+            <view class="pro-m-title">结算</view>
+        </view>
+        <view class="pro-m-body">
+            <navigator url="/pages/delegation-list/delegation-list?status=0" hover-class="none" class="pro-m-nav">
+                <view class="pro-m-link link-message link-medium text-line-public">
+                    工作量汇总
+                </view>
+                <!--                <view class="pro-m-link">-->
+<!--                    <view class="link-message link-medium text-line-public">工作量汇总</view>-->
+<!--                </view>-->
+            </navigator>
+            <navigator url="/pages/delegation-list/delegation-list?status=0" class="pro-m-nav" hover-class="none">
+                <view class="pro-m-link link-message link-medium text-line-public">
+                    结算清单
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>
+

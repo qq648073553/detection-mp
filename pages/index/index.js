@@ -39,19 +39,8 @@ Page({
             }
         ],
         value: '',
-        histories:['苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影']
     },
 
-    goSearch() {
-        wx.navigateTo({
-            url:'/pages/pro-search/pro-search'
-        })
-    },
-    goDetail() {
-        wx.navigateTo({
-            url:'/pages/pro-detail/pro-detail'
-        })
-    },
 
     lower(e) {
         wx.navigateTo({
@@ -80,15 +69,7 @@ Page({
             proStatus: App.globalData.proStatus
         })
 
-        wx.getStorage({
-            key: 'histories',
-            success (res) {
-                console.log(res.data)
-                this.setData({
-                    histories: res.data || []
-                })
-            }
-        })
+
     },
 
     /**

@@ -1,7 +1,7 @@
 <import src="/template/pro-list/index.wxml" />
 
 <view class="container" style="padding-top:{{navHeight}}px">
-    <navbar page-name="检测系统" showNav="{{scrollUpper}}" customBack bind:back="scrollBottom"></navbar>
+    <navbar page-name="检测系统" ></navbar>
 
    <view class="home-container">
            <view class="index-header">
@@ -22,9 +22,7 @@
        <navigator url="/pages/pro-search/pro-search" hover-class="none">
            <van-cell title="请输入搜索关键词" class="index-search" icon="search" border="{{false}}" />
        </navigator>
-       <view wx:if="{{histories.length > 0}}"  class="index-histories">
-           <view wx:for="{{histories}}" class="history-item">{{item}}</view>
-       </view>
+
 
        <van-divider wx:if="{{list.length === 0 || overlayShow}}" contentPosition="center">暂无工程</van-divider>
        <template  is="proList" data="{{list:list, proStatus:proStatus}}"></template>

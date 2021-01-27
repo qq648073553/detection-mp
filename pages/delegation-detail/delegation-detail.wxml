@@ -1,0 +1,29 @@
+<!--pages/delegation-list/delegation-list.wxml-->
+
+<view class="container deg-detail-container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="委托详情" showNav showHome></navbar>
+    <view class="deg-detail-top">
+        检测内容
+    </view>
+    <view class="deg-detail-banner">
+        <view class="banner-left">
+            <view class="deg-status">待受理</view>
+            <view class="deg-date">01月17日</view>
+        </view>
+        <view class="banner-right">
+            <navigator url="/pages/delegation-modify/delegation-modify" class="deg-detail-btn" hover-class="none">修改</navigator>
+            <navigator url="/pages/delegation-modify/delegation-modify" class="deg-detail-btn" hover-class="none">撤单</navigator>
+        </view>
+    </view>
+    <view class="deg-detail-flag">
+        <text>委托编号548777189 复制</text>
+    </view>
+    <van-steps
+            steps="{{ steps }}"
+            active="{{ active }}"
+            direction="vertical"
+            active-color="#33CC33"
+            class="desc-class"
+    />
+</view>
+

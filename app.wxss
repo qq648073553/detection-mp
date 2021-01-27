@@ -43,6 +43,7 @@ button[plain] {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 @import "/assets/styles/icon.wxss"
 
 

@@ -1,2 +1,6 @@
 <!--pages/pro-detail/pro-detail.wxml-->
-<text>pages/pro-detail/pro-detail.wxml</text>
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="工程信息" showNav showHome></navbar>
+
+
+</view>

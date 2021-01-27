@@ -1,4 +1,4 @@
-// pages/pro-search/pro-search.js
+// pages/delegation-list/delegation-list.js
 const App = getApp();
 
 Page({
@@ -8,36 +8,59 @@ Page({
    */
   data: {
     searchValue: '',
-    list:[
+    proId:null,
+    status: null,
+    list: [
       {
-        id: 1,
-        ymd:'2020年12月26日',
-        status: 0,
-        title: '苏州中心扩建工程1号',
-        remarks: '16:05 | 待受理'
+        id:1,
+        title: '检测项目1',
+        status: '待受理',
+        color: '#4387F6',
+        date: '2021/01/19 15:17',
+        tags: ['未受理']
       },
       {
         id:2,
-        ymd:'2020年12月27日',
-        status: 1,
-        title: '苏州中心扩建工程2号',
-        remarks: '16:05 | 已受理'
+        title: '检测项目2',
+        status: '已受理',
+        color: '#F0641F',
+        date: '2021/01/19 15:17',
+        tags: ['待取样']
       },
       {
-        id: 3,
-        ymd:'2020年12月28日',
-        status: 2,
-        title: '苏州中心扩建工程3号',
-        remarks: '16:05 | 已受理 | 委托10 | 报告200'
+        id:3,
+        title: '检测项目3',
+        status: '出具报告中',
+        color: '#3333CC',
+        date: '2021/01/19 15:17',
+        tags: ['等待报告']
+      },
+      {
+        id:4,
+        title: '检测项目4',
+        status: '报告审核中',
+        color: '#AE202C',
+        date: '2021/01/19 15:17',
+        tags: ['等待审核']
+      },
+      {
+        id:5,
+        title: '检测项目5',
+        status: '已出具报告',
+        color: '#33CC33',
+        date: '2021/01/19 15:17',
+        tags: ['报告数10']
       }
     ],
     histories:['苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影']
 
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.setData({
       navHeight: App.globalData.navHeight,
       proStatus: App.globalData.proStatus
@@ -51,7 +74,6 @@ Page({
         })
       }
     })
-
   },
 
   /**

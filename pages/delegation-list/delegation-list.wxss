@@ -1,0 +1,3 @@
+/* pages/delegation-list/delegation-list.wxss */
+@import "/assets/styles/search.wxss";
+@import "/template/deg-list/index.wxss";
