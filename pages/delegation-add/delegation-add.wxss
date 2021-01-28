@@ -1,1 +1,51 @@
-/* pages/delegation-add/delegation-add.wxss */
+.add-container {
+    padding-top: 10px;
+}
+
+
+.module-upload{
+    /*background-color: #fff;*/
+    padding:0 100rpx;
+}
+.module-upload .van-uploader__upload{
+    background: #F3F3F2;
+}
+.submit-btn{
+    margin: 60px auto 0;
+    width: 90%;
+    border-radius: 4px;
+    height: 40px;
+    color: #fff;
+    background: #4387F6;
+}
+.custom-field{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.custom-field::after{
+    position: absolute;
+    box-sizing: border-box;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    content: " ";
+    pointer-events: none;
+    right: 16px;
+    bottom: 0;
+    left: 16px;
+    border-bottom: 1px solid #ebedf0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+}
+.inspect-type {
+    padding:2px 5px;
+    border-radius: 6px;
+    border: 1px solid #000;
+}
+.module-title{
+    max-width: 76px;
+    min-width: 76px;
+    margin: 10px 12px 10px 16px ;
+
+}
+

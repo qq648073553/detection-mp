@@ -3,6 +3,7 @@ const App = getApp();
 Page({
     data: {
         navHeight:60,
+        degId:0,
         steps: [
             {
                 text: '待受理',

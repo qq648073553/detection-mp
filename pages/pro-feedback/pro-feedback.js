@@ -1,21 +1,14 @@
 const App = getApp();
 Page({
   data: {
-    observer: '',
-    observerId: '',
-    project: '苏州中心',
-    proId: '20201212',
-    delegation: '',
+    project:'苏州中心',
+    proId:'20200101',
+    proDeg:'项目1',
+    proDegId:'2020101',
     message: '',
-    statusOptions:[
-      { value: 0, text: '已完成' },
-      { value: 1, text: '未完成' }
-    ],
     padBottom: 0,
-    fileList:[],
     lastScroll:0,
-    actionShow: false,
-    actionTitle: '建设单位'
+    fileList:[]
   },
   afterRead(){
 
@@ -30,6 +23,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    const {type} = options
     this.setData({
       navHeight: App.globalData.navHeight,
       padBottom:App.globalData.navHeight,

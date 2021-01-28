@@ -1,0 +1,24 @@
+/* pages/pro-modify/pro-modify.wxss */
+.cancel-container {
+    padding-top: 10px;
+}
+.module-title{
+    padding: 0 5px;
+    margin: 10px 0 10px 12px;
+}
+
+.module-upload{
+    /*background-color: #fff;*/
+    padding:0 100rpx;
+}
+.module-upload .van-uploader__upload{
+    background: #F3F3F2;
+}
+.submit-btn{
+    margin: 60px auto 0;
+    width: 90%;
+    border-radius: 4px;
+    height: 40px;
+    color: #fff;
+    background: #4387F6;
+}

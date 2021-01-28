@@ -1,0 +1,27 @@
+<!--pages/summary/summary.wxml-->
+<view class="container " style="padding-top:{{navHeight}}px;">
+    <navbar page-name="结算清单" showNav showHome></navbar>
+    <view class="summary-container">
+        <view class="summary-overview">
+            <view class="overview-item">
+                <view class="overview-num" style="color:#DA6324">
+                    4
+                </view>
+                <view class="overview-title">
+                    委托总量
+                </view>
+            </view>
+            <view class="overview-line"></view>
+            <view class="overview-item">
+                <view class="overview-num" style="color:#38C4C4">
+                    20
+                </view>
+                <view class="overview-title">
+                    报告总量
+                </view>
+            </view>
+        </view>
+    </view>
+
+</view>
+

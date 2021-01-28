@@ -1,2 +1,56 @@
-<!--pages/delegation-add/delegation-add.wxml-->
-<text>pages/delegation-add/delegation-add.wxml</text>
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="新增委托" showNav showHome></navbar>
+    <view class="add-container custom-class" style="top:{{padBottom}}px">
+        <van-cell title="工程名称" title-width="88px" value="{{project}}" />
+        <van-cell title="工程编号" title-width="88px" value="{{proId}}" />
+        <van-cell title="检测项目"  title-width="88px" value="请选择" is-link />
+
+        <!--        <van-field-->
+<!--                model:value="{{ delegation }}"-->
+<!--                label="检测项目"-->
+<!--                placeholder="请选择"-->
+<!--        >-->
+<!--            <van-icon slot="right-icon" name="arrow" color="#c2c2c2" />-->
+<!--        </van-field>-->
+        <van-field
+                model:value="{{ observer }}"
+                clearable
+                label="见证人"
+                title-width="76px"
+                adjust-position="{{false}}"
+                placeholder="请输入"
+        />
+        <van-field
+                model:value="{{ observerId }}"
+                clearable
+                title-width="76px"
+                label="见证号"
+                adjust-position="{{false}}"
+                placeholder="请输入"
+        />
+        <van-field
+                model:value="{{ message }}"
+                label="备注"
+                title-width="76px"
+                type="textarea"
+                placeholder="请输入"
+                autosize
+        />
+        <view class="custom-field">
+            <view class="module-title">送检方式</view>
+            <view class="inspect-type">自送检</view>
+        </view>
+        <van-cell title="检测地点" title-width="88px"  value="请选择" is-link />
+        <van-cell title="预约时间"  title-width="88px" value="请选择" is-link />
+
+        <view class="module-title">相关资料</view>
+        <view class="module-upload">
+            <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+        </view>
+
+        <button class="submit-btn" bindtap="formSubmit">提 交</button>
+
+    </view>
+
+
+</view>

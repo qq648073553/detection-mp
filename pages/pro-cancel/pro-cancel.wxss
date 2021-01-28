@@ -1,0 +1,12 @@
+.cancel-container {
+    padding-top: 10px;
+}
+.submit-btn{
+    margin: 120px auto 0;
+    width: 90%;
+    border-radius: 4px;
+    height: 40px;
+    color: #fff;
+    background: #4387F6;
+}
+

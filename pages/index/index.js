@@ -40,7 +40,12 @@ Page({
         ],
         value: '',
     },
-
+    goBusiness(e) {
+        const {id} = e.currentTarget.dataset
+      wx.navigateTo({
+          url: `/pages/pro-delegation/pro-delegation?id=${id}`
+      })
+    },
 
     lower(e) {
         wx.navigateTo({

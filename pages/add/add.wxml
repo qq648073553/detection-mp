@@ -5,14 +5,16 @@
             <view class="module-title">
                 工程信息（必填）
             </view>
-            <view class="module-content">
+            <view class="module-content custom-class">
                 <van-field
+
                         model:value="{{ project.contact }}"
                         clearable
                         label="负责人"
                         placeholder="请输入"
                 />
                 <van-field
+
                         model:value="{{ project.phone }}"
                         clearable
                         type="number"
@@ -20,70 +22,61 @@
                         placeholder="请输入"
                 />
                 <van-field
+
                         model:value="{{ project.code }}"
                         clearable
                         label="工程编号"
                         placeholder="请输入"
                 />
                 <van-field
+
                         model:value="{{ project.title }}"
                         clearable
                         label="工程名称"
                         placeholder="请输入"
                 />
-                <van-field
-                        model:value="{{ project.location }}"
-                        label="工程地点"
-                        placeholder="请选择"
-                >
-                    <van-icon slot="right-icon" name="arrow" color="#c2c2c2" />
-                </van-field>
-                <van-field
-                        model:value="{{ project.status }}"
-                        border="{{false}}"
-                        label="工程状态"
-                        placeholder="请选择"
-                >
-                    <van-icon slot="right-icon" name="arrow" color="#c2c2c2" />
-                </van-field>
+                <van-cell title="工程地点"  title-width="88px" value="请选择" is-link />
+
+                <van-cell title="工程状态"  title-width="88px" value="请选择" is-link />
+
             </view>
         </view>
         <view class="add-module">
             <view class="module-title">
                 合同信息（必填）
             </view>
-            <view class="module-content">
+            <view class="module-content custom-class">
                 <van-field
+
                         model:value="{{ build.contract }}"
                         clearable
                         label="合同号"
-
                         adjust-position="{{false}}"
                         placeholder="请输入"
                 />
                 <van-field
+
                         model:value="{{ build.buildCom }}"
                         clearable
                         adjust-position="{{false}}"
                         label="建设单位"
-
                         placeholder="请输入"
                 />
                 <van-field
+
                         model:value="{{ build.constructionCom }}"
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
-
                         label="施工单位"
                         placeholder="请输入"
                 />
                 <van-field
+
                         model:value="{{ build.delegationCom }}"
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
-
                         label="委托单位"
                         placeholder="请输入"
                 />
@@ -103,8 +96,9 @@
             <view class="module-title">
                 监理信息（必填）
             </view>
-            <view class="module-content">
+            <view class="module-content custom-class">
                 <van-field
+
                         model:value="{{ supervision.code }}"
                         clearable
                         adjust-position="{{false}}"
@@ -113,6 +107,7 @@
                         placeholder="请输入"
                 />
                 <van-field
+
                         model:value="{{ supervision.qualityCom }}"
                         clearable
                         adjust-position="{{false}}"
@@ -126,12 +121,10 @@
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
-
                         border="{{false}}"
                         label="监理单位"
                         placeholder="请输入"
                 />
-
             </view>
         </view>
         <view class="add-module">
@@ -145,14 +138,5 @@
 
     </view>
 
-    <van-action-sheet show="{{ actionShow }}">
-        <view class="action-header">
-            <view class="action-title">{{actionTitle}}</view>
-            <van-icon name="cross" />
-        </view>
-        <view class="action-body">
 
-        </view>
-
-    </van-action-sheet>
 </view>

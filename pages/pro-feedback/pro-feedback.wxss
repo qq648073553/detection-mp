@@ -1,0 +1,30 @@
+/* pages/pro-feedback/pro-feedback.wxss */
+
+/*.custom-class .van-cell__value{*/
+/*    text-align: left;*/
+/*}*/
+.module-title{
+    padding: 0 5px;
+    /*font-size: 16px;*/
+    margin: 10px 0 10px 12px;
+}
+/*.module-content{*/
+/*    background: #fff;*/
+/*    border-radius: 10px;*/
+/*    padding: 5px;*/
+/*}*/
+.module-upload{
+    /*background-color: #fff;*/
+    padding:0 100rpx;
+}
+.module-upload .van-uploader__upload{
+    background: #F3F3F2;
+}
+.submit-btn{
+    margin: 120px auto 0;
+    width: 90%;
+    border-radius: 4px;
+    height: 40px;
+    color: #fff;
+    background: #4387F6;
+}

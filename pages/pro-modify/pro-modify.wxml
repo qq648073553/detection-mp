@@ -1,0 +1,45 @@
+<!--pages/pro-modify/pro-modify.wxml-->
+<!--工单修改页，工程修改，委托修改-->
+
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="{{navTitle}}" show-nav showHome></navbar>
+    <view class="modify-container custom-class" >
+        <van-cell title="工程名称" title-width="88px" value="{{project}}" />
+        <van-cell title="工程编号" title-width="88px"  value="{{proId}}" />
+        <block wx:if="{{navTitle=='委托修改'}}">
+            <van-cell title="检测项目"  value="{{proDeg}}" />
+            <van-cell title="委托编号" value="{{proDegId}}" />
+        </block>
+        <van-field
+                model:value="{{ message }}"
+                title-width="76px"
+
+                label="修改描述"
+                type="textarea"
+                placeholder="请输入"
+                autosize
+        />
+        <van-field
+                title-width="76px"
+                model:value="{{ phone }}"
+                label="手机号"
+                placeholder="请输入"
+        />
+        <van-field
+                title-width="76px"
+
+                model:value="{{ email }}"
+                label="邮箱"
+                placeholder="请输入"
+        />
+        <view class="module-title">照片</view>
+        <view class="module-upload">
+            <van-uploader file-list="{{ fileList }}"  />
+        </view>
+        <button class="submit-btn" bindtap="formSubmit">提 交 工 单</button>
+
+    </view>
+
+
+</view>
+

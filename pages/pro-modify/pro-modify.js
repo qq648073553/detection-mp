@@ -1,21 +1,18 @@
 const App = getApp();
+const TMAP = new Map([['0','工程修改'],['1','委托修改']])
 Page({
   data: {
-    observer: '',
-    observerId: '',
-    project: '苏州中心',
-    proId: '20201212',
-    delegation: '',
+    project:'苏州中心',
+    proId:'20200101',
+    proDeg:'项目1',
+    proDegId:'2020101',
+    phone: '13776050390',
+    email: 'zfd_yes@163.com',
     message: '',
-    statusOptions:[
-      { value: 0, text: '已完成' },
-      { value: 1, text: '未完成' }
-    ],
     padBottom: 0,
-    fileList:[],
     lastScroll:0,
-    actionShow: false,
-    actionTitle: '建设单位'
+    navTitle: '工程修改',
+    fileList:[]
   },
   afterRead(){
 
@@ -30,7 +27,9 @@ Page({
     })
   },
   onLoad: function (options) {
+    const {type} = options
     this.setData({
+      navTitle: TMAP.get(type),
       navHeight: App.globalData.navHeight,
       padBottom:App.globalData.navHeight,
     })

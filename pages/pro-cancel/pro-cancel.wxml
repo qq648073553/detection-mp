@@ -1,0 +1,28 @@
+<!--撤销页，工程撤销，委托撤单-->
+
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="{{navTitle}}" show-nav showHome></navbar>
+    <view class="cancel-container custom-class" >
+            <van-cell title="工程名称" title-width="88px" value="{{project}}" />
+            <van-cell title="工程编号" title-width="88px" value="{{proId}}" />
+            <block wx:if="{{navTitle=='委托撤单'}}">
+                <van-cell title="检测项目" title-width="88px"  value="{{proDeg}}" />
+                <van-cell title="委托编号" title-width="88px" value="{{proDegId}}" />
+            </block>
+            <van-field
+                    title-width="76px"
+                    class="custom-class"
+                    model:value="{{ message }}"
+                    label="原因"
+                    type="textarea"
+                    placeholder="请输入"
+                    autosize
+                    border="{{ false }}"
+            />
+
+        <button class="submit-btn" bindtap="formSubmit">提 交</button>
+
+    </view>
+
+
+</view>

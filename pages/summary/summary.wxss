@@ -1,0 +1,34 @@
+/* pages/summary/summary.wxss */
+.summary-container{
+    padding: 15px;
+    height: max-content;
+
+}
+.summary-overview{
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    border: 1px solid #E5DFE2;
+    border-radius: 12px;
+}
+.overview-item{
+    flex: 1;
+}
+.overview-title{
+    background: #F3F3F3;
+    text-align: center;
+    line-height: 30px;
+    width: 60%;
+    margin: 10px auto 0;
+    border-radius: 4px;
+}
+.overview-num{
+    font-size: 60rpx;
+    text-align: center;
+}
+.overview-line{
+    margin: 0 20px;
+    width: 2px;
+    background: #666666;
+    height: 80px;
+}

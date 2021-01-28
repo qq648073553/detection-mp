@@ -54,7 +54,7 @@
 <!--                    <view class="link-message link-medium text-line-public">工作量汇总</view>-->
 <!--                </view>-->
             </navigator>
-            <navigator url="/pages/delegation-list/delegation-list?status=0" class="pro-m-nav" hover-class="none">
+            <navigator url="/pages/settle/settle" class="pro-m-nav" hover-class="none">
                 <view class="pro-m-link link-message link-medium text-line-public">
                     结算清单
                 </view>

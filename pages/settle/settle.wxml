@@ -1,0 +1,51 @@
+<!--pages/settle/settle.wxml-->
+<view class="container settle-container" style="padding-top:{{navHeight}}px;">
+    <navbar page-name="结算清单" showNav showHome></navbar>
+    <view class="settle-amount">
+        <view class="settle-filter" bindtap="onCancel">
+            <view class="filter-flag">{{filterDate}}</view>
+            <view class="settle-line"></view>
+            <van-icon name="apps-o" size="20" color="#fff" />
+        </view>
+        <view class="amount-title">待支付(元)</view>
+        <view class="amount-num-large">78880.00</view>
+        <view class="amount-others">
+            <view class="amount-o-item">
+                <view class="amount-title">已确认(元)</view>
+                <view class="amount-num">8880.00</view>
+            </view>
+            <view class="amount-o-item">
+                <view class="amount-title">待确认(元)</view>
+                <view class="amount-num">2000.00</view>
+            </view>
+            <view class="amount-o-item" style="margin:0">
+                <view class="amount-title">已支付(元)</view>
+                <view class="amount-num">1000.00</view>
+            </view>
+        </view>
+    </view>
+    <view class="settle-list">
+        <van-cell wx:for="{{list}}" wx:key="id" data-key="{{item.id}}" center title="{{item.title}}">
+            <button class="settle-down-btn" bindtap="download" data-id="{{item.id}}">下载
+            </button>
+        </van-cell>
+
+    </view>
+    <van-action-sheet show="{{ actionShow }}" round="{{false}}" close-on-click-overlay="{{true}}">
+        <view class="action-header">
+            <view class="action-cancel" bindtap="onCancel">取消</view>
+            <view class="action-title">选择时间</view>
+            <view class="action-confirm" bindtap="onConfirm">确认</view>
+        </view>
+        <view class="action-filter" bindtap="switchAction">
+            <view class="action-f-item {{actionType===0 ? 'action-f-item-active' : ''}}" data-type="0">按月</view>
+            <view class="action-f-item {{actionType===1 ? 'action-f-item-active' : ''}}" data-type="1">按季度</view>
+            <view class="action-f-item {{actionType===2 ? 'action-f-item-active' : ''}}" data-type="2">按年</view>
+            <view class="action-f-item {{actionType===-1 ? 'action-f-item-active' : ''}}" data-type="-1">全部</view>
+        </view>
+        <view class="action-body">
+            <van-picker id="picker" columns="{{ columns }}"  />
+        </view>
+
+    </van-action-sheet>
+</view>

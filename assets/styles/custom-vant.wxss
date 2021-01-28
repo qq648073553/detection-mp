@@ -1,0 +1,9 @@
+.custom-class .van-field__label{
+    color:#000
+}
+.custom-class .van-icon-arrow{
+    color: #969799;
+}
+.custom-class .van-cell__value{
+    text-align: left;
+}

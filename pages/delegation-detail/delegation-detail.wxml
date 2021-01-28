@@ -11,8 +11,8 @@
             <view class="deg-date">01月17日</view>
         </view>
         <view class="banner-right">
-            <navigator url="/pages/delegation-modify/delegation-modify" class="deg-detail-btn" hover-class="none">修改</navigator>
-            <navigator url="/pages/delegation-modify/delegation-modify" class="deg-detail-btn" hover-class="none">撤单</navigator>
+            <navigator url="/pages/pro-modify/pro-modify?type=1" class="deg-detail-btn" hover-class="none">修改</navigator>
+            <navigator url="/pages/pro-cancel/pro-cancel?type=1&id={{degId}}" class="deg-detail-btn" hover-class="none">撤单</navigator>
         </view>
     </view>
     <view class="deg-detail-flag">

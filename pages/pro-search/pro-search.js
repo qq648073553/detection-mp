@@ -34,6 +34,12 @@ Page({
     histories:['苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影']
 
   },
+  goBusiness(e) {
+    const {id} = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/pro-delegation/pro-delegation?id=${id}`
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

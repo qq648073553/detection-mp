@@ -1,12 +1,17 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/delegation-add/delegation-add",
+    "pages/summary/summary",
+    "pages/pro-modify/pro-modify",
+    "pages/pro-feedback/pro-feedback",
+    "pages/pro-cancel/pro-cancel",
+    "pages/settle/settle",
     "pages/login/login",
     "pages/login-phone/login-phone",
     "pages/add/add",
     "pages/my/my",
     "pages/function-list/function-list",
-    "pages/delegation-add/delegation-add",
     "pages/delegation-list/delegation-list",
     "pages/pro-detail/pro-detail",
     "pages/check-in/check-in",

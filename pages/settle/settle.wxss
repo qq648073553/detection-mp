@@ -1,0 +1,105 @@
+/* pages/settle/settle.wxss */
+.settle-container{
+    background: #F3F3F2;
+    min-height: 100vh;
+}
+.settle-amount{
+    overflow: hidden;
+    background: #7096FE linear-gradient(to right, #4387F6, #799CFD);
+
+}
+.settle-filter{
+    display: flex;
+    align-items: center;
+    margin: 10px 0 10px 20px;
+    background: transparent;
+    border-radius: 4px;
+    padding: 5px;
+    width: max-content;
+    border: 1px solid #fff;
+}
+.filter-flag{
+    font-size: 18px;
+    color: #fff;
+}
+.settle-line{
+    height: 15px;
+    margin: 0 10px;
+    background: #fff;
+    width: 1px;
+}
+.amount-title{
+    text-align: center;
+    color: #b8cde8;
+}
+.amount-num-large{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 40rpx;
+    color: #fff;
+}
+.amount-num{
+    margin-top: 5px;
+    text-align: center;
+    font-size: 28rpx;
+    color: #fff;
+}
+.amount-others{
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+}
+.amount-o-item{
+    flex: 1;
+    margin-right: 20px;
+}
+.settle-list{
+    width: 90%;
+    margin: 20px auto 0;
+    background: #fff;
+    border-radius: 8px;
+    height: 300px;
+}
+.settle-down-btn {
+    float: right;
+    width: 60px;
+    border-radius: 4px;
+    color: #fff;
+    background: #4387F6;
+}
+.action-header{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.action-cancel {
+    font-size: 16px;
+    color: #B1B1B1;
+}
+.action-title {
+    font: 16px;
+    font-weight: bold;
+}
+.action-confirm{
+    font-size: 16px;
+    color: #4387F6;
+}
+.action-filter{
+    display: table;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border: 1px solid #4387F6;
+    border-radius: 2px;
+}
+.action-f-item {
+    display: table-cell;
+    padding: 5px 10px;
+    border: 1px solid #4387F6;
+    background: #fff;
+    color: #4387F6;
+}
+.action-f-item-active{
+    background: #4387F6;
+    color: #fff;
+}
