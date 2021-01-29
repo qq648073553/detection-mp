@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/location/location",
+    "pages/pro-delegation/pro-delegation",
+    "pages/signature/signature",
     "pages/delegation-add/delegation-add",
     "pages/summary/summary",
     "pages/pro-modify/pro-modify",
@@ -16,7 +19,6 @@
     "pages/pro-detail/pro-detail",
     "pages/check-in/check-in",
     "pages/pro-search/pro-search",
-    "pages/pro-delegation/pro-delegation",
     "navbar/index",
     "pages/delegation-detail/delegation-detail"
   ],
@@ -37,6 +39,11 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于办理相关业务"
+    }
   },
   "sitemapLocation": "sitemap.json"
 }

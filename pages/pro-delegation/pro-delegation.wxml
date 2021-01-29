@@ -21,6 +21,8 @@
                 </view>
             </navigator>
         </view>
+        <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
+
     </view>
     <view class="pro-module">
         <view class="pro-m-header">
@@ -40,6 +42,8 @@
                 </view>
             </navigator>
         </view>
+        <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
+
     </view>
     <view class="pro-module">
         <view class="pro-m-header">
@@ -60,6 +64,8 @@
                 </view>
             </navigator>
         </view>
+        <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
+
     </view>
 </view>
 

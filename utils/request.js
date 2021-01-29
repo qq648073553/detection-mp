@@ -1,10 +1,4 @@
-/*
- * @Author: zfd
- * @Date: 2020-10-29 21:30:21
- * @LastEditors: zfd
- * @LastEditTime: 2020-11-08 14:28:16
- * @Description: 
- */
+
 class Request {
   constructor(params){
     this.withBaseURL = params.withBaseURL
@@ -23,19 +17,19 @@ class Request {
     return this.request('DELETE',url,data)
   }
   request (method,url,data) {
-    const vm = this
+    // const vm = this
     return new Promise((resolve,reject) => {
       wx.request({
-        url: vm.withBaseURL ? vm.baseURL + url: url,
+        url: this.withBaseURL ? this.baseURL + url: url,
         data,
         method,
         success(res){
-          resolve(res)
+          resolve(res.data)
         },
         fail() {
           reject({
             msg:'请求失败',
-            url:vm.withBaseURL ? vm.baseURL + url: url,
+            url:this.withBaseURL ? this.baseURL + url: url,
             method,
             data
           })
@@ -48,4 +42,4 @@ class Request {
 const request = new Request({
   withBaseURL:true
 })
-module.exports = request
+module.exports = Request

@@ -1,0 +1,47 @@
+<!--pages/location/location.wxml-->
+<view class="container  custom-class" style="padding-top:{{navHeight}}px;">
+    <navbar page-name="选择地址" showNav showHome></navbar>
+    <view class="location-container">
+        <van-cell title="省市区"  title-width="100px" value="{{areas}}" bindtap="toggleShow"   />
+        <van-field
+                value="{{ detail }}"
+                center
+                clearable
+                label="详细地址"
+                placeholder="请输入"
+                border="{{ false }}"
+                use-button-slot
+                type="textarea"
+                autosize
+        >
+            <button slot="button" style="background:#fff" bindtap="chooseLocation"
+            ><van-icon name="location" size="20" color="#4387F6" /></button
+            >
+        </van-field>
+        <button class="save-btn">保 存</button>
+    </view>
+    <van-popup
+            show="{{ show }}"
+            position="bottom"
+            closeable
+            class="popup-container"
+    >
+        <van-search
+                class="custom-class"
+                value="{{searchValue}}"
+                shape="round"
+                background="#fff"
+                placeholder="请输入搜索关键词"
+        />
+        <view class="location-list">
+            <van-cell wx:for="{{list}}" wx:key="*this" bindtap="" center title="{{item}}">
+
+            </van-cell>
+
+        </view>
+        <van-area  area-list="{{ areaList }}" bind:confirm="onConfirm" bind:cancel="toggleShow" />
+
+    </van-popup>
+
+</view>
+

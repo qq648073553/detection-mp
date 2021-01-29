@@ -1,0 +1,27 @@
+/* pages/location/location.wxss */
+.location-container {
+    padding:10px 0 30px;
+}
+.save-btn{
+    margin: 60px auto 0;
+    width: 90%;
+    border-radius: 4px;
+    height: 40px;
+    color: #fff;
+    background: #4387F6;
+}
+.popup-container{
+    position: relative;
+    height: max-content;
+}
+.location-list{
+    position: absolute;
+    width: 100%;
+    /*padding: 0 20px;*/
+    top: 40px;
+    left: 0;
+    height: 85%;
+    overflow: auto;
+    z-index: 10;
+}
+@import "/assets/styles/search.wxss";

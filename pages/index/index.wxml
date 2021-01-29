@@ -1,10 +1,13 @@
 <import src="/template/pro-list/index.wxml" />
 
 <view class="container" style="padding-top:{{navHeight}}px">
-    <navbar page-name="检测系统" ></navbar>
+    <navbar page-name="检测系统" style="position:relative;" >
+        <image src="../../assets/images/scan-home.png" class="scan-btn" catch:tap="scan"></image>
+    </navbar>
 
    <view class="home-container">
-           <view class="index-header">
+
+       <view class="index-header">
                <navigator url="/pages/add/add" hover-class="none" >
                    <view class="new-pro-btn">新建工程</view>
                </navigator>

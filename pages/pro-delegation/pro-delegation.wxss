@@ -23,12 +23,12 @@
 }
 .dg-add-btn {
     position: absolute;
-    top: 0;
-    right: 0;
-    height: 35px;
-    line-height: 35px;
+    top: 2px;
+    left: 60px;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
-    width: 180rpx;
+    width: 120rpx;
     border-radius: 6px;
     color: #fff;
     background: #4387F6;
@@ -80,4 +80,11 @@
     margin: auto;
     height: 100rpx;
     line-height: 100rpx;
+}
+.scan-btn {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    width: 100rpx;
+    height: 100rpx;
 }

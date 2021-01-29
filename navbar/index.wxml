@@ -7,6 +7,7 @@
         <ss-icon name="back" color="{{iconColor}}" size="18px" block="{{true}}" class="navbar-action_item" bind:click="_navBack"></ss-icon>
     </view>
     <view class='navbar-title' style='top:{{navTop}}px'>
+        <slot></slot>
         {{pageName}}
     </view>
 </view>

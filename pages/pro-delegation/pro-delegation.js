@@ -11,7 +11,13 @@ Page({
     status: null,
     proTitle: '苏州中心'
   },
-
+  scan() {
+    wx.scanCode({
+      success (res) {
+        console.log(res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

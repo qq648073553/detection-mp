@@ -35,9 +35,9 @@
                         label="工程名称"
                         placeholder="请输入"
                 />
-                <van-cell title="工程地点"  title-width="88px" value="请选择" is-link />
+                <van-cell title="工程地点"  title-width="98px" value="请选择" is-link />
 
-                <van-cell title="工程状态"  title-width="88px" value="请选择" is-link />
+                <van-cell title="工程状态"  title-width="98px" value="请选择" is-link />
 
             </view>
         </view>
