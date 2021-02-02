@@ -1,5 +1,5 @@
 <view class="container" style="padding-top:{{navHeight}}px">
-    <navbar page-name="新建工程" showNav ></navbar>
+    <navbar page-name="{{navTitle}}" showNav ></navbar>
     <view class="add-container" style="top:{{padBottom}}px">
         <view class="add-module">
             <view class="module-title">
@@ -8,14 +8,14 @@
             <view class="module-content custom-class">
                 <van-field
 
-                        model:value="{{ project.contact }}"
+                        model:value="{{ proContact }}"
                         clearable
                         label="负责人"
                         placeholder="请输入"
                 />
                 <van-field
 
-                        model:value="{{ project.phone }}"
+                        model:value="{{ proPhone }}"
                         clearable
                         type="number"
                         label="负责人手机号"
@@ -23,21 +23,21 @@
                 />
                 <van-field
 
-                        model:value="{{ project.code }}"
+                        model:value="{{ proCode }}"
                         clearable
                         label="工程编号"
                         placeholder="请输入"
                 />
                 <van-field
 
-                        model:value="{{ project.title }}"
+                        model:value="{{ proTitle }}"
                         clearable
                         label="工程名称"
                         placeholder="请输入"
                 />
-                <van-cell title="工程地点"  title-width="98px" value="请选择" is-link />
+                <van-cell title="工程地点"  title-width="98px" value="{{proAddress}}" url="/pages/location/location" is-link />
 
-                <van-cell title="工程状态"  title-width="98px" value="请选择" is-link />
+                <van-cell title="工程状态"  title-width="98px" value="{{proStatus}}" bindtap="toggleShow" is-link />
 
             </view>
         </view>
@@ -48,7 +48,7 @@
             <view class="module-content custom-class">
                 <van-field
 
-                        model:value="{{ build.contract }}"
+                        model:value="{{ buildContract }}"
                         clearable
                         label="合同号"
                         adjust-position="{{false}}"
@@ -56,7 +56,7 @@
                 />
                 <van-field
 
-                        model:value="{{ build.buildCom }}"
+                        model:value="{{ buildCom }}"
                         clearable
                         adjust-position="{{false}}"
                         label="建设单位"
@@ -64,7 +64,7 @@
                 />
                 <van-field
 
-                        model:value="{{ build.constructionCom }}"
+                        model:value="{{ buildConCom }}"
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
@@ -73,7 +73,7 @@
                 />
                 <van-field
 
-                        model:value="{{ build.delegationCom }}"
+                        model:value="{{ buildDegCom }}"
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
@@ -81,7 +81,7 @@
                         placeholder="请输入"
                 />
                 <van-field
-                        model:value="{{ build.amountCom }}"
+                        model:value="{{ buildSettleCom }}"
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
@@ -99,7 +99,7 @@
             <view class="module-content custom-class">
                 <van-field
 
-                        model:value="{{ supervision.code }}"
+                        model:value="{{ supervisionCode }}"
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
@@ -108,7 +108,7 @@
                 />
                 <van-field
 
-                        model:value="{{ supervision.qualityCom }}"
+                        model:value="{{ supervisionQtCom }}"
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
@@ -117,7 +117,7 @@
                         placeholder="请输入"
                 />
                 <van-field
-                        model:value="{{ supervision.supervisionCom }}"
+                        model:value="{{ supervisionCom }}"
                         clearable
                         adjust-position="{{false}}"
                         bind:focus="setHeight"
@@ -137,6 +137,12 @@
         <button class="add-btn" bindtap="formSubmit">提 交</button>
 
     </view>
-
+    <van-action-sheet
+            show="{{ actionShow }}"
+            actions="{{ statusOptions }}"
+            cancel-text="取消"
+            bind:cancel="toggleShow"
+            bind:select="onSelect"
+    />
 
 </view>

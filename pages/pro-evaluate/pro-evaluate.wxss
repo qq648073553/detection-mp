@@ -1,0 +1,37 @@
+/* pages/pro-evaluate/pro-evaluate.wxss */
+.pro-evaluate-container {
+    padding: 15px 15px;
+
+}
+.evaluate-emphasis .van-col{
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+.evaluate-tip {
+    font-size: 14px;
+    color: #999;
+}
+.evaluate-line {
+    height: 1px;
+    background: #999;
+    margin: 5px 0 15px;
+}
+.evaluate-textarea {
+    margin: 20px 0 60px;
+}
+.module-upload{
+    /*background-color: #fff;*/
+    /*padding:0 100rpx;*/
+}
+.module-upload .van-uploader__upload{
+    /*background: #fff;*/
+}
+.submit-btn{
+    margin: 60px auto 30px;
+    width: 90%;
+    border-radius: 4px;
+    height: 40px;
+    color: #fff;
+    background: #4387F6;
+}

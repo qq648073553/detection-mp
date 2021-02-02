@@ -17,7 +17,9 @@ Page({
     areas: '请选择',
     detail: '',
     areaList:areaList,
-    show:false,
+    areaShow:false,
+    matchShow: false,
+    remarks: '',
     list:[
         '苏州市',
       '苏州市',
@@ -39,13 +41,27 @@ Page({
   },
   toggleShow() {
     this.setData({
-      show:!this.data.show
+      areaShow:!this.data.areaShow
     })
+  },
+  onSearchChange(e) {
+
+    if(e.detail.length === 0) {
+      this.setData({
+        matchShow: false
+      })
+    }else {
+      if(!this.data.matchShow) {
+        this.setData({
+          matchShow: true
+        })
+      }
+    }
   },
   onConfirm(e) {
     this.setData({
       areas:e.detail.values.reduce((init,val) => init + val.name,''),
-      show:false
+      areaShow:false
     })
   },
   // 打开地图选择位置

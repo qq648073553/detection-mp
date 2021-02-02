@@ -11,13 +11,13 @@
                 background="#fff"
                 placeholder="请输入搜索关键词"
         />
-        <view wx:if="{{histories.length > 0}}"  class="index-histories">
-            <view wx:for="{{histories}}" class="history-item">{{item}}</view>
-        </view>
+<!--        <view wx:if="{{histories.length > 0}}"  class="index-histories">-->
+<!--            <view wx:for="{{histories}}" class="history-item">{{item}}</view>-->
+<!--        </view>-->
     </van-sticky>
 
     <view class="search-content">
-        <template  is="degList" data="{{list:list}}"></template>
+        <template  is="degList" data="{{list,degStatus}}"></template>
     </view>
 
 </view>

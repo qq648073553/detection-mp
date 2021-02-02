@@ -14,7 +14,7 @@ Page({
       {
         id:1,
         title: '检测项目1',
-        status: '待受理',
+        status: 0,
         color: '#4387F6',
         date: '2021/01/19 15:17',
         tags: ['未受理']
@@ -22,7 +22,7 @@ Page({
       {
         id:2,
         title: '检测项目2',
-        status: '已受理',
+        status: 1,
         color: '#F0641F',
         date: '2021/01/19 15:17',
         tags: ['待取样']
@@ -30,7 +30,7 @@ Page({
       {
         id:3,
         title: '检测项目3',
-        status: '出具报告中',
+        status: 2,
         color: '#3333CC',
         date: '2021/01/19 15:17',
         tags: ['等待报告']
@@ -38,7 +38,7 @@ Page({
       {
         id:4,
         title: '检测项目4',
-        status: '报告审核中',
+        status: 3,
         color: '#AE202C',
         date: '2021/01/19 15:17',
         tags: ['等待审核']
@@ -46,7 +46,7 @@ Page({
       {
         id:5,
         title: '检测项目5',
-        status: '已出具报告',
+        status: 4,
         color: '#33CC33',
         date: '2021/01/19 15:17',
         tags: ['报告数10']
@@ -60,10 +60,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    const {status} = options
     this.setData({
       navHeight: App.globalData.navHeight,
-      proStatus: App.globalData.proStatus
+      proStatus: App.globalData.proStatus,
+      degStatus: App.globalData.degStatus,
+      list: this.data.list.filter(v => v.status == status)
     })
     wx.getStorage({
       key: 'histories',

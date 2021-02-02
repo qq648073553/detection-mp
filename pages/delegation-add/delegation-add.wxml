@@ -1,5 +1,5 @@
 <view class="container" style="padding-top:{{navHeight}}px">
-    <navbar page-name="新增委托" showNav showHome></navbar>
+    <navbar page-name="{{navTitle}}" showNav showHome></navbar>
     <view class="add-container custom-class" style="top:{{padBottom}}px">
         <van-cell title="工程名称" title-width="88px" value="{{project}}" />
         <van-cell title="工程编号" title-width="88px" value="{{proId}}" />

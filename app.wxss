@@ -3,7 +3,7 @@
 :not(not) {
   box-sizing: border-box;
   font-size: 14px;
-  color: #000;
+  /*color: #000;*/
 }
 .container {
   /*max-height: 100vh;*/

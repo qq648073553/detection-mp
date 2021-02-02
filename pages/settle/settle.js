@@ -24,7 +24,7 @@ Page({
   data: {
     filterDate: '全部',
     chooseDate:'',
-    actionShow: true,
+    actionShow: false,
     actionType: 0,
     list:[
       {

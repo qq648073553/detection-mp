@@ -9,7 +9,6 @@
                 clearable
                 label="详细地址"
                 placeholder="请输入"
-                border="{{ false }}"
                 use-button-slot
                 type="textarea"
                 autosize
@@ -18,22 +17,33 @@
             ><van-icon name="location" size="20" color="#4387F6" /></button
             >
         </van-field>
+        <van-field
+                value="{{ remarks }}"
+                center
+                clearable
+                label="备注"
+                placeholder="请输入"
+                border="{{ false }}"
+                type="textarea"
+                autosize
+        >
+        </van-field>
         <button class="save-btn">保 存</button>
     </view>
     <van-popup
-            show="{{ show }}"
+            show="{{ areaShow }}"
             position="bottom"
-            closeable
             class="popup-container"
     >
         <van-search
-                class="custom-class"
                 value="{{searchValue}}"
                 shape="round"
                 background="#fff"
                 placeholder="请输入搜索关键词"
+                clearable
+                bind:change="onSearchChange"
         />
-        <view class="location-list">
+        <view class="location-list" wx:if="{{matchShow}}">
             <van-cell wx:for="{{list}}" wx:key="*this" bindtap="" center title="{{item}}">
 
             </van-cell>

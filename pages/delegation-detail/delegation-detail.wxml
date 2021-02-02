@@ -4,19 +4,35 @@
     <navbar page-name="委托详情" showNav showHome></navbar>
     <view class="deg-detail-top">
         检测内容
+
     </view>
     <view class="deg-detail-banner">
         <view class="banner-left">
-            <view class="deg-status">待受理</view>
+            <view class="deg-status">{{degStatus[status]}}</view>
             <view class="deg-date">01月17日</view>
         </view>
         <view class="banner-right">
-            <navigator url="/pages/pro-modify/pro-modify?type=1" class="deg-detail-btn" hover-class="none">修改</navigator>
-            <navigator url="/pages/pro-cancel/pro-cancel?type=1&id={{degId}}" class="deg-detail-btn" hover-class="none">撤单</navigator>
+            <block wx:if="{{status == 0}}">
+                <navigator url="/pages/delegation-add/delegation-add?id={{degId}}}&type=modify" class="deg-detail-btn" hover-class="none">修改</navigator>
+                <navigator url="/pages/pro-cancel/pro-cancel?type=1&id={{degId}}" class="deg-detail-btn" hover-class="none">撤单</navigator>
+            </block>
+            <block wx:elif="{{status == 4}}">
+                <navigator url="/pages/pro-evaluate/pro-evaluate?id={{degId}}" class="deg-detail-btn" hover-class="none">评价</navigator>
+                <navigator url="/pages/pro-feedback/pro-feedback?type=1&id={{degId}}" class="deg-detail-btn" hover-class="none">反馈</navigator>
+            </block>
+            <block wx:else>
+                <navigator url="/pages/pro-modify/pro-modify?id={{degId}}}&type=1" class="deg-detail-btn" hover-class="none">修改</navigator>
+                <navigator url="/pages/pro-cancel/pro-cancel?type=1&id={{degId}}" class="deg-detail-btn" hover-class="none">撤单</navigator>
+            </block>
         </view>
     </view>
     <view class="deg-detail-flag">
-        <text>委托编号548777189 复制</text>
+        <block>
+            <text>委托编号{{degId}}</text>
+            <icon class="iconfont icon-fuzhi copy-btn" catch:tap="setClipboard"></icon>
+        </block>
+        <button wx:if="{{status == 1}}" class="deg-flag-btn">回执下载</button>
+        <navigator wx:elif="{{status == 4}}" url="/pages/signature/signature?id={degId}" hover-class="none" class="deg-flag-nav">签名确认</navigator>
     </view>
     <van-steps
             steps="{{ steps }}"
@@ -24,6 +40,7 @@
             direction="vertical"
             active-color="#33CC33"
             class="desc-class"
+            bind:click-step="onStepClick"
     />
 </view>
 

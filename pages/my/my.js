@@ -6,7 +6,7 @@ Page({
     email: 'zfd_yes@163.com'
   },
   logOut() {
-    wx.redirectTo({
+    wx.reLaunch({
       url: '/pages/login/login'
     })
   },

@@ -14,11 +14,17 @@
     position: relative;
     height: max-content;
 }
+.popup-container .van-popup--bottom{
+    top: 40%;
+}
+.custom-class .van-search {
+    /*width: 90%;*/
+}
 .location-list{
     position: absolute;
     width: 100%;
     /*padding: 0 20px;*/
-    top: 40px;
+    top: 60px;
     left: 0;
     height: 85%;
     overflow: auto;

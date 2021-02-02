@@ -11,7 +11,7 @@
     background: #F3F3F2;
 }
 .submit-btn{
-    margin: 60px auto 0;
+    margin: 60px auto 30px;
     width: 90%;
     border-radius: 4px;
     height: 40px;

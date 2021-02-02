@@ -11,8 +11,8 @@ Component({
                 "text": "首页"
             },
             {
-                "pagePath": "/pages/add/add",
-                "iconPath": "../assets/images/nav/add.png",
+                "pagePath": "/pages/pro-add/pro-add",
+                "iconPath": "../assets/images/nav/pro-add.png",
                 "selectedIconPath": "../assets/images/nav/add_on.png",
                 "text": "历史工程"
             },

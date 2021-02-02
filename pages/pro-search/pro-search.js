@@ -1,5 +1,6 @@
 // pages/pro-search/pro-search.js
 const App = getApp();
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 
 Page({
 
@@ -35,7 +36,11 @@ Page({
 
   },
   goBusiness(e) {
-    const {id} = e.currentTarget.dataset
+    const {id,status} = e.currentTarget.dataset
+    if(status == this.data.proStatus.beforeConfirm) {
+      Toast.fail('暂未受理');
+      return;
+    }
     wx.navigateTo({
       url: `/pages/pro-delegation/pro-delegation?id=${id}`
     })

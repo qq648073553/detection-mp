@@ -3,7 +3,7 @@ const App = getApp();
 Page({
     data: {
         navHeight:60,
-        degId:0,
+        degId:'5555880',
         steps: [
             {
                 text: '待受理',
@@ -32,10 +32,26 @@ Page({
                 activeIcon: 'success'
             },
         ].reverse(),
+        id: null,
+        status: null,
+        degStatus: []
+    },
+    setClipboard() {
+        wx.setClipboardData({
+            data: this.data.degId
+        })
+    },
+    onStepClick(e){
+      console.log(e)
     },
     onLoad: function (options) {
+        const { id, status} = options
+
         this.setData({
             navHeight: App.globalData.navHeight,
+            degStatus: App.globalData.degStatus,
+            id,
+            status
         })
     }
 });

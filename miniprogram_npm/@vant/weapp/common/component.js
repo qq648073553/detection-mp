@@ -90,10 +90,10 @@ function VantComponent(vantOptions) {
   if (relation) {
     makeRelation(options, vantOptions, relation);
   }
-  // add default externalClasses
+  // pro-add default externalClasses
   options.externalClasses = options.externalClasses || [];
   options.externalClasses.push('custom-class');
-  // add default behaviors
+  // pro-add default behaviors
   options.behaviors = options.behaviors || [];
   options.behaviors.push(basic_1.basic);
   // map field to form-field behavior
@@ -108,7 +108,7 @@ function VantComponent(vantOptions) {
       }
     });
   }
-  // add default options
+  // pro-add default options
   options.options = {
     multipleSlots: true,
     addGlobalClass: true,

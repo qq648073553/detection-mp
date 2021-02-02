@@ -1,5 +1,6 @@
 // pages/check-in/check-in.js
 const App = getApp();
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 
 Page({
 
@@ -40,8 +41,19 @@ Page({
         ],
         value: '',
     },
+    scan() {
+        wx.scanCode({
+            success (res) {
+                console.log(res)
+            }
+        })
+    },
     goBusiness(e) {
-        const {id} = e.currentTarget.dataset
+        const {id,status} = e.currentTarget.dataset
+        if(status == this.data.proStatus.beforeConfirm) {
+            Toast.fail('暂未受理');
+            return;
+        }
       wx.navigateTo({
           url: `/pages/pro-delegation/pro-delegation?id=${id}`
       })

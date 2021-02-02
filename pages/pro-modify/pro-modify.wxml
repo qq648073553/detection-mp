@@ -7,8 +7,8 @@
         <van-cell title="工程名称" title-width="88px" value="{{project}}" />
         <van-cell title="工程编号" title-width="88px"  value="{{proId}}" />
         <block wx:if="{{navTitle=='委托修改'}}">
-            <van-cell title="检测项目"  value="{{proDeg}}" />
-            <van-cell title="委托编号" value="{{proDegId}}" />
+            <van-cell title="检测项目" title-width="88px"  value="{{proDeg}}" />
+            <van-cell title="委托编号" title-width="88px"  value="{{proDegId}}" />
         </block>
         <van-field
                 model:value="{{ message }}"

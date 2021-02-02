@@ -23,6 +23,7 @@ App({
       beforeConfirm: 0,
       confirmed: 1,
       official: 2
-    }
+    },
+    degStatus:['待受理','已受理','出具报告中','报告审核中','已出具报告']
   }
 })

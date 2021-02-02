@@ -16,6 +16,7 @@
       error="{{ error }}"
       border="{{ false }}"
       confirm-type="search"
+      adjust-position="{{false}}"
       class="van-search__field field-class"
       value="{{ value }}"
       disabled="{{ disabled }}"

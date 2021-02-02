@@ -1,30 +1,24 @@
 const App = getApp();
 Page({
     data: {
-        project: {
-            contact: '',
-            phone: '',
-            code: '',
-            title: '',
-            address: '',
-            status: ''
-        },
-        build: {
-            contract: '',
-            buildCom:'',
-            constructionCom: '',
-            delegationCom: '',
-            amountCom: ''
-        },
-        supervision: {
-            code: '',
-            qualityCom: '',
-            supervisionCom: ''
-
-        },
+        navTitle: '新建工程',
+        proContact: '',
+        proPhone: '',
+        proCode: '',
+        proTitle: '',
+        proAddress: '请选择',
+        proStatus: '请选择',
+        buildContract: '',
+        buildCom: '',
+        buildConCom: '',
+        buildDegCom: '',
+        buildSettleCom: '',
+        supervisionCode: '',
+        supervisionQtCom:'',
+        supervisionCom: '',
         statusOptions:[
-            { value: 0, text: '已完成' },
-            { value: 1, text: '未完成' }
+            { name: '已完成', value: 0 },
+            { name: '未完成', value: 1 }
         ],
         padBottom: 0,
         fileList:[],
@@ -38,6 +32,14 @@ Page({
     formSubmit() {
 
     },
+    onSelect(e) {
+        console.log(e.detail)
+    },
+    toggleShow() {
+      this.setData({
+          actionShow:!this.data.actionShow
+      })
+    },
     setHeight(e) {
         const height = Math.max(e.detail.height, this.data.lastScroll)
         this.setData({
@@ -45,7 +47,10 @@ Page({
         })
     },
     onLoad: function (options) {
+        const {type} = options
+        const title = type === 'modify' ? '修改工程' : '新建工程'
         this.setData({
+            navTitle: title,
             navHeight: App.globalData.navHeight,
             padBottom:App.globalData.navHeight,
         })

@@ -32,3 +32,6 @@
 .custom-class .van-tag{
     margin: 0 20rpx 10px 0;
 }
+.deg-flag-btn {
+
+}

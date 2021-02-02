@@ -63,7 +63,7 @@ Component({
         },
         //回主页
         _toIndex: function () {
-            wx.redirectTo({
+            wx.reLaunch({
                 url: '/pages/index/index'
             })
         },

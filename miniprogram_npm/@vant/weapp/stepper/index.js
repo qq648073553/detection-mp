@@ -19,7 +19,7 @@ var component_1 = require('../common/component');
 var utils_1 = require('../common/utils');
 var LONG_PRESS_START_TIME = 600;
 var LONG_PRESS_INTERVAL = 200;
-// add num and avoid float number
+// pro-add num and avoid float number
 function add(num1, num2) {
   var cardinal = Math.pow(10, 10);
   return Math.round((num1 + num2) * cardinal) / cardinal;

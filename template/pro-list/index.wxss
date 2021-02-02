@@ -1,6 +1,6 @@
 .fd-card{
     /*height: 240rpx;*/
-    margin-bottom: 30rpx;
+    margin-bottom: 10rpx;
     /*box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);*/
     /*border-radius: 8px;*/
 }
@@ -49,7 +49,7 @@
 .pro-remarks {
     font: 18rpx;
     color: #C2C2C2;
-    margin-bottom: 20rpx;
+    /*margin-bottom: 20rpx;*/
 }
 .pro-tag {
     margin-right: 20rpx;

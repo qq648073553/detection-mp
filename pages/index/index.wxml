@@ -8,7 +8,7 @@
    <view class="home-container">
 
        <view class="index-header">
-               <navigator url="/pages/add/add" hover-class="none" >
+               <navigator url="/pages/pro-add/pro-add" hover-class="none" >
                    <view class="new-pro-btn">新建工程</view>
                </navigator>
                <navigator url="/pages/my/my" hover-class="none"><icon class="iconfont icon-gerenzhongxin-zhong personal-center" /></navigator>

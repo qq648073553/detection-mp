@@ -1,0 +1,60 @@
+<!--pages/pro-evaluate/pro-evaluate.wxml-->
+
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="报告评价" showNav showHome></navbar>
+    <view class="pro-evaluate-container">
+        <van-row>
+            <van-col span="6" class="evaluate-emphasis">报告评价</van-col>
+            <van-col span="6">
+                <van-rate value="{{ value }}" bind:change="onChange" />
+
+            </van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+        </van-row>
+
+        <view class="evaluate-line"></view>
+        <van-row>
+            <van-col span="6">报告排版</van-col>
+            <van-col span="6">
+                <van-rate value="{{ value }}" bind:change="onChange" />
+
+            </van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+        </van-row>
+        <van-row>
+            <van-col span="6">报告内容</van-col>
+            <van-col span="6">
+                <van-rate value="{{ value }}" bind:change="onChange" />
+
+            </van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+        </van-row>
+        <van-row>
+            <van-col span="6">出具速度</van-col>
+            <van-col span="6">
+                <van-rate value="{{ value }}" bind:change="onChange" />
+
+            </van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+        </van-row>
+        <van-row>
+
+        <van-col span="6">文本语法</van-col>
+        <van-col span="6">
+            <van-rate value="{{ value }}" bind:change="onChange" />
+
+        </van-col>
+        <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+    </van-row>
+
+        <textarea class="evaluate-textarea" bindblur="bindTextAreaBlur" auto-height placeholder="请填写您的评价，这将帮助我们为您提供更好的服务~" />
+        <view class="module-upload">
+            <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+        </view>
+        <button class="submit-btn" bindtap="formSubmit">提 交</button>
+
+    </view>
+
+</view>
+
+

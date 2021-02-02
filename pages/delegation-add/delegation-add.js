@@ -11,6 +11,7 @@ Page({
       { value: 0, text: '已完成' },
       { value: 1, text: '未完成' }
     ],
+    navTitle: '新增委托',
     padBottom: 0,
     fileList:[],
     lastScroll:0,
@@ -30,9 +31,12 @@ Page({
     })
   },
   onLoad: function (options) {
+    const {type} = options
+    const title = type === 'modify' ? '委托修改' : '新增委托'
     this.setData({
       navHeight: App.globalData.navHeight,
       padBottom:App.globalData.navHeight,
+      navTitle: title
     })
   },
   onShow() {
