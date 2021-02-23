@@ -3,33 +3,38 @@
  * @Date: 2020-10-29 21:02:51
  * @LastEditors: zfd
  * @LastEditTime: 2020-11-08 14:33:10
- * @Description: 
+ * @Description:
  */
 const Request = require('../utils/request')
-
+const fetch = new Request({
+  withBaseURL:true
+})
 async function login(page) {
   const _this = this
   wx.login({
     success(res){
-      Request.post({code:res.code}).then(res=>{
-        if(res.code === 10000){
-          _this.register(page)
-          return
-        }
-        if (res.status !== 'success') {
-          // 登录错误
-          wx.showModal({
-            title: '无法登录',
-            content: res.msg,
-            showCancel: false
-          })
-          return;
-        }
-        wx.setStorageSync('token', res.data.token)
-        wx.setStorageSync('uid', res.data.uid)
-        if ( page ) {
-          page.onShow()
-        }
+      fetch.post('wxlanding',{wxLoginRequest :res.code}).then(res=>{
+        console.log(res)
+        // if(res.code === 10000){
+        //   _this.register(page)
+        //   return
+        // }
+        // if (res.status !== 'success') {
+        //   // 登录错误
+        //   wx.showModal({
+        //     title: '无法登录',
+        //     content: res.msg,
+        //     showCancel: false
+        //   })
+        //   return;
+        // }
+        // wx.setStorageSync('token', res.data.token)
+        // wx.setStorageSync('uid', res.data.uid)
+        // if ( page ) {
+        //   page.onShow()
+        // }
+      }).catch(err => {
+        console.error(err)
       })
     }
   })

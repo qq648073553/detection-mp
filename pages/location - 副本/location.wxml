@@ -1,6 +1,5 @@
 <!--pages/location/location.wxml-->
 <view class="container  custom-class" style="padding-top:{{navHeight}}px;">
-    <van-toast id="van-toast" />
     <navbar page-name="选择地址" showNav showHome></navbar>
     <view class="location-container">
         <van-cell title="省市区"  title-width="100px" value="{{areas}}" bindtap="toggleShow"   />
@@ -19,7 +18,7 @@
             >
         </van-field>
         <van-field
-                value="{{ remarks }}"
+                model:value="{{ remarks }}"
                 center
                 clearable
                 label="备注"
@@ -29,14 +28,27 @@
                 autosize
         >
         </van-field>
-        <button class="save-btn" bindtap="onSave">确 认</button>
+        <button class="save-btn">保 存</button>
     </view>
     <van-popup
             show="{{ areaShow }}"
             position="bottom"
             class="popup-container"
     >
+        <van-search
+                value="{{searchValue}}"
+                shape="round"
+                background="#fff"
+                placeholder="请输入搜索关键词"
+                clearable
+                bind:change="onSearchChange"
+        />
+        <view class="location-list" wx:if="{{matchShow}}">
+            <van-cell wx:for="{{list}}" wx:key="*this" bindtap="" center title="{{item}}">
 
+            </van-cell>
+
+        </view>
         <van-area  area-list="{{ areaList }}" bind:confirm="onConfirm" bind:cancel="toggleShow" />
 
     </van-popup>

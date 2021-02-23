@@ -1,10 +1,10 @@
 <template name="proList">
 
     <view id="proList">
-        <van-toast id="van-toast" />
+<!--        <van-toast id="van-toast" />-->
 
         <view class="fd-card"  wx:for="{{list}}" wx:key="id" >
-                <view class="fd-card-header" catch:tap="goBusiness" data-id="{{item.id}}" data-status="{{item.status}}">
+                <view class="fd-card-header" catch:tap="goBusiness" data-gid="{{item.projectKey.gid}}" data-jid="{{item.projectKey.jid}}" data-wid="{{item.projectKey.wid}}" data-status="{{item.status}}">
                     <view class="pro-ymd">{{item.ymd}}</view>
                     <!--                <van-tag color="{{item.status.color}}" size="large">{{item.status.title}}</van-tag>-->
                 </view>
@@ -12,10 +12,10 @@
 
                 <van-swipe-cell  left-width="{{item.status === proStatus.official ? 0 : 68 }}" right-width="{{ 68 }}" style="height:max-content">
                     <view slot="left" style="height:100%" wx:if="{{item.status !== proStatus.official}}">
-                        <navigator class="pro-btn"   style="background:#999" url="/pages/pro-cancel/pro-cancel?type=0&id={{item.id}}">撤销工程</navigator>
+                        <navigator class="pro-btn"   style="background:#999" url="/pages/pro-cancel/pro-cancel?type=0&gid={{item.projectKey.gid}}&jid={{item.projectKey.jid}}&wid={{item.projectKey.wid}}">撤销工程</navigator>
                     </view>
 
-                    <view class="fd-card-body" catch:tap="goBusiness" data-id="{{item.id}}" data-status="{{item.status}}" >
+                    <view class="fd-card-body" catch:tap="goBusiness" data-gid="{{item.projectKey.gid}}" data-jid="{{item.projectKey.jid}}" data-wid="{{item.projectKey.wid}}" data-status="{{item.status}}" >
                         <view>
                             <view class="pro-title ">{{item.title}}</view>
                             <view class="pro-remarks ">{{item.remarks}}</view>
@@ -26,8 +26,9 @@
                     </view>
 
                     <view slot="right" style="height:100%">
-                        <navigator wx:if="{{item.status === proStatus.beforeConfirm}}" class="pro-btn"  style="background:#4387F6" url="/pages/pro-add/pro-add?type=modify" hover-class="none">信息修改</navigator>
-                        <navigator wx:else class="pro-btn"  style="background:#F0641F" url="/pages/pro-modify/pro-modify?type=0" hover-class="none">信息修改</navigator>
+                        <navigator wx:if="{{item.status === proStatus.beforeConfirm}}" class="pro-btn"  style="background:#4387F6"
+                                   url="/pages/pro-add/pro-add?type=modify&gid={{item.projectKey.gid}}&jid={{item.projectKey.jid}}&wid={{item.projectKey.wid}}" hover-class="none">信息修改</navigator>
+                        <navigator wx:else class="pro-btn"  style="background:#F0641F" url="/pages/pro-modify/pro-modify?type=0&gid={{item.projectKey.gid}}&jid={{item.projectKey.jid}}&wid={{item.projectKey.wid}}" hover-class="none">信息修改</navigator>
 
                     </view>
                 </van-swipe-cell>

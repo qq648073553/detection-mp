@@ -1,6 +1,7 @@
 <!--撤销页，工程撤销，委托撤单-->
 
 <view class="container" style="padding-top:{{navHeight}}px">
+    <van-toast id="vanToast"></van-toast>
     <navbar page-name="{{navTitle}}" show-nav showHome></navbar>
     <view class="cancel-container custom-class" >
             <van-cell title="工程名称" title-width="88px" value="{{project}}" />

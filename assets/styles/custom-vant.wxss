@@ -4,6 +4,6 @@
 .custom-class .van-icon-arrow{
     color: #969799;
 }
-.custom-class .van-cell__value{
+.custom-class .van-cell__value {
     text-align: left;
 }

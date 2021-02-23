@@ -23,7 +23,7 @@
     padding:0 100rpx;
 }
 .module-upload .van-uploader__upload{
-    background: #fff;
+    background-color: #fff;
 }
 .add-btn{
     margin: 30px auto 30px;
@@ -32,4 +32,11 @@
     height: 40px;
     color: #fff;
     background: #4387F6;
+}
+button[disabled] {
+    color: fff;
+    background-color: #8898de;
+}
+.custom-class .van-cell__value {
+    color: #323233;
 }

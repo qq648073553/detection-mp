@@ -1,44 +1,33 @@
 // pages/pro-search/pro-search.js
 const App = getApp();
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-
+const Request = require('../../utils/request')
+const fetch = new Request({
+  auth:true,
+  header:App.globalData.header,
+  baseURL: App.globalData.baseURL
+})
+const Utils = require('../..//utils/util')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    searchValue: '',
-    list:[
-      {
-        id: 1,
-        ymd:'2020年12月26日',
-        status: 0,
-        title: '苏州中心扩建工程1号',
-        remarks: '16:05 | 待受理'
-      },
-      {
-        id:2,
-        ymd:'2020年12月27日',
-        status: 1,
-        title: '苏州中心扩建工程2号',
-        remarks: '16:05 | 已受理'
-      },
-      {
-        id: 3,
-        ymd:'2020年12月28日',
-        status: 2,
-        title: '苏州中心扩建工程3号',
-        remarks: '16:05 | 已受理 | 委托10 | 报告200'
-      }
-    ],
-    histories:['苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影']
+    searchValue: null,
+    pageIndex:0,
+    list:[],
+    histories:[],
+    isRemained:true
 
   },
   goBusiness(e) {
     const {id,status} = e.currentTarget.dataset
     if(status == this.data.proStatus.beforeConfirm) {
-      Toast.fail('暂未受理');
+      wx.showToast({
+        title: '暂未受理',
+        icon:'error',
+        duration:1000
+      })
       return;
     }
     wx.navigateTo({
@@ -54,15 +43,68 @@ Page({
       proStatus: App.globalData.proStatus
     })
     wx.getStorage({
-      key: 'histories',
+      key: 'proHistories',
       success (res) {
-        console.log(res.data)
         this.setData({
-          histories: res.data || []
+          histories: JSON.parse(res.data) || []
         })
       }
     })
+    this.getProjects()
 
+  },
+  getProjects() {
+    fetch.post(`project/get?page=${this.data.pageIndex}&size=10`,{content:this.data.searchValue})
+        .then(res => {
+          if(Array.isArray(res.content) && res.content.length > 0) {
+            const list = res.content.map(p => {
+              return {
+                title: p.projectName,
+                projectKey:p.projectKey,
+                id:p.projectNum,
+                ymd:Utils.parseTime(new Date(p.date),'{y}年{m}月{d}日'),
+                status:p.status,
+                remarks: [
+                  Utils.parseTime(new Date(p.date), '{h}:{i}'),Utils.parseProStatus(p.status),
+                  p.wtCount ? '委托' + p.wtCount : null, p.reportCount ? '报告' + p.reportCount : null
+                ].filter(v=>v).join(' | ')
+              }
+            })
+            this.setData({list:this.data.list.concat(list),pageIndex:++this.data.pageIndex})
+          }else {
+            this.setData({isRemained:false})
+          }
+        })
+        .catch((err) => {
+          wx.showToast({
+            title: '服务器未响应',
+            icon:'error',
+            duration:2000
+          })
+        })
+  },
+  onFastSearch(event) {
+
+    this.setData({
+      searchValue:event.target.dataset.title || null,
+      list: [],
+      isRemained:true,
+      pageIndex:0,
+      })
+    this.getProjects()
+  },
+  onSearch(event) {
+    this.data.histories.unshift(event.detail)
+    // 保存最新的3个搜索记录
+    this.data.histories = this.data.histories.slice(0,3)
+    wx.setStorage({key:'proHistories',data:this.data.histories})
+    this.setData({
+      searchValue:event.detail,
+      list: [],
+      isRemained:true,
+      pageIndex:0,
+      histories:this.data.histories})
+    this.getProjects()
   },
 
   /**
@@ -104,7 +146,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.data.isRemained && this.getProjects()
   },
 
   /**

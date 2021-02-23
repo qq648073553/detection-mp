@@ -1,6 +1,12 @@
 // pages/check-in/check-in.js
 const App = getApp();
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+const Request = require('../../utils/request')
+const fetch = new Request({
+    auth:true,
+    header:App.globalData.header,
+    baseURL: App.globalData.baseURL
+})
+const Utils = require('../..//utils/util')
 
 Page({
 
@@ -8,38 +14,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        searchValue: '',
-        list:[
-            {
-                id: 1,
-                ymd:'2020年12月26日',
-                status: 0,
-                title: '苏州中心扩建工程1号',
-                remarks: '16:05 | 待受理',
-            },
-            {
-                id:2,
-                ymd:'2020年12月27日',
-                status: 1,
-                title: '苏州中心扩建工程2号',
-                remarks: '16:05 | 已受理'
-            },
-            {
-                id: 3,
-                ymd:'2020年12月28日',
-                status: 2,
-                title: '苏州中心扩建工程3号',
-                remarks: '16:05 | 已受理 | 委托10 | 报告200'
-            },
-            {
-                id: 4,
-                ymd:'2020年12月28日',
-                status: 2,
-                title: '苏州中心扩建工程3号',
-                remarks: '16:05 | 已受理 | 委托10 | 报告200'
-            }
-        ],
-        value: '',
+        list:[],
     },
     scan() {
         wx.scanCode({
@@ -51,7 +26,11 @@ Page({
     goBusiness(e) {
         const {id,status} = e.currentTarget.dataset
         if(status == this.data.proStatus.beforeConfirm) {
-            Toast.fail('暂未受理');
+           wx.showToast({
+               title:'暂未受理',
+               icon:'error',
+               duration:1000
+           })
             return;
         }
       wx.navigateTo({
@@ -70,13 +49,8 @@ Page({
         // }
 
     },
-    wxLogin() {
 
-    },
 
-    noop(e) {
-        console.log(e)
-    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -85,6 +59,32 @@ Page({
             navHeight: App.globalData.navHeight,
             proStatus: App.globalData.proStatus
         })
+        fetch.post('project/get?page=0&size=10',{})
+            .then(res => {
+                if(Array.isArray(res.content)) {
+                    const list = res.content.map(p => {
+                        return {
+                            title: p.projectName,
+                            projectKey:p.projectKey,
+                            id:p.projectNum,
+                            ymd:Utils.parseTime(new Date(p.date),'{y}年{m}月{d}日'),
+                            status:p.status,
+                            remarks: [
+                                Utils.parseTime(new Date(p.date), '{h}:{i}'),Utils.parseProStatus(p.status),
+                                p.wtCount ? '委托' + p.wtCount : null, p.reportCount ? '报告' + p.reportCount : null
+                            ].filter(v=>v).join(' | ')
+                        }
+                    })
+                    this.setData({list})
+                }
+        })
+            .catch((err) => {
+                wx.showToast({
+                    title: '服务器未响应',
+                    icon:'error',
+                    duration:2000
+                })
+            })
 
 
     },

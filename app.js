@@ -19,10 +19,12 @@ App({
   globalData: {
     userInfo: null,
     isLogined: false,
+    header: {},
+    baseURL:'http://192.168.0.191:8342/api/',
     proStatus: {
-      beforeConfirm: 0,
-      confirmed: 1,
-      official: 2
+      beforeConfirm: 1,
+      confirmed: 0,
+      deprecated: 2
     },
     degStatus:['待受理','已受理','出具报告中','报告审核中','已出具报告']
   }

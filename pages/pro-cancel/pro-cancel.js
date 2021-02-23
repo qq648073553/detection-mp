@@ -1,5 +1,12 @@
 const App = getApp();
 const TMAP = new Map([['0','工程撤销'],['1','委托撤单']])
+const Request = require('../../utils/request')
+const fetch = new Request({
+    auth:true,
+    header:App.globalData.header,
+    baseURL: App.globalData.baseURL
+})
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 Page({
     data: {
         project:'苏州中心',
@@ -7,13 +14,9 @@ Page({
         proDeg:'项目1',
         proDegId:'2020101',
         message: '',
-        padBottom: 0,
-        lastScroll:0,
         navTitle: '委托撤单'
     },
-    afterRead(){
 
-    },
     formSubmit() {
 
     },
@@ -23,8 +26,20 @@ Page({
             padBottom:height * -1
         })
     },
-    onLoad: function (options) {
-        const {type} = options
+    onLoad: async function (options) {
+        const {type,gid,jid,wid} = options
+        if(type === '0') {
+            const response = await fetch.post('project/getOne',{gid,jid,wid});
+            if(response.code === 0) {
+                const {projectName,projectNum} = response.data
+                this.setData({
+                    project:projectName,
+                    proId:projectNum
+                })
+            }
+        }else {
+            await fetch.get()
+        }
         this.setData({
             navTitle: TMAP.get(type),
             navHeight: App.globalData.navHeight,
@@ -32,28 +47,7 @@ Page({
         })
     },
     onShow() {
-        wx.onKeyboardHeightChange(res => {
-            if(res.height === 0){
-                const scrollTop = this.data.lastScroll
-                this.setData({
-                    padBottom:this.data.navHeight
-                },()=>{
-                    wx.pageScrollTo({
-                        scrollTop:scrollTop,
-                        fail(err) {
-                            console.log(err)
-                        }
-                    })
-                })
-            }
-        })
-    },
-    onPageScroll(obj) {
-        if(obj.scrollTop !== 0){
-            this.setData({
-                lastScroll:obj.scrollTop
-            })
-        }
+
     }
 })
 

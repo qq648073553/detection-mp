@@ -8,8 +8,6 @@ const keyUrl = "Y4ABZ-BUK62-47HUA-CACWB-BKIBS-*****"
 const sk = "cEbR3CHfOfxvwiVtTx9nUqewRBNkAVBL"
 const Request = require('../../utils/request')
 const fetch = new Request({withBaseURL: false,})
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-
 Page({
 
   /**
@@ -22,16 +20,48 @@ Page({
     areaShow:false,
     matchShow: false,
     remarks: '',
+    list:[
+        '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+      '苏州市',
+    ]
+  },
+  toggleShow() {
+    this.setData({
+      areaShow:!this.data.areaShow
+    })
+  },
+  onSearchChange(e) {
+
+    if(e.detail.length === 0) {
+      this.setData({
+        matchShow: false
+      })
+    }else {
+      if(!this.data.matchShow) {
+        this.setData({
+          matchShow: true
+        })
+      }
+    }
   },
   onConfirm(e) {
     this.setData({
       areas:e.detail.values.reduce((init,val) => init + val.name,''),
       areaShow:false
-    })
-  },
-  toggleShow() {
-    this.setData({
-      areaShow:!this.data.areaShow
     })
   },
   // 打开地图选择位置
@@ -51,25 +81,15 @@ Page({
           }
         }).catch(err => {
           console.log(err)
-          Toast.fail('位置解析失败')
         })
+
 
       },
       fail: () => {
         console.log('fail')
-        // Toast.fail('无法选择位置')
         // fail
       }
     })
-  },
-  onSave() {
-    const { areas, detail, remarks} = this.data
-    if(areas.length > 0 && detail.length > 0) {
-      wx.setStorageSync('locationPro',[areas,detail,remarks].join('|'))
-      wx.navigateBack()
-    }else {
-      Toast.fail('请选择地址')
-    }
   },
   /**
    * 生命周期函数--监听页面加载
