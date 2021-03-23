@@ -44,20 +44,54 @@ Page({
     // },
     afterRead(event) {
         const { file } = event.detail;
-        for (let f of file) {
-            this.data.fileList.push({ ...f });
+        if(Array.isArray(file)) {
+            for(const f of file) {
+                this.uploadFile(f)
+            }
+        }else {
+            this.uploadFile(file)
         }
-        this.setData({ fileList: this.data.fileList });
+    },
+    uploadFile(file) {
+        const value = wx.getStorageSync('Authorization')
+        wx.uploadFile({
+            url: App.globalData.baseURL + 'file/file',
+            filePath: file.url,
+            name: 'file',
+            header: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': value,//这是要token
+            },
+            success: (res) => {
+                debugger
+                const data = JSON.parse(res.data).data
+                debugger
+                // 暂未绑定，只是文件上传了 uid做标识
+                file.uid = data.uid
+                this.setData({
+                    fileList:[...this.data.fileList, data]
+                })
+            },
+            fail:() => {
+                wx.showToast({
+                    title: '文件保存失败,请重新上传',
+                    icon: 'none',
+                    duration: 2000
+                })
+            }
+        })
     },
     fileDelete(e) {
-        if(this.data.navTitle === '新建工程') {
-            this.data.fileList.splice(e.detail.index,1)
-            this.setData({
-                fileList:this.data.fileList
-            })
-        }else {
-            // 删除已上传文件
-        }
+        // 删除文件
+        const uid = e.detail.file.uid
+        // if(this.data.navTitle === '新建工程') {
+        //     this.data.fileList.splice(e.detail.index,1)
+        //     this.setData({
+        //         fileList:this.data.fileList
+        //     })
+        // }else {
+        //     // 删除已上传文件
+        // }
     },
     async formSubmit() {
         const others = [
@@ -98,86 +132,6 @@ Page({
             console.log(response)
             // 上传文件
             this.uploadFiles(this.data.fileList)
-        }
-
-    },
-    uploadFiles(fileList = []){
-        // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-        try {
-            const value = wx.getStorageSync('Authorization')
-            const total = fileList.length
-            if (value) {
-                for(let f of fileList) {
-                    // 过滤掉已上传的文件
-                    if(f.status !== 201) {
-                       wx.uploadFile({
-                            url: App.globalData.baseURL + `file/upload?projectKey.GId=${this.data.gid}&projectKey.JId=${this.data.jid}&projectKey.WId=${this.data.wid}`,
-                            filePath: f.url,
-                            name: 'file',
-                            header: {
-                                'Content-Type': 'multipart/form-data',
-                                'Authorization': value,//这是要token
-                            },
-                            // formData: {
-                            //     method: 'POST',   //请求方式
-                            //     // 'file': f
-                            // },
-                            success: (response) => {
-                                const res = JSON.parse(response.data)
-                                if(res.code === 0) {
-                                    f.status = 201
-                                }else {
-                                    wx.showToast({
-                                        title: '文件保存失败,请重新上传',
-                                        icon: 'none',
-                                        duration: 2000
-                                    })
-                                    fileList.splice(fileList.findIndex(item => item.url === f.url), 1)
-                                }
-                            },
-                            fail:() => {
-                                wx.showToast({
-                                    title: '文件保存失败,请重新上传',
-                                    icon: 'none',
-                                    duration: 2000
-                                })
-                                fileList.splice(fileList.findIndex(item => item.url === f.url), 1)
-                            },
-                            complete:(e) => {
-                                console.log('文件上传complete')
-                                this.setData({
-                                    fileList
-                                })
-                                if(fileList.filter(f => f.status === 201).length === total) {
-                                    wx.redirectTo({
-                                        url: '/pages/index/index'
-                                    })
-                                }
-
-                        }
-                        })
-                    }
-                }
-
-            }
-        }
-        catch (e) {
-            // Do something when catch error
-            console.log('fail')
-            wx.showModal({
-                title: '提示',
-                content: '请重新登录',
-                success (res) {
-                    if (res.confirm) {
-                        wx.reLaunch({
-                            url: '/pages/login/login',
-                        })
-                    } else if (res.cancel) {
-                        console.log('用户点击取消')
-                    }
-                }
-            })
-
         }
 
     },

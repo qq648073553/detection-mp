@@ -1,8 +1,8 @@
 /*
  * @Author: zfd
  * @Date: 2020-10-25 09:21:59
- * @LastEditors: zfd
- * @LastEditTime: 2020-10-25 12:26:35
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-03-23 10:37:02
  * @Description:
  */
 // const formatTime = date => {
@@ -24,7 +24,7 @@
 function parseProStatus(val) {
   // 0撤销 1未受理 2已受理
 
-  const map = new Map([[0,'已撤销'],[1,'未受理'],[2,'已受理']])
+  const map = new Map([[0,'已受理'],[1,'未受理'],[2,'已撤销']])
   return map.get(+val)
 }
 // 时间格式化
@@ -85,6 +85,21 @@ const validatePhone = (value) => {
   }
 }
 
+// 校验邮箱
+const validateEmail = (value) => {
+  const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  if (!value) {
+    return false
+  } else {
+    if ((!reg.test(value))) {
+      return false
+    } else {
+      return true
+    }
+  }
+}
+
 // 校验纯数字验证码
 const validateNumberCode = (value, length) => {
   if (typeof length !== 'number') {
@@ -100,5 +115,6 @@ module.exports = {
   parseTime,
   validatePhone,
   validateNumberCode,
-  parseProStatus
+  parseProStatus,
+  validateEmail
 }

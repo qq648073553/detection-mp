@@ -1,30 +1,25 @@
-// pages/login-phone/login-phone.js
-const Utils = require('../..//utils/util')
-
+// pages/update-phone/update-phone.js
 const App = getApp();
 const Request = require('../../utils/request')
 const fetch = new Request({
+  auth:true,
   header:App.globalData.header,
   baseURL: App.globalData.baseURL
 })
+const Utils = require('../..//utils/util')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    phone: '',
+    phone:'',
+    oldPhone: '',
     otp: '',
-    password: '',
     // loginByOtp: true,
     otpText: '获取验证码',
     otpTimer: null,
   },
-  // loginSwitch() {
-  //   this.setData({
-  //     loginByOtp: !this.data.loginByOtp
-  //   })
-  // },
   getOtp() {
     if(typeof this.data.otpText === 'number') {
       return
@@ -51,7 +46,7 @@ Page({
           otpText: --countDown
         })
       }
-      }, 1000)
+    }, 1000)
     fetch.get(`sendsms/phone/${this.data.phone}`,{})
         .then(cookie => {
           // 设置cookie保存在全局
@@ -63,9 +58,9 @@ Page({
             icon: 'error',
             duration: 1000
           })
-    })
+        })
   },
-  login() {
+  formSubmit() {
     if(!Utils.validatePhone(this.data.phone)) {
 
       wx.showToast({
@@ -76,19 +71,15 @@ Page({
       return;
     }
     if(Utils.validateNumberCode(this.data.otp, 6)) {
-      fetch.post('auth/signup',
+      fetch.put('auth/phone',
           {
             phone:this.data.phone,
             otp:this.data.otp
-          }).then(token =>{
-        try {
-          wx.setStorageSync('Authorization', token)
-        } catch (e) { console.log('token缓存存储错误')}
-        App.globalData.header.Authorization = token
-        wx.reLaunch({
-          url:'/pages/index/index'
+          }).then(() =>{
+        wx.redirectTo({
+          url: '/pages/my/my',
         })
-      }
+          }
 
       ).catch(err => {
         wx.showToast({
@@ -104,19 +95,17 @@ Page({
         duration: 1000
       })
     }
-
-    // wx.redirectTo({
-    //   url: '/pages/index/index'
-    // })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const phone = App.globalData.userInfo.phone
+    if(!phone) wx.navigateBack({delta: 1})
     this.setData({
-      navHeight: App.globalData.navHeight
+      navHeight: App.globalData.navHeight,
+      oldPhone:phone.replace(/(^[0-9]{3})[0-9]{4}([0-9]{4}$)/,'$1****$2')
     })
-
   },
 
   /**

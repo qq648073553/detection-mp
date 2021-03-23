@@ -1,12 +1,14 @@
 {
   "pages": [
-    "pages/pro-search/pro-search",
     "pages/login/login",
-    "pages/pro-add/pro-add",
+    "pages/update-email/update-email",
+    "pages/update-phone/update-phone",
+    "pages/pro-delegation/pro-delegation",
     "pages/index/index",
+    "pages/pro-search/pro-search",
+    "pages/pro-add/pro-add",
     "pages/pro-evaluate/pro-evaluate",
     "pages/location/location",
-    "pages/pro-delegation/pro-delegation",
     "pages/signature/signature",
     "pages/delegation-add/delegation-add",
     "pages/summary/summary",

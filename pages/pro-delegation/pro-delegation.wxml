@@ -10,13 +10,13 @@
         <view class="pro-m-body">
             <navigator url="/pages/delegation-list/delegation-list?status=0" hover-class="none" class="pro-m-nav">
                 <view class="pro-m-link">
-                    <view class="link-num" style="color:#DA6324">78</view>
+                    <view class="link-num" style="color:#DA6324">{{beforeConfirm}}</view>
                     <view class="link-message link-small text-line-public">待受理</view>
                 </view>
             </navigator>
             <navigator url="/pages/delegation-list/delegation-list?status=1" class="pro-m-nav" hover-class="none">
                 <view class="pro-m-link">
-                    <view class="link-num" style="color:#AE202C">1010</view>
+                    <view class="link-num" style="color:#AE202C">{{confirmed}}</view>
                     <view class="link-message link-small text-line-public">已受理</view>
                 </view>
             </navigator>
@@ -31,13 +31,13 @@
         <view class="pro-m-body">
             <navigator url="/pages/delegation-list/delegation-list?status=2" hover-class="none" class="pro-m-nav">
                 <view class="pro-m-link">
-                    <view class="link-num" style="color:#103047">100</view>
+                    <view class="link-num" style="color:#103047">{{reporting}}</view>
                     <view class="link-message link-small text-line-public">出具报告中</view>
                 </view>
             </navigator>
             <navigator url="/pages/delegation-list/delegation-list?status=4" class="pro-m-nav" hover-class="none">
                 <view class="pro-m-link">
-                    <view class="link-num" style="color:#38C4C4">0</view>
+                    <view class="link-num" style="color:#38C4C4">{{reported}}</view>
                     <view class="link-message link-small text-line-public">已出具报告</view>
                 </view>
             </navigator>

@@ -1,14 +1,33 @@
+/*
+ * @Author: your name
+ * @Date: 2021-01-27 09:22:00
+ * @LastEditTime: 2021-03-23 11:29:17
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \detection-mp\pages\pro-delegation\pro-delegation.js
+ */
 // pages/pro-delegation/pro-delegation.js
 const App = getApp();
-
+const Request = require('../../utils/request')
+const fetch = new Request({
+  auth:true,
+  header:App.globalData.header,
+  baseURL: App.globalData.baseURL
+})
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    proId:null,
+    gid:null,
+    wid:null,
+    jid:null,
     status: null,
+    reported:0,
+    reporting:0,
+    confirmed:0,
+    beforeConfirm:0,
     proTitle: '苏州中心'
   },
   scan() {
@@ -18,17 +37,40 @@ Page({
       }
     })
   },
+  getDetail(gid,jid,wid){
+    fetch.get(`project/${gid}/${wid}/${jid}`).then(res => {
+      const {reported,reporting,confirmed,beforeConfirm} = res
+      this.setData({
+        reported,
+        reporting,
+        confirmed,
+        beforeConfirm
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      wx.showToast({
+        title: err,
+        icon:'error',
+        duration:2000
+    })
+    })
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    const {gid,jid,wid,status} = options
     this.setData({
-      proId: options.id,
-      status: options.status,
+      gid:+gid,
+      jid:+jid,
+      wid:+wid,
+      status:+status,
       navHeight: App.globalData.navHeight,
       proStatus: App.globalData.proStatus
     })
+    this.getDetail(gid,jid,wid)
   },
 
   /**

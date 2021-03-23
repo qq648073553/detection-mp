@@ -1,38 +1,33 @@
-// pages/login-phone/login-phone.js
-const Utils = require('../..//utils/util')
-
+// pages/update-email/update-email.js
 const App = getApp();
 const Request = require('../../utils/request')
 const fetch = new Request({
+  auth:true,
   header:App.globalData.header,
   baseURL: App.globalData.baseURL
 })
+const Utils = require('../..//utils/util')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    phone: '',
+    email:'',
+    oldEmail: '',
     otp: '',
-    password: '',
     // loginByOtp: true,
     otpText: '获取验证码',
     otpTimer: null,
   },
-  // loginSwitch() {
-  //   this.setData({
-  //     loginByOtp: !this.data.loginByOtp
-  //   })
-  // },
   getOtp() {
     if(typeof this.data.otpText === 'number') {
       return
     }
-    if(!Utils.validatePhone(this.data.phone)) {
+    if(!Utils.validateEmail(this.data.email)) {
 
       wx.showToast({
-        title: '请输入正确的手机号',
+        title: '请输入正确的邮箱',
         icon: 'none',
         duration: 1000
       })
@@ -51,8 +46,8 @@ Page({
           otpText: --countDown
         })
       }
-      }, 1000)
-    fetch.get(`sendsms/phone/${this.data.phone}`,{})
+    }, 1000)
+    fetch.get(`sendsms/email/${this.data.email}`,{})
         .then(cookie => {
           // 设置cookie保存在全局
           App.globalData.header.Cookie = 'JSESSIONID=' + cookie;
@@ -63,32 +58,28 @@ Page({
             icon: 'error',
             duration: 1000
           })
-    })
+        })
   },
-  login() {
-    if(!Utils.validatePhone(this.data.phone)) {
+  formSubmit() {
+    if(!Utils.validateEmail(this.data.email)) {
 
       wx.showToast({
-        title: '请输入正确的手机号',
+        title: '请输入正确的邮箱',
         icon: 'none',
         duration: 1000
       })
       return;
     }
     if(Utils.validateNumberCode(this.data.otp, 6)) {
-      fetch.post('auth/signup',
+      fetch.put('auth/email',
           {
-            phone:this.data.phone,
+            email:this.data.email,
             otp:this.data.otp
-          }).then(token =>{
-        try {
-          wx.setStorageSync('Authorization', token)
-        } catch (e) { console.log('token缓存存储错误')}
-        App.globalData.header.Authorization = token
-        wx.reLaunch({
-          url:'/pages/index/index'
-        })
-      }
+          }).then(() =>{
+            wx.redirectTo({
+              url: '/pages/my/my',
+            })
+          }
 
       ).catch(err => {
         wx.showToast({
@@ -104,19 +95,17 @@ Page({
         duration: 1000
       })
     }
-
-    // wx.redirectTo({
-    //   url: '/pages/index/index'
-    // })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const email = App.globalData.userInfo.email
+    if(!email) wx.navigateBack({delta: 1})
     this.setData({
-      navHeight: App.globalData.navHeight
+      navHeight: App.globalData.navHeight,
+      oldEmail:email
     })
-
   },
 
   /**

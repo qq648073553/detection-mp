@@ -1,9 +1,7 @@
 <!--pages/login-phone/login-phone.wxml-->
 <view class="container" style="padding-top:{{navHeight}}px">
-    <van-toast id="van-toast" />
 
     <navbar page-name="登录/注册" show-nav></navbar>
-    <van-dialog id="van-dialog" />
     <view class="login-container-p">
         <image src="../../assets/images/logo.jpg" class="login-logo-p"></image>
         <label class="filed-gap">手机号</label>

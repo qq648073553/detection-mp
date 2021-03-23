@@ -49,7 +49,36 @@ Page({
         // }
 
     },
-
+    getList(page,size,filterValue) {
+        fetch.get(`project/list?page=${page}&size=${size}&filterValue=${filterValue}`)
+        .then(projects => {
+            if(Array.isArray(projects)) {
+                const list = projects.map(p => {
+                    let remarks = Utils.parseTime(new Date(p.date), '{h}:{i}') + ' | ' + Utils.parseProStatus(p.status)
+                    if(p.status === App.globalData.proStatus.confirmed) {
+                        
+                        remarks += ' | 委托' + p.wtCount + ' | 报告' + p.reportCount
+                    }
+                    return {
+                        title: p.title,
+                        projectKey:p.projectKey,
+                        id:p.id,
+                        ymd:Utils.parseTime(new Date(p.date),'{y}年{m}月{d}日'),
+                        status:p.status,
+                        remarks
+                    }
+                })
+                this.setData({list})
+            }
+    })
+    .catch((err) => {
+            wx.showToast({
+                title: err,
+                icon:'error',
+                duration:2000
+            })
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -59,34 +88,7 @@ Page({
             navHeight: App.globalData.navHeight,
             proStatus: App.globalData.proStatus
         })
-        fetch.post('project/get?page=0&size=10',{})
-            .then(res => {
-                if(Array.isArray(res.content)) {
-                    const list = res.content.map(p => {
-                        return {
-                            title: p.projectName,
-                            projectKey:p.projectKey,
-                            id:p.projectNum,
-                            ymd:Utils.parseTime(new Date(p.date),'{y}年{m}月{d}日'),
-                            status:p.status,
-                            remarks: [
-                                Utils.parseTime(new Date(p.date), '{h}:{i}'),Utils.parseProStatus(p.status),
-                                p.wtCount ? '委托' + p.wtCount : null, p.reportCount ? '报告' + p.reportCount : null
-                            ].filter(v=>v).join(' | ')
-                        }
-                    })
-                    this.setData({list})
-                }
-        })
-            .catch((err) => {
-                wx.showToast({
-                    title: '服务器未响应',
-                    icon:'error',
-                    duration:2000
-                })
-            })
-
-
+        this.getList(0,5,'')
     },
 
     /**

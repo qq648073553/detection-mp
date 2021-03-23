@@ -17,10 +17,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    isLogined: false,
+    userInfo: {},
     header: {},
-    baseURL:'http://192.168.0.191:8342/api/',
+    baseURL:'http://192.168.0.98:3000/mock/v1/',
     proStatus: {
       beforeConfirm: 1,
       confirmed: 0,

@@ -1,0 +1,25 @@
+<!--pages/update-phone/update-phone.wxml-->
+<view class="update-container" style="padding-top:{{navHeight}}px">
+
+    <navbar page-name="修改手机号" show-nav></navbar>
+    <view class="info-old">
+        <view>当前绑定手机号</view>
+        <view>{{oldPhone}}</view>
+    </view>
+    <view class="input-item">
+        <van-icon name="phone-circle-o" class="input-icon" />
+        <view class="input-item-line" />
+        <input model:value="{{phone}}" type="number" placeholder="请输入新手机号" ></input>
+
+    </view>
+    <view class="input-item">
+        <van-icon name="comment-circle-o" class="input-icon" />
+        <view class="input-item-line" />
+        <input model:value="{{otp}}" type="number" placeholder="请输入验证码" class="input-otp"></input>
+
+        <view class="veritify-box">
+            <button class="btn-text-public" style="color:#9a9a9a" plain bindtap="getOtp">{{otpText}}</button>
+    </view>
+</view>
+<button class="input-submit" bindtap="formSubmit">确定更改手机号码</button>
+        </view>

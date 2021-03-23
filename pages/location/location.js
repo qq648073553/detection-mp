@@ -6,9 +6,8 @@ const keyNative = "Y4ABZ-BUK62-47HUA-CACWB-BKIBS-4OBOD"
 const key2Encode = "Y4ABZ-BUK62-47HUA-*****"
 const keyUrl = "Y4ABZ-BUK62-47HUA-CACWB-BKIBS-*****"
 const sk = "cEbR3CHfOfxvwiVtTx9nUqewRBNkAVBL"
-const Request = require('../../utils/request')
-const fetch = new Request({withBaseURL: false,})
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+// const Request = require('../../utils/request')
+// const fetch = new Request({withBaseURL: false,})
 
 Page({
 
@@ -41,19 +40,27 @@ Page({
         const decode = `/ws/geocoder/v1?key=${keyNative}&location=${res.latitude},${res.longitude}${sk}`
         const encode = md5(decode)
         const url = `https://apis.map.qq.com/ws/geocoder/v1?key=${keyNative}&location=${res.latitude},${res.longitude}&sig=${encode}`
-        fetch.get(encodeURI(url)).then(res=>{
-          if(res.status === 0) {
-            const {province, city, district} = res.result.address_component
-            this.setData({
-              areas: [province, city, district].join(''),
-              detail:res.result.formatted_addresses.recommend
+        wx.request({
+          url:encodeURI(url),
+          success:res=>{
+            let data = res.data
+            if(data.status === 0) {
+              const {province, city, district} = data.result.address_component
+              this.setData({
+                areas: [province, city, district].join(''),
+                detail:data.result.formatted_addresses.recommend
+              })
+            }
+          },
+          fail: err => {
+            console.log(err)
+            wx.showToast({
+              title:'位置解析失败',
+              icon:'error',
+              duration:1000
             })
           }
-        }).catch(err => {
-          console.log(err)
-          Toast.fail('位置解析失败')
         })
-
       },
       fail: () => {
         console.log('fail')
@@ -68,7 +75,11 @@ Page({
       wx.setStorageSync('locationPro',[areas,detail,remarks].join('|'))
       wx.navigateBack()
     }else {
-      Toast.fail('请选择地址')
+      wx.showToast({
+        title:'请选择地址',
+        icon:'error',
+        duration:1000
+      })
     }
   },
   /**

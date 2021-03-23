@@ -22,27 +22,18 @@ Page({
       code:this.data.code,
       encryptedData: e.detail.encryptedData,
       iv: e.detail.iv
-    }).then(res=>{
-      if(res.code == 0) {
-        // 存储，设置token
-        const token = 'Bearer ' + res.data
-        try {
-          wx.setStorageSync('Authorization', token)
-        } catch (e) { console.log('token缓存存储错误')}
-        App.globalData.header.Authorization = token
-        wx.redirectTo({
-          url: '/pages/index/index?token=' + token,
-        })
-      }else {
-        wx.showToast({
-          title: '登录失败',
-          icon: 'error',
-          duration: 2000
-        })
-      }
+    }).then(token=>{
+// 存储，设置token
+      try {
+        wx.setStorageSync('Authorization', token)
+      } catch (e) { console.log('token缓存存储错误')}
+      App.globalData.header.Authorization = token
+      wx.redirectTo({
+        url: '/pages/index/index',
+      })
     }).catch(err => {
       wx.showToast({
-        title: '手机号获取失败',
+        title: err,
         icon: 'error',
         duration: 2000
       })
@@ -100,19 +91,7 @@ Page({
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
 
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
 
   /**
    * 用户点击右上角分享

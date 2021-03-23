@@ -1,11 +1,10 @@
 <!--pages/location/location.wxml-->
 <view class="container  custom-class" style="padding-top:{{navHeight}}px;">
-    <van-toast id="van-toast" />
     <navbar page-name="选择地址" showNav showHome></navbar>
     <view class="location-container">
         <van-cell title="省市区"  title-width="100px" value="{{areas}}" bindtap="toggleShow"   />
         <van-field
-                value="{{ detail }}"
+                model:value="{{ detail }}"
                 center
                 clearable
                 label="详细地址"
@@ -19,7 +18,7 @@
             >
         </van-field>
         <van-field
-                value="{{ remarks }}"
+                model:value="{{ remarks }}"
                 center
                 clearable
                 label="备注"

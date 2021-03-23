@@ -19,7 +19,7 @@ class Request {
   }
   request (method,url,data) {
     // const vm = this
- 
+
     return new Promise((resolve,reject) => {
       if(this.auth === true) {
         try {
@@ -38,15 +38,10 @@ class Request {
                 wx.reLaunch({
                   url: '/pages/login/login',
                 })
-              } else if (res.cancel) {
-                console.log('用户点击取消')
               }
             }
           })
-          reject({
-            code: 401,
-            message:'登录信息错误'
-          })
+          reject('登录信息错误')
         }
       }
       wx.request({
@@ -56,18 +51,44 @@ class Request {
         header:this.header,
         success(res){
           const code = res.data.code && res.data.code.toString()
-          // if(code.startsWith('4') || ) {}
-          resolve(res.data)
+          if(!code) {
+            reject('链接超时')
+          }
+          if(code === '403') {
+            wx.showModal({
+              title: '登录过期',
+              content: '请重新登录',
+              success (res) {
+                if (res.confirm) {
+                  wx.reLaunch({
+                    url: '/pages/login/login',
+                  })
+                }
+              }
+            })
+            reject('登录过期')
+          }
+
+          if(code.startsWith('4') || code.startsWith('5')) {
+            console.log(res.data)
+            reject(res.data.message || '程序错误')
+          }
+          resolve(res.data.data || {})
         },
         fail:(err)=> {
           console.log(err,'链接超时')
-          reject({
-            code:500,
-            msg:'连接超时',
-            url:this.baseURL + url,
-            method,
-            data
+          wx.showModal({
+            title: '提示',
+            content: '暂无网络',
+            success (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/login/login',
+                })
+              }
+            }
           })
+          reject('链接超时')
         }
       })
 

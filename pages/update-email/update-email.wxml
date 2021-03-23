@@ -1,0 +1,25 @@
+<!--pages/update-phone/update-phone.wxml-->
+<view class="update-container" style="padding-top:{{navHeight}}px">
+
+    <navbar page-name="修改邮箱" show-nav></navbar>
+    <view class="info-old">
+        <view>当前绑定邮箱</view>
+        <view>{{oldEmail}}</view>
+    </view>
+    <view class="input-item">
+        <van-icon name="free-postage" class="input-icon" />
+        <view class="input-item-line" />
+        <input model:value="{{email}}" type="number" placeholder="请输入新邮箱" ></input>
+
+    </view>
+    <view class="input-item">
+        <van-icon name="comment-circle-o" class="input-icon" />
+        <view class="input-item-line" />
+        <input model:value="{{otp}}" type="number" placeholder="请输入验证码" class="input-otp"></input>
+
+        <view class="veritify-box">
+            <button class="btn-text-public" style="color:#9a9a9a" plain bindtap="getOtp">{{otpText}}</button>
+        </view>
+    </view>
+    <button class="input-submit" bindtap="formSubmit">确定更改邮箱</button>
+</view>

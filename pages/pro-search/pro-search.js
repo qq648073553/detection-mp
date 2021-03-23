@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchValue: null,
+    searchValue: '',
     pageIndex:0,
     list:[],
     histories:[],
@@ -21,7 +21,8 @@ Page({
 
   },
   goBusiness(e) {
-    const {id,status} = e.currentTarget.dataset
+    const {gid,jid,wid,status} = e.currentTarget.dataset
+    
     if(status == this.data.proStatus.beforeConfirm) {
       wx.showToast({
         title: '暂未受理',
@@ -31,7 +32,7 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: `/pages/pro-delegation/pro-delegation?id=${id}`
+      url: `/pages/pro-delegation/pro-delegation?gid=${gid}&jid=${jid}&wid=${wid}`
     })
   },
   /**
@@ -44,67 +45,73 @@ Page({
     })
     wx.getStorage({
       key: 'proHistories',
-      success (res) {
+      success: res => {
         this.setData({
-          histories: JSON.parse(res.data) || []
+          histories: res.data || []
         })
       }
     })
-    this.getProjects()
+    this.getList(0,5,'')
 
   },
-  getProjects() {
-    fetch.post(`project/get?page=${this.data.pageIndex}&size=10`,{content:this.data.searchValue})
-        .then(res => {
-          if(Array.isArray(res.content) && res.content.length > 0) {
-            const list = res.content.map(p => {
-              return {
-                title: p.projectName,
-                projectKey:p.projectKey,
-                id:p.projectNum,
-                ymd:Utils.parseTime(new Date(p.date),'{y}年{m}月{d}日'),
-                status:p.status,
-                remarks: [
-                  Utils.parseTime(new Date(p.date), '{h}:{i}'),Utils.parseProStatus(p.status),
-                  p.wtCount ? '委托' + p.wtCount : null, p.reportCount ? '报告' + p.reportCount : null
-                ].filter(v=>v).join(' | ')
-              }
-            })
-            this.setData({list:this.data.list.concat(list),pageIndex:++this.data.pageIndex})
-          }else {
+  getList(page,size,filterValue) {
+    fetch.get(`project/list?page=${page}&size=${size}&filterValue=${filterValue}`)
+    .then(projects => {
+        if(Array.isArray(projects)) {
+          if(projects.length === 0) {
             this.setData({isRemained:false})
+            return
           }
-        })
-        .catch((err) => {
-          wx.showToast({
-            title: '服务器未响应',
+            const list = projects.map(p => {
+                let remarks = Utils.parseTime(new Date(p.date), '{h}:{i}') + ' | ' + Utils.parseProStatus(p.status)
+                if(p.status === App.globalData.proStatus.confirmed) {
+                    remarks += ' | 委托' + p.wtCount + ' | 报告' + p.reportCount
+                }
+                return {
+                    title: p.title,
+                    projectKey:p.projectKey,
+                    id:p.id,
+                    ymd:Utils.parseTime(new Date(p.date),'{y}年{m}月{d}日'),
+                    status:p.status,
+                    remarks
+                }
+            })
+            this.setData({list:this.data.list.concat(list)})
+        }
+})
+.catch((err) => {
+  console.log(err)
+        wx.showToast({
+            title: err,
             icon:'error',
             duration:2000
-          })
         })
-  },
+    })
+},
   onFastSearch(event) {
-
     this.setData({
-      searchValue:event.target.dataset.title || null,
+      searchValue:event.target.dataset.title || '',
       list: [],
       isRemained:true,
       pageIndex:0,
       })
-    this.getProjects()
+    this.getList(0,5,event.target.dataset.title || '')
   },
   onSearch(event) {
-    this.data.histories.unshift(event.detail)
+    const {detail} = event
+    if(detail) {
+      this.data.histories.unshift(detail)
+    }
     // 保存最新的3个搜索记录
     this.data.histories = this.data.histories.slice(0,3)
     wx.setStorage({key:'proHistories',data:this.data.histories})
     this.setData({
-      searchValue:event.detail,
+      searchValue:detail,
       list: [],
       isRemained:true,
       pageIndex:0,
       histories:this.data.histories})
-    this.getProjects()
+    this.getList(0,5,detail)
   },
 
   /**
@@ -146,7 +153,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.data.isRemained && this.getProjects()
+    if(this.data.isRemained) {
+      this.setData({pageIndex:this.data.pageIndex + 1})
+      this.getList(this.data.pageIndex + 1,5, this.data.searchValue)
+    }
+    
   },
 
   /**
