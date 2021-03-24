@@ -19,11 +19,12 @@
     "pages/login-phone/login-phone",
     "pages/my/my",
     "pages/function-list/function-list",
+    "pages/sample-list/sample-list",
     "pages/delegation-list/delegation-list",
     "pages/pro-detail/pro-detail",
-    "pages/check-in/check-in",
+    "pages/check-in/check-in", 
     "navbar/index",
-    "pages/delegation-detail/delegation-detail"
+    "pages/sample-detail/sample-detail"
   ],
   "window": {
     "navigationStyle": "custom",

@@ -1,6 +1,6 @@
 <template name="degList">
     <view class="fd-card"  wx:for="{{list}}" wx:key="id" >
-       <navigator url="/pages/delegation-detail/delegation-detail?id={{item.id}}&status={{item.status}}">
+       <navigator url="/pages/sample-detail/sample-detail?id={{item.id}}&status={{item.status}}">
            <view class="fd-card-header">
                <view class="pro-title">{{item.title}}</view>
                <van-tag  class="pro-tag" size="large "  color="{{item.color}}">{{degStatus[item.status]}}</van-tag>

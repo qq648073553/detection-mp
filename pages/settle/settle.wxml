@@ -3,7 +3,7 @@
     <navbar page-name="结算清单" showNav showHome></navbar>
     <view class="settle-amount">
         <view class="settle-filter" bindtap="onCancel">
-            <view class="filter-flag">{{filterDate}}</view>
+            <view class="filter-flag">{{date}}</view>
             <view class="settle-line"></view>
             <van-icon name="apps-o" size="20" color="#fff" />
         </view>
@@ -31,6 +31,14 @@
         </van-cell>
 
     </view>
+    <van-calendar
+  show="{{ calendarShow }}"
+  type="range"
+  bind:close="onClose"
+  bind:confirm="onConfirm"
+  show-confirm="{{ false }}"
+/>
+    <!--
     <van-action-sheet show="{{ actionShow }}" round="{{false}}" close-on-click-overlay="{{true}}">
         <view class="action-header">
             <view class="action-cancel" bindtap="onCancel">取消</view>
@@ -48,4 +56,5 @@
         </view>
 
     </van-action-sheet>
+    -->
 </view>

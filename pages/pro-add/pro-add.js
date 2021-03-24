@@ -42,6 +42,7 @@ Page({
     //     console.log(event.detail)
     //     // callback(file.type === 'image');
     // },
+    // 读取完立即上传
     afterRead(event) {
         const { file } = event.detail;
         if(Array.isArray(file)) {
@@ -63,9 +64,7 @@ Page({
                 'Authorization': value,//这是要token
             },
             success: (res) => {
-                debugger
                 const data = JSON.parse(res.data).data
-                debugger
                 // 暂未绑定，只是文件上传了 uid做标识
                 file.uid = data.uid
                 this.setData({
@@ -82,16 +81,16 @@ Page({
         })
     },
     fileDelete(e) {
-        // 删除文件
-        const uid = e.detail.file.uid
-        // if(this.data.navTitle === '新建工程') {
-        //     this.data.fileList.splice(e.detail.index,1)
-        //     this.setData({
-        //         fileList:this.data.fileList
-        //     })
-        // }else {
-        //     // 删除已上传文件
-        // }
+        // 删除文件 包括已绑定和未绑定
+        const id = e.detail.file.uid || e.detail.file.id
+        fetch.delete(`file/${id}`)
+        .catch(() => {
+            wx.showToast({
+                title: '文件删除失败',
+                icon: 'error',
+                duration: 2000
+            })
+        })
     },
     async formSubmit() {
         const others = [

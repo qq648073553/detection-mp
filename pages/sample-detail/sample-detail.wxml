@@ -1,7 +1,7 @@
 <!--pages/delegation-list/delegation-list.wxml-->
 
 <view class="container deg-detail-container" style="padding-top:{{navHeight}}px">
-    <navbar page-name="委托详情" showNav showHome></navbar>
+    <navbar page-name="检测详情" showNav showHome></navbar>
     <view class="deg-detail-top">
         检测内容
 

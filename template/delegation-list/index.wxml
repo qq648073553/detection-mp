@@ -1,0 +1,14 @@
+<template name="degList">
+    <view class="fd-card"  wx:for="{{list}}" wx:key="id" >
+       <navigator url="/pages/sample-list/sample-list?id={{item.id}}&status={{item.status}}">
+           <view class="fd-card-header">
+               <view class="pro-title">{{item.title}}</view>
+               <van-tag  class="pro-tag" size="large "  color="{{item.color}}">{{degStatus[item.status]}}</van-tag>
+           </view>
+           <view class="fd-card-body">
+               <view class="pro-remarks text-line-public">{{item.date}}</view>
+               <van-tag  plain class="custom-class" size="medium" wx:for="{{item.tags}}" wx:for-item="tag" color="{{item.color}}">{{tag}}</van-tag>
+           </view>
+       </navigator>
+    </view>
+</template>
