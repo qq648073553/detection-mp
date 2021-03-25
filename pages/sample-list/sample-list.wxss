@@ -1,3 +1,11 @@
 /* pages/delegation-list/delegation-list.wxss */
 @import "/assets/styles/search.wxss";
 @import "/template/sample-list/index.wxss";
+.image__fixed {
+    width: 100rpx; 
+    height: 100rpx; 
+    /* background-color: #eeeeee; */
+    position: fixed;
+    top: 80%;
+    right: 60rpx;
+}

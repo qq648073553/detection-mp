@@ -65,7 +65,7 @@ Page({
       navHeight: App.globalData.navHeight,
       proStatus: App.globalData.proStatus,
       degStatus: App.globalData.degStatus,
-      list: this.data.list.filter(v => v.status == status)
+      list: this.data.list
     })
     wx.getStorage({
       key: 'histories',

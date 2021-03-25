@@ -34,7 +34,7 @@ Page({
             return;
         }
       wx.navigateTo({
-          url: `/pages/pro-delegation/pro-delegation?id=${id}`
+          url: `/pages/delegation-list/delegation-list?id=${id}`
       })
     },
 

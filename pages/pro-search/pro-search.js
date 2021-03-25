@@ -32,7 +32,7 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: `/pages/pro-delegation/pro-delegation?gid=${gid}&jid=${jid}&wid=${wid}`
+      url: `/pages/delegation-list/delegation-list?gid=${gid}&jid=${jid}&wid=${wid}`
     })
   },
   /**

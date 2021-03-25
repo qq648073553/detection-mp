@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-01-27 00:06:52
+ * @LastEditTime: 2021-03-25 09:58:09
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \detection-mp\pages\sample-add\sample-add.js
+ */
 const App = getApp();
 Page({
   data: {
@@ -11,7 +19,7 @@ Page({
       { value: 0, text: '已完成' },
       { value: 1, text: '未完成' }
     ],
-    navTitle: '新增委托',
+    navTitle: '新增送样',
     padBottom: 0,
     fileList:[],
     lastScroll:0,
@@ -32,7 +40,7 @@ Page({
   },
   onLoad: function (options) {
     const {type} = options
-    const title = type === 'modify' ? '委托修改' : '新增委托'
+    const title = type === 'modify' ? '送样修改' : '新增送样'
     this.setData({
       navHeight: App.globalData.navHeight,
       padBottom:App.globalData.navHeight,
