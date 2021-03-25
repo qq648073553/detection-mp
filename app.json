@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/sample-add/sample-add",
     "pages/sample-list/sample-list",
     "pages/login/login",
     "pages/update-email/update-email",
@@ -11,7 +12,6 @@
     "pages/pro-evaluate/pro-evaluate",
     "pages/location/location",
     "pages/signature/signature",
-    "pages/sample-add/sample-add",
     "pages/summary/summary",
     "pages/pro-modify/pro-modify",
     "pages/pro-feedback/pro-feedback",
@@ -24,7 +24,9 @@
     "pages/pro-detail/pro-detail",
     "pages/check-in/check-in", 
     "navbar/index",
-    "pages/sample-detail/sample-detail"
+    "pages/sample-detail/sample-detail",
+    "pages/sample-confirm/sample-confirm"
+
   ],
   "window": {
     "navigationStyle": "custom",

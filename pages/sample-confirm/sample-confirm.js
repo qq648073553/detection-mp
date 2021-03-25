@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-03-25 15:25:18
+ * @LastEditTime: 2021-03-25 15:34:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -19,7 +19,7 @@ Page({
       { value: 0, text: '已完成' },
       { value: 1, text: '未完成' }
     ],
-    navTitle: '新增送样',
+    navTitle: '送样确认',
     padBottom: 0,
     fileList:[],
     lastScroll:0,
@@ -29,7 +29,11 @@ Page({
     activeName:'1',
     radio:'1',
     list: ['a', 'b', 'c'],
-    result: ['a', 'b']
+    result: ['a', 'b'],
+    statusOptions:[
+      { name: '已完成', value: true },
+      { name: '未完成', value: false }
+  ],
   },
   onStandardChange(event) {
     this.setData({
@@ -70,9 +74,7 @@ Page({
 
   },
   formSubmit() {
-    wx.navigateTo({
-      url: '/pages/sample-confirm/sample-confirm',
-    })
+ 
   },
   setHeight(e) {
     const height = Math.max(e.detail.height, this.data.lastScroll)
@@ -82,11 +84,11 @@ Page({
   },
   onLoad: function (options) {
     const {type} = options
-    const title = type === 'modify' ? '送样修改' : '新增送样'
+    // const title = type === 'modify' ? '送样修改' : '新增送样'
     this.setData({
       navHeight: App.globalData.navHeight,
       padBottom:App.globalData.navHeight,
-      navTitle: title
+      // navTitle: title
     })
   },
   onShow() {

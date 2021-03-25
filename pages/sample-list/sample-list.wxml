@@ -18,10 +18,10 @@
     <view class="search-content">
         <template  is="degList" data="{{list,degStatus}}"></template>
     </view>
-                <navigator url="/pages/sample-add/sample-add" hover-class="none" >
+                <!-- <navigator url="/pages/sample-add/sample-add" hover-class="none" >
                         <image class="image__fixed" mode="aspectFit" src="../../assets/images/plus.png"></image>
 
-                </navigator>
+                </navigator> -->
 
 
 </view>

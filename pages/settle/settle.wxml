@@ -38,23 +38,5 @@
   bind:confirm="onConfirm"
   show-confirm="{{ false }}"
 />
-    <!--
-    <van-action-sheet show="{{ actionShow }}" round="{{false}}" close-on-click-overlay="{{true}}">
-        <view class="action-header">
-            <view class="action-cancel" bindtap="onCancel">取消</view>
-            <view class="action-title">选择时间</view>
-            <view class="action-confirm" bindtap="onConfirm">确认</view>
-        </view>
-        <view class="action-filter" bindtap="switchAction">
-            <view class="action-f-item {{actionType===0 ? 'action-f-item-active' : ''}}" data-type="0">按月</view>
-            <view class="action-f-item {{actionType===1 ? 'action-f-item-active' : ''}}" data-type="1">按季度</view>
-            <view class="action-f-item {{actionType===2 ? 'action-f-item-active' : ''}}" data-type="2">按年</view>
-            <view class="action-f-item {{actionType===-1 ? 'action-f-item-active' : ''}}" data-type="-1">全部</view>
-        </view>
-        <view class="action-body">
-            <van-picker id="picker" columns="{{ columns }}"  />
-        </view>
-
-    </van-action-sheet>
-    -->
+   
 </view>
