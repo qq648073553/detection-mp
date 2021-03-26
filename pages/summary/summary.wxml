@@ -1,6 +1,6 @@
 <!--pages/summary/summary.wxml-->
 <view class="container " style="padding-top:{{navHeight}}px;">
-    <navbar page-name="结算清单" showNav showHome></navbar>
+    <navbar page-name="工作量汇总" showNav showHome></navbar>
     <view class="summary-container">
         <view class="summary-overview">
             <view class="overview-item">

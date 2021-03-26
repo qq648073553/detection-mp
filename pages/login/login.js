@@ -4,7 +4,7 @@ const App = getApp();
 
 const Request = require('../../utils/request')
 const fetch = new Request({
-  header:App.globalData.header,
+  header: App.globalData.header,
   baseURL: App.globalData.baseURL
 })
 
@@ -17,30 +17,27 @@ Page({
 
   },
   getPhoneNumber(e) {
-    wx.redirectTo({
-      url: '/pages/index/index',
-    })
-//     fetch.post('auth/wxlanding',
-//     {
-//       code:this.data.code,
-//       encryptedData: e.detail.encryptedData,
-//       iv: e.detail.iv
-//     }).then(token=>{
-// // 存储，设置token
-//       try {
-//         wx.setStorageSync('Authorization', token)
-//       } catch (e) { console.log('token缓存存储错误')}
-//       App.globalData.header.Authorization = token
-//       wx.redirectTo({
-//         url: '/pages/index/index',
-//       })
-//     }).catch(err => {
-//       wx.showToast({
-//         title: err,
-//         icon: 'error',
-//         duration: 2000
-//       })
-//     })
+    fetch.post('auth/wxlanding',
+      {
+        code: this.data.code,
+        encryptedData: e.detail.encryptedData,
+        iv: e.detail.iv
+      }).then(token => {
+        // 存储，设置token
+        try {
+          wx.setStorageSync('Authorization', token)
+        } catch (e) { console.log('token缓存存储错误') }
+        App.globalData.header.Authorization = token
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      }).catch(err => {
+        wx.showToast({
+          title: err,
+          icon: 'error',
+          duration: 2000
+        })
+      })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -65,9 +62,9 @@ Page({
    */
   onShow: function () {
     wx.login({
-      success: (res) =>{
+      success: (res) => {
         this.setData({
-          code:res.code
+          code: res.code
         })
       },
       fail(e) {

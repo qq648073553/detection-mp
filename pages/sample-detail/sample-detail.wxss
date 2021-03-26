@@ -1,6 +1,4 @@
-.deg-detail-container {
-    /*background: #F3F3F2;*/
-}
+
 .deg-detail-top{
     font-size: 40rpx;
     height: 200rpx;

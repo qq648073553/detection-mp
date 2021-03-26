@@ -26,12 +26,12 @@
     flex: 1;
     margin-right: 10px;
 }
-.login-otp-btn {
+/* .login-otp-btn {
     color: #9A9A9A;
 }
 .login-switch {
     font-size: 14px;
-}
+} */
 .login-btn-p{
     margin-top: 50px;
     width: 90%;

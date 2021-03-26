@@ -30,11 +30,11 @@
     width: 100vw;
     height: 120px;
 }
-.index-content{
+/* .index-content{
     padding: 20rpx;
     background: #fff;
     border-radius: 5px;
-}
+} */
 
 
 .index-search .van-cell {
@@ -50,22 +50,21 @@
     color: #C8C9CC;
 }
 
-.pro-header {
+/* .pro-header {
     width: 100%;
     position: fixed;
     height: 100px;
     overflow: hidden;
-    /*top: 60px;*/
     z-index: 999;
     background: #fff;
     transition: all .5s;
-}
+} */
 
-.index-support{
+/* .index-support{
     margin: 20px auto;
     color: #DCDCDC;
     text-align: center;
-}
+} */
 
 .scan-btn{
     width: 56rpx;

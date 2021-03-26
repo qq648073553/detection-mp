@@ -1,6 +1,6 @@
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="{{navTitle}}" showNav ></navbar>
-    <view class="add-container" style="top:{{padBottom}}px">
+    <view class="add-container custom-class" style="top:{{padBottom}}px">
         <view class="add-module ">
             <view class="module-title">
                 工程信息（必填）
@@ -33,9 +33,9 @@
                         label="工程名称"
                         placeholder="请输入"
                 />
-                <van-cell title="工程地点" class="{{projectAddress === '请选择' ? '' : 'custom-class'}}"  title-width="98px" value="{{projectAddress}}" url="/pages/location/location" is-link />
+                <van-cell title="工程地点" class="{{projectAddress === '请选择' ? '' : ''}}"  title-width="98px" value="{{projectAddress}}" url="/pages/location/location" is-link />
 
-                <van-cell title="工程状态"  class="{{finishedShow === '请选择' ? '' : 'custom-class'}}" title-width="98px" value="{{finishedShow}}" border="{{false}}" bindtap="toggleShow" is-link />
+                <van-cell title="工程状态"  class="{{finishedShow === '请选择' ? '' : ''}}" title-width="98px" value="{{finishedShow}}" border="{{false}}" bindtap="toggleShow" is-link />
 
             </view>
         </view>
@@ -43,7 +43,7 @@
             <view class="module-title">
                 合同信息（必填）
             </view>
-            <view class="module-content custom-class">
+            <view class="module-content ">
                 <van-field
 
                         model:value="{{ contractNo }}"
@@ -94,7 +94,7 @@
             <view class="module-title">
                 监理信息（必填）
             </view>
-            <view class="module-content custom-class">
+            <view class="module-content ">
                 <van-field
 
                         model:value="{{ qualitySupervisionNo }}"

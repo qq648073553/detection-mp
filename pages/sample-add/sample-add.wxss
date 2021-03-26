@@ -71,7 +71,7 @@
     font-size: 16px;
     color: #4387F6;
 }
-.action-filter{
+/* .action-filter{
     display: table;
     margin: 20px auto;
     border-collapse: collapse;
@@ -88,4 +88,4 @@
 .action-f-item-active{
     background: #4387F6;
     color: #fff;
-}
+} */
