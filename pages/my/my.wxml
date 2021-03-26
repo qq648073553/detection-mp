@@ -2,6 +2,7 @@
     <navbar page-name="个人中心" showNav></navbar>
     <van-cell title="手机号" is-link value="{{phone}}"  link-type="navigateTo" url="/pages/update-phone/update-phone" />
     <van-cell title="邮箱" is-link value="{{email}}"  link-type="navigateTo" url="/pages/update-email/update-email" />
+    <van-cell title="人员管理" is-link   link-type="navigateTo" url="/pages/human-resource/human-resource" />
 
     <button bindtap="logOut" class="my-logout-btn">退 出 登 录</button>
 

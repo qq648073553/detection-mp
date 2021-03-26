@@ -1,0 +1,40 @@
+<!-- pages/human-resource/human-resource.wxml -->
+<view class="container" style="padding-top:{{navHeight}}px">
+    <navbar page-name="人员管理" showNav showHome></navbar>
+    <van-tabs active="{{ activeName }}" bind:change="onChange">
+        <van-tab title="送样人">
+            <view class="hr-table">
+                            <view class="hr-table--head">
+                <view class="th__delete">删除</view>
+                <view class="th__name">姓名</view>
+                <view class="th__phone">手机号</view>
+                <view class="th__edit">修改</view>
+            </view>
+               <view class="hr-table--tbody">
+                    <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
+                    <van-icon class="td__delete" name="clear" color="red" />
+                    <view class="td__name">{{item.name}}</view>
+                    <view class="td__phone">{{item.phone}}</view>
+                    <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleShow" />
+                </view>
+               </view>
+            <view class="hr-table--foot">
+                <van-icon color="red" name="add-o" size="26" />
+                新增用户
+            </view>
+            </view>
+
+        </van-tab>
+    </van-tabs>
+    <van-popup show="{{ show }}" class="custom-class" round bind:close="toggleShow">
+       <view class="popup--body">
+            <view class="popup--title">修改用户信息</view>
+        <van-field model:value="{{ name }}" clearable label="姓名" title-width="76px"  placeholder="请输入" />
+        <van-field border="{{false}}" model:value="{{ phone }}" clearable label="手机号" title-width="76px"  placeholder="请输入" />
+       </view>
+        <view class="popup--bottom">
+            <view bind:tap="toggleShow">取消</view>
+            <view class="text__confirm" bind:tap="toggleShow">确定</view>
+        </view> 
+    </van-popup>
+</view>

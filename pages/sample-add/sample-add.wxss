@@ -1,7 +1,9 @@
 .add-container {
     padding-top: 10px;
 }
-
+.van-popup {
+    height: 80vh;
+}
 
 .module-upload{
     /*background-color: #fff;*/

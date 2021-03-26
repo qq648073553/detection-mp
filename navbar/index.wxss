@@ -60,7 +60,10 @@
     border-right: 1px solid #f0f0f0;
     padding: 3px 14px;
 }
-
+.navbar-action-group .first {
+    width: 40px;
+}
 .navbar-action-group .last {
+    width: 42px;
     border-right: none;
 }

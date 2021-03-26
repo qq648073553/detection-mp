@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/sample-add/sample-add",
-    "pages/sample-list/sample-list",
     "pages/login/login",
+    "pages/human-resource/human-resource",
+    "pages/sample-add/sample-add",
+    "pages/my/my",
+    "pages/sample-list/sample-list",
     "pages/update-email/update-email",
     "pages/update-phone/update-phone",
     "pages/delegation-overview/delegation-overview",
@@ -18,7 +20,6 @@
     "pages/pro-cancel/pro-cancel",
     "pages/settle/settle",
     "pages/login-phone/login-phone",
-    "pages/my/my",
     "pages/function-list/function-list",
     "pages/delegation-list/delegation-list",
     "pages/pro-detail/pro-detail",

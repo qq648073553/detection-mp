@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-03-25 15:25:18
+ * @LastEditTime: 2021-03-26 10:29:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -25,12 +25,15 @@ Page({
     lastScroll:0,
     actionShow: false,
     actionTitle: '建设单位',
-    active:1,
+    active:0,
     activeName:'1',
     radio:'1',
     list: ['a', 'b', 'c'],
-    result: ['a', 'b']
+    result: ['a', 'b'],
+    searchValue:''
   },
+  onSearch(){},
+  onClear(){},
   onStandardChange(event) {
     this.setData({
       result: event.detail
@@ -56,10 +59,17 @@ Page({
     });
   },
   onCancel(){
-    this.setData({actionShow:!this.data.actionShow})
+    this.setData({
+      actionShow:!this.data.actionShow,
+      active:0
+    }
+      )
   },
   onConfirm(){
-    this.setData({actionShow:!this.data.actionShow})
+    this.setData({
+      actionShow:!this.data.actionShow,
+      active:0
+    })
   },
   onChange(event) {
     this.setData({
@@ -86,7 +96,8 @@ Page({
     this.setData({
       navHeight: App.globalData.navHeight,
       padBottom:App.globalData.navHeight,
-      navTitle: title
+      navTitle: title,
+      
     })
   },
   onShow() {

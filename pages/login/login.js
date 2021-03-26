@@ -17,27 +17,30 @@ Page({
 
   },
   getPhoneNumber(e) {
-    fetch.post('auth/wxlanding',
-    {
-      code:this.data.code,
-      encryptedData: e.detail.encryptedData,
-      iv: e.detail.iv
-    }).then(token=>{
-// 存储，设置token
-      try {
-        wx.setStorageSync('Authorization', token)
-      } catch (e) { console.log('token缓存存储错误')}
-      App.globalData.header.Authorization = token
-      wx.redirectTo({
-        url: '/pages/index/index',
-      })
-    }).catch(err => {
-      wx.showToast({
-        title: err,
-        icon: 'error',
-        duration: 2000
-      })
+    wx.redirectTo({
+      url: '/pages/index/index',
     })
+//     fetch.post('auth/wxlanding',
+//     {
+//       code:this.data.code,
+//       encryptedData: e.detail.encryptedData,
+//       iv: e.detail.iv
+//     }).then(token=>{
+// // 存储，设置token
+//       try {
+//         wx.setStorageSync('Authorization', token)
+//       } catch (e) { console.log('token缓存存储错误')}
+//       App.globalData.header.Authorization = token
+//       wx.redirectTo({
+//         url: '/pages/index/index',
+//       })
+//     }).catch(err => {
+//       wx.showToast({
+//         title: err,
+//         icon: 'error',
+//         duration: 2000
+//       })
+//     })
   },
   /**
    * 生命周期函数--监听页面加载

@@ -33,8 +33,17 @@
             <view class="action-confirm" bindtap="onConfirm">确认</view>
         </view>
         <view>
-            <van-tabs active="{{ active }}" bind:change="onChange" swipeable>
+            <van-tabs  wx-if="{{actionShow}}" active="{{ active }}"  bind:change="onChange" swipeable>
                 <van-tab title="选择样品">
+                            <van-search
+                class="custom-class"
+                value="{{searchValue}}"
+                shape="round"
+                background="#fff"
+                placeholder="可输入关键词进行筛选"
+                bind:search="onSearch"
+                bind:clear="onClear"
+        />
                     <van-collapse accordion value="{{ activeName }}" bind:change="onChange">
                         <van-collapse-item title="有赞微商城" name="1">
                             <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
