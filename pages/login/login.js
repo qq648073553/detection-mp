@@ -1,7 +1,12 @@
-// pages/login/login.js
+/*
+ * @Author: holder
+ * @Date: 2021-01-27 00:06:52
+ * @LastEditors: holder
+ * @LastEditTime: 2021-03-29 14:00:06
+ * @Description: 登录
+ */
+// pages/login/login.js 
 const App = getApp();
-// const AUTH = require('../../utils/auth');
-
 const Request = require('../../utils/request')
 const fetch = new Request({
   header: App.globalData.header,
@@ -9,12 +14,12 @@ const fetch = new Request({
 })
 
 Page({
-
+ 
   /**
    * 页面的初始数据
    */
   data: {
-
+ 
   },
   getPhoneNumber(e) {
     fetch.post('auth/wxlanding',
@@ -22,20 +27,13 @@ Page({
         code: this.data.code,
         encryptedData: e.detail.encryptedData,
         iv: e.detail.iv
-      }).then(token => {
+      }).then(
+        token => {
         // 存储，设置token
-        try {
-          wx.setStorageSync('Authorization', token)
-        } catch (e) { console.log('token缓存存储错误') }
+        wx.setStorageSync('Authorization', token)
         App.globalData.header.Authorization = token
         wx.redirectTo({
           url: '/pages/index/index',
-        })
-      }).catch(err => {
-        wx.showToast({
-          title: err,
-          icon: 'error',
-          duration: 2000
         })
       })
   },

@@ -1,3 +1,7 @@
 /* pages/pro-search/pro-search.wxss */
 @import "/template/pro-list/index.wxss";
 @import "/assets/styles/search.wxss";
+.search-empty{
+    text-align: center;
+    color: grey;
+}

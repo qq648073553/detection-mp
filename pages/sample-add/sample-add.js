@@ -1,12 +1,19 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-03-26 10:29:35
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-03-29 16:31:42
+ * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
  */
 const App = getApp();
+const Request = require('../../utils/request')
+const fetch = new Request({
+  auth: true,
+  header: App.globalData.header,
+  baseURL: App.globalData.baseURL
+})
+const Utils = require('../..//utils/util')
 Page({
   data: {
     observer: '',
@@ -30,8 +37,13 @@ Page({
     radio:'1',
     list: ['a', 'b', 'c'],
     result: ['a', 'b'],
-    searchValue:''
+    searchValue:'',
+    sampleList:[]
   },
+  getSampleParent(filterValue){
+
+  },
+  getSampleChild(pid){},
   onSearch(){},
   onClear(){},
   onStandardChange(event) {

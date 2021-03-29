@@ -1,3 +1,7 @@
 /* pages/delegation-list/delegation-list.wxss */
 @import "/assets/styles/search.wxss";
 @import "/template/delegation-list/index.wxss";
+.search-empty{
+    text-align: center;
+    color: grey;
+}

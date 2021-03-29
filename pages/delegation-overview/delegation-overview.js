@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 09:22:00
- * @LastEditTime: 2021-03-23 11:29:17
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-03-29 16:13:40
+ * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\pro-delegation\pro-delegation.js
  */
@@ -70,7 +70,7 @@ Page({
       navHeight: App.globalData.navHeight,
       proStatus: App.globalData.proStatus
     })
-    this.getDetail(gid,jid,wid)
+    // this.getDetail(gid,jid,wid)
   },
 
   /**

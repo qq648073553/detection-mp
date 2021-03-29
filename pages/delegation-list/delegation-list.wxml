@@ -9,14 +9,18 @@
                 shape="round"
                 background="#fff"
                 placeholder="请输入搜索关键词"
+                 bind:search="onSearch"
+                bind:clear="onFastSearch"
         />
-<!--        <view wx:if="{{histories.length > 0}}"  class="index-histories">-->
-<!--            <view wx:for="{{histories}}" class="history-item">{{item}}</view>-->
-<!--        </view>-->
+ <view wx:if="{{histories.length > 0}}"  class="index-histories">
+        <view wx:for="{{histories}}" class="history-item" bindtap="onFastSearch" data-title="{{item}}">{{item}}</view>
+    </view>
     </van-sticky>
 
     <view class="search-content">
         <template  is="degList" data="{{list,degStatus}}"></template>
+            <view wx:if="{{!isRemained}}" class="search-empty">已加载全部内容</view>
+
     </view>
 
 </view>

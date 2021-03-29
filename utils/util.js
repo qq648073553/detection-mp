@@ -111,10 +111,73 @@ const validateNumberCode = (value, length) => {
     return true
   }
 }
+
+/**
+ * 检测类型
+ * 返回string
+ * @param {any} value
+ */
+function checkType(value) {
+  return Object.prototype.toString.call(value).slice(8, -1)
+}
+
+/**
+ * 检测空数组
+ * 返回boolean
+ * 空数组则返回true
+ * @param {array} value
+ */
+function notEmptyArray(value) {
+  if (Array.isArray(value) && value.length > 0) {
+    return true
+  }
+  return false
+}
+
+/**
+ * 检测空对象
+ * @param {*} text
+ */
+function notEmptyObj(obj) {
+  const isObj = checkType(obj) === 'Object'
+  if (isObj) {
+    return Object.keys(obj).length > 0
+  }
+  return false
+}
+
+/**
+ * 格式化为国际货币数字 10000 --> 10,000
+ */
+
+function formatMoney(val) {
+  if (isFinite(+val)) {
+    const reg = /(?=(\B\d{3})+$)/g
+    return val.toString().replace(reg, ',')
+  }
+  return val
+}
+const urlJointParams = (url, obj) => {
+  if(notEmptyObj(obj)) {
+    const keys = Object.keys(obj)
+    const k0 = keys[0]
+    const keyRest = Object.keys(obj).slice(1)
+    url += `?${k0}=${obj[k0]}`
+    for(const k of keyRest) {
+      url += `&${k}=${obj[k]}`
+    }
+  }
+  return url
+}
 module.exports = {
   parseTime,
   validatePhone,
   validateNumberCode,
   parseProStatus,
-  validateEmail
+  validateEmail,
+  checkType,
+  notEmptyArray,
+  notEmptyObj,
+  formatMoney,
+  urlJointParams
 }

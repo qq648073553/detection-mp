@@ -1,6 +1,4 @@
-// pages/login-phone/login-phone.js
 const Utils = require('../..//utils/util')
-
 const App = getApp();
 const Request = require('../../utils/request')
 const fetch = new Request({
@@ -57,13 +55,6 @@ Page({
           // 设置cookie保存在全局
           App.globalData.header.Cookie = 'JSESSIONID=' + cookie;
         })
-        .catch((err) => {
-          wx.showToast({
-            title: err,
-            icon: 'error',
-            duration: 1000
-          })
-    })
   },
   login() {
     if(!Utils.validatePhone(this.data.phone)) {
@@ -81,22 +72,13 @@ Page({
             phone:this.data.phone,
             otp:this.data.otp
           }).then(token =>{
-        try {
-          wx.setStorageSync('Authorization', token)
-        } catch (e) { console.log('token缓存存储错误')}
+            wx.setStorageSync('Authorization', token)
         App.globalData.header.Authorization = token
         wx.reLaunch({
           url:'/pages/index/index'
         })
       }
-
-      ).catch(err => {
-        wx.showToast({
-          title: err,
-          icon: 'error',
-          duration: 1000
-        })
-      })
+      )
     }else {
       wx.showToast({
         title: '验证码错误',

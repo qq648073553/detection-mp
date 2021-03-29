@@ -1,5 +1,19 @@
+/*
+ * @Author: holder
+ * @Date: 2021-03-24 15:29:13
+ * @LastEditors: holder
+ * @LastEditTime: 2021-03-29 16:08:10
+ * @Description: 
+ */
 // pages/delegation-list/delegation-list.js
 const App = getApp();
+const Request = require('../../utils/request')
+const fetch = new Request({
+    auth: true,
+    header: App.globalData.header,
+    baseURL: App.globalData.baseURL
+})
+const Utils = require('../..//utils/util')
 
 Page({
 
@@ -7,65 +21,87 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchValue: '',
-    proId:null,
-    status: null,
-    list: [
-      {
-        id:1,
-        title: '检测项目1',
-        status: 0,
-        color: '#4387F6',
-        date: '2021/01/19 15:17',
-        tags: ['未受理']
-      },
-      {
-        id:2,
-        title: '检测项目2',
-        status: 1,
-        color: '#F0641F',
-        date: '2021/01/19 15:17',
-        tags: ['待取样']
-      },
-      {
-        id:3,
-        title: '检测项目3',
-        status: 2,
-        color: '#3333CC',
-        date: '2021/01/19 15:17',
-        tags: ['等待报告']
-      },
-      {
-        id:4,
-        title: '检测项目4',
-        status: 3,
-        color: '#AE202C',
-        date: '2021/01/19 15:17',
-        tags: ['等待审核']
-      },
-      {
-        id:5,
-        title: '检测项目5',
-        status: 4,
-        color: '#33CC33',
-        date: '2021/01/19 15:17',
-        tags: ['报告数10']
-      }
-    ],
-    histories:['苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影']
+    searchValue: null,
+    pageIndex: 0,
+    list: [],
+    histories:[],
+    isRemained: true
 
   },
+  getList(page, size, filterValue,projectKey) {
+    const {gid,jid,wid} = this.data
 
+    projectKey = projectKey || {gid,jid,wid}
+    fetch.post(`entrust/get?page=${page}&size=${size}`, { content: filterValue ,projectKey})
+      .then(data => {
+        const projects = data.content
+
+        if (Array.isArray(projects)) {
+          if (projects.length === 0) {
+            this.setData({ isRemained: false })
+            return
+          }
+          const list = projects.map(p => {
+            // + Utils.parseProStatus(p.status)
+            let remarks = p.entrustName + ' | ' + Utils.parseTime(new Date(p.date), '{y}年{m}月{d}日 {h}:{i}')
+            // if(p.status === App.globalData.proStatus.confirmed) {
+
+            //     remarks += ' | 委托' + p.wtCount + ' | 报告' + p.reportCount
+            // }
+            return {
+              title: p.entrustNum,
+              id: p.id,
+              status:p.status,
+              statusZh:p.statusZh,
+              remarks
+            }
+          })
+          this.setData({ list: this.data.list.concat(list) })
+        }
+      })
+  },
+  onFastSearch(event) {
+    this.setData({
+      searchValue: event.target.dataset.title,
+      list: [],
+      isRemained: true,
+      pageIndex: 0,
+    })
+
+    this.getList(0, 5, event.target.dataset.title)
+  },
+  onSearch(event) {
+    const { detail } = event
+    if (detail) {
+      this.data.histories.unshift(detail)
+    }
+    // 保存最新的3个搜索记录
+    this.data.histories = this.data.histories.slice(0, 3)
+    wx.setStorage({ key: 'proHistories', data: this.data.histories })
+    this.setData({
+      searchValue: detail,
+      list: [],
+      isRemained: true,
+      pageIndex: 0,
+      histories: this.data.histories
+    })
+
+    this.getList(0, 5, detail)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const {status} = options
+    const {gid,jid,wid} = options
+    this.getList(0, 5, null,{gid,jid,wid})
     this.setData({
       navHeight: App.globalData.navHeight,
       proStatus: App.globalData.proStatus,
       degStatus: App.globalData.degStatus,
-      list: this.data.list
+      list: this.data.list,
+      gid,
+      jid,
+      wid
     })
     wx.getStorage({
       key: 'histories',
@@ -117,7 +153,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if (this.data.isRemained) {
+      this.setData({ pageIndex: this.data.pageIndex + 1 })
 
+      this.getList(this.data.pageIndex + 1, 5, this.data.searchValue)
+    }
   },
 
   /**

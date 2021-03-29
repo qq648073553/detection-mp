@@ -3,11 +3,13 @@
        <navigator url="/pages/delegation-overview/delegation-overview?id={{item.id}}&status={{item.status}}">
            <view class="fd-card-header">
                <view class="pro-title">{{item.title}}</view>
-               <van-tag  class="pro-tag" size="large "  color="{{item.color}}">{{degStatus[item.status]}}</van-tag>
+               <!-- 状态 -->
+               <van-tag  class="pro-tag" size="large "  color="#4387F6">{{item.statusZh}}</van-tag>
            </view>
            <view class="fd-card-body">
-               <view class="pro-remarks text-line-public">{{item.date}}</view>
-               <van-tag  plain class="custom-class" size="medium" wx:for="{{item.tags}}" wx:for-item="tag" color="{{item.color}}">{{tag}}</van-tag>
+               <view class="pro-remarks text-line-public">{{item.remarks}}</view>
+               <!-- 标签 -->
+               <!-- <van-tag  plain class="custom-class" size="medium" wx:for="{{item.tags}}" wx:for-item="tag" color="{{item.color}}">{{tag}}</van-tag> -->
            </view>
        </navigator>
     </view>

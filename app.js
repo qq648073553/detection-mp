@@ -1,3 +1,10 @@
+/*
+ * @Author: holder
+ * @Date: 2021-01-08 14:01:21
+ * @LastEditors: holder
+ * @LastEditTime: 2021-03-29 14:57:37
+ * @Description: 
+ */
 //app.js
 App({
   onLaunch: function () {
@@ -19,7 +26,7 @@ App({
   globalData: {
     userInfo: {},
     header: {},
-    baseURL:'http://192.168.0.98:3000/mock/v1/',
+    baseURL:'http://192.168.0.191:8344/api/',
     proStatus: {
       beforeConfirm: 1,
       confirmed: 0,
