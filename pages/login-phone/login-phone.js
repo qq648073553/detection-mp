@@ -11,8 +11,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: '',
-    otp: '',
+    phone: '13013753895',
+    otp: '123456',
     password: '',
     // loginByOtp: true,
     otpText: '获取验证码',
@@ -50,8 +50,9 @@ Page({
         })
       }
       }, 1000)
-    fetch.get(`sendsms/phone/${this.data.phone}`,{})
-        .then(cookie => {
+    fetch.get(`sendsms/getSendsms?role=${this.data.phone}`)
+        .then(data => {
+          const cookie = data.message
           // 设置cookie保存在全局
           App.globalData.header.Cookie = 'JSESSIONID=' + cookie;
         })
@@ -69,8 +70,8 @@ Page({
     if(Utils.validateNumberCode(this.data.otp, 6)) {
       fetch.post('auth/signup',
           {
-            phone:this.data.phone,
-            otp:this.data.otp
+            username:this.data.phone,
+            verificationcode:this.data.otp
           }).then(token =>{
             wx.setStorageSync('Authorization', token)
         App.globalData.header.Authorization = token

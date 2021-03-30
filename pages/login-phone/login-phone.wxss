@@ -37,10 +37,14 @@
     width: 90%;
     border-radius: 18px;
     height: 40px;
+    
     color: #fff;
     background: #4387F6;
 }
 #van-dialog .van-dialog__header {
     font-weight: bold;
+}
+input {
+    font-size: 35rpx;
 }
 

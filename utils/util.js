@@ -24,7 +24,7 @@
 function parseProStatus(val) {
   // 0撤销 1未受理 2已受理
 
-  const map = new Map([[0,'已受理'],[1,'未受理'],[2,'已撤销']])
+  const map = new Map([[0, '已受理'], [1, '未受理'], [2, '已撤销']])
   return map.get(+val)
 }
 // 时间格式化
@@ -158,16 +158,73 @@ function formatMoney(val) {
   return val
 }
 const urlJointParams = (url, obj) => {
-  if(notEmptyObj(obj)) {
+  if (notEmptyObj(obj)) {
     const keys = Object.keys(obj)
     const k0 = keys[0]
     const keyRest = Object.keys(obj).slice(1)
     url += `?${k0}=${obj[k0]}`
-    for(const k of keyRest) {
+    for (const k of keyRest) {
       url += `&${k}=${obj[k]}`
     }
   }
   return url
+}
+// 解析f1=>样品名称，返回map
+const parseCattr = cAttStr => {
+  cAttStr = cAttStr.replace(/\s/g, '')
+  const arr = cAttStr.split(',')
+  const map = new Map()
+  for (const a of arr) {
+    const m = a.split('as')
+    map.set(m[1], m[0])
+  }
+  return map
+}
+// 样品配置字符串转样品配置对象
+class SampleConfig {
+  name //属性中文名string
+  prop //属性string f1-f13
+  data //数据string
+  isInput //输入框boolean
+  isPicker //选择器，静态数据源boolean
+  table //选择器，动态请求表数据源string
+  source //数据源array
+}
+const parseSampleConfig = (attStr, cAttStr) => {
+  const valid = typeof attStr === 'string' && typeof cAttStr === 'string'
+  if (!valid) return null
+  const attrMap = parseCattr(cAttStr)
+  const attrArr = attStr.split(',')
+  const result = []
+  for (const arr of attrArr) {
+    const sample = new SampleConfig()
+    const splits = arr.split('=')
+    const left = splits[0]
+    const right = splits[1]
+    sample.name = left
+    sample.prop = attrMap.get(left)
+    if(right.length === 0) {
+      sample.isInput = true
+      result.push(sample)
+      continue
+    }
+    if(right.includes('#')) {
+      sample.isPicker = true
+      sample.source = right.split('#')
+      result.push(sample)
+      continue
+    }
+    if(right === 'pz' || right === 'cc' || right === 'gg') {
+      sample.isPicker = true
+      sample.source = []
+      sample.table = right
+      result.push(sample)
+      continue
+    }
+    // 否则解析错误
+    return null
+  }
+  return result
 }
 module.exports = {
   parseTime,
@@ -179,5 +236,6 @@ module.exports = {
   notEmptyArray,
   notEmptyObj,
   formatMoney,
-  urlJointParams
+  urlJointParams,
+  parseSampleConfig
 }

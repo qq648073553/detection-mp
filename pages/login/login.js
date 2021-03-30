@@ -2,7 +2,7 @@
  * @Author: holder
  * @Date: 2021-01-27 00:06:52
  * @LastEditors: holder
- * @LastEditTime: 2021-03-29 14:00:06
+ * @LastEditTime: 2021-03-30 11:19:47
  * @Description: 登录
  */
 // pages/login/login.js 
@@ -22,11 +22,13 @@ Page({
  
   },
   getPhoneNumber(e) {
-    fetch.post('auth/wxlanding',
+    const {encryptedData,iv} = e.detail
+    if(encryptedData && iv) {
+      fetch.post('auth/wxlanding',
       {
         code: this.data.code,
-        encryptedData: e.detail.encryptedData,
-        iv: e.detail.iv
+        encryptedData: encryptedData,
+        iv: iv
       }).then(
         token => {
         // 存储，设置token
@@ -36,6 +38,8 @@ Page({
           url: '/pages/index/index',
         })
       })
+    }
+
   },
   /**
    * 生命周期函数--监听页面加载

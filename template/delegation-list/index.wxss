@@ -1,5 +1,5 @@
 .fd-card{
-    padding: 0 10px;
+    padding: 5px 10px;
     /*margin-bottom: 20px;*/
 }
 .fd-card-header{
@@ -17,8 +17,8 @@
     /*margin: 10rpx 0 10rpx;*/
 }
 
-.fd-card-body{
-}
+/* .fd-card-body{
+} */
 
 .pro-remarks {
     font: 18rpx;

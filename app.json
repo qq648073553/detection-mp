@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/sample-add/sample-add",
     "pages/login/login",
     "pages/human-resource/human-resource",
-    "pages/sample-add/sample-add",
     "pages/my/my",
     "pages/sample-list/sample-list",
     "pages/update-email/update-email",
@@ -34,7 +34,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3FABFF",
     "navigationBarTitleText": "检测系统",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh":true
   },
   "usingComponents": {
     "navbar": "/navbar/index",

@@ -19,7 +19,7 @@ Page({
     histories: [],
     isRemained: true
 
-  },
+  }, 
   goBusiness(e) {
     const { gid, jid, wid } = e.currentTarget.dataset
     const url = Utils.urlJointParams('/pages/delegation-list/delegation-list', { gid, jid, wid })
@@ -43,7 +43,7 @@ Page({
         })
       }
     })
-    this.getList(0, 5, null)
+    this.getList(0, 10, null)
 
   },
   getList(page, size, filterValue) {
@@ -58,7 +58,7 @@ Page({
           }
           const list = projects.map(p => {
             // + Utils.parseProStatus(p.status)
-            let remarks = Utils.parseTime(new Date(p.date), '{h}:{i}') + ' | 委托' + p.wtCount + ' | 报告' + p.reportCount
+            let remarks = '委托' + p.wtCount + ' | 报告' + p.reportCount
             // if(p.status === App.globalData.proStatus.confirmed) {
 
             //     remarks += ' | 委托' + p.wtCount + ' | 报告' + p.reportCount
@@ -83,7 +83,7 @@ Page({
       isRemained: true,
       pageIndex: 0,
     })
-    this.getList(0, 5, event.target.dataset.title)
+    this.getList(0, 10, event.target.dataset.title)
   },
   onSearch(event) {
     const { detail } = event
@@ -100,7 +100,7 @@ Page({
       pageIndex: 0,
       histories: this.data.histories
     })
-    this.getList(0, 5, detail)
+    this.getList(0, 10, detail)
   },
 
   /**
@@ -135,7 +135,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({list:[]},this.getList(0, 10, null))
   },
 
   /**
@@ -143,8 +143,8 @@ Page({
    */
   onReachBottom: function () {
     if (this.data.isRemained) {
+      this.getList(this.data.pageIndex + 1, 10, this.data.searchValue)
       this.setData({ pageIndex: this.data.pageIndex + 1 })
-      this.getList(this.data.pageIndex + 1, 5, this.data.searchValue)
     }
 
   },

@@ -76,7 +76,7 @@ class Request {
         catch (e) {
           // Do something when catch error
           this.outdated()
-          reject('登录信息错误')
+          return reject('登录信息错误')
         }
       }
       if(!this.isDisconnect || this.isGoLogin(url) ) {
@@ -90,11 +90,11 @@ class Request {
             const code = res.data.code && res.data.code.toString()
             if(!code) {
               this.failed()
-              reject('链接超时')
+              return reject('链接超时')
             }
             if(code === '403') {
               this.outdated()
-              reject('登录过期')
+              return reject('登录过期')
             }
   
             if(code.startsWith('4') || code.startsWith('5')) {
@@ -103,14 +103,14 @@ class Request {
                 icon: 'error',
                 duration: 1000
               })
-              reject(res.data.message || '程序错误')
+              return reject(res.data.message || '程序错误')
             }
-            resolve(res.data.data)
+            return resolve(res.data.data)
           },
           fail:(err)=> {
             console.log(err,'链接超时')
             this.failed()
-            reject('链接超时')
+            return reject('链接超时')
           }
         })
       }

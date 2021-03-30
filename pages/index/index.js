@@ -59,7 +59,7 @@ Page({
                 if (Array.isArray(projects)) {
                     const list = projects.map(p => {
                         // + Utils.parseProStatus(p.status)
-                        let remarks = Utils.parseTime(new Date(p.date), '{h}:{i}') + ' | 委托' + p.wtCount + ' | 报告' + p.reportCount
+                        let remarks = '委托' + p.wtCount + ' | 报告' + p.reportCount
                         // if(p.status === App.globalData.proStatus.confirmed) {
 
                         //     remarks += ' | 委托' + p.wtCount + ' | 报告' + p.reportCount
