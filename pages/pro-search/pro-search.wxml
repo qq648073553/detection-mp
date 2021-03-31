@@ -15,7 +15,7 @@
 
     </van-sticky>
     <view wx:if="{{histories.length > 0}}"  class="index-histories">
-        <view wx:for="{{histories}}" class="history-item" bindtap="onFastSearch" data-title="{{item}}">{{item}}</view>
+        <view wx:for="{{histories}}" wx:key="index" class="history-item" bindtap="onFastSearch" data-title="{{item}}">{{item}}</view>
     </view>
 </view>
 

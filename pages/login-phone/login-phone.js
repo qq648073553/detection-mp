@@ -1,4 +1,4 @@
-const Utils = require('../..//utils/util')
+const Utils = require('../../utils/util')
 const App = getApp();
 const Request = require('../../utils/request')
 const fetch = new Request({

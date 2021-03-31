@@ -9,6 +9,7 @@
             <van-field wx:if="{{item.isInput}}" value="{{ form[item.prop] }}" clearable label="{{item.name}}" title-width="76px" data-prop="{{item.prop}}" adjust-position="{{false}}" placeholder="请输入" bind:focus="setHeight" bind:input="onDynamicInput" />
             <van-cell wx:else title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDynamicPicker" />
         </view>
+        <van-cell title="参数" title-width="88px" model:value="{{form.parameterName}}" is-link bindtap="toggleParam" />
         <!-- <van-field -->
         <!-- model:value="{{ delegation }}" -->
         <!-- label="检测项目" -->
@@ -32,14 +33,16 @@
         <button class="submit-btn" bindtap="formSubmit">下一步</button>
     </view>
     <van-action-sheet show="{{ paramShow }}" round="{{false}}" close-on-click-overlay="{{false}}">
-        <view class="action-header">
-            <view class="action-cancel" bindtap="toggleParam">取消</view>
-            <view class="action-title">选择参数</view>
-            <view class="action-confirm" bindtap="onParamConfirm">确认</view>
+        <view class="action--header__sticky">
+            <view class="action-header">
+                <view class="action-cancel" bindtap="toggleParam">取消</view>
+                <view class="action-title">选择参数</view>
+                <view class="action-confirm" bindtap="onParamConfirm">确认</view>
+            </view>
         </view>
-        <van-checkbox-group value="{{ result }}" bind:change="onStandardChange">
+        <van-checkbox-group value="{{ paramSelected }}" bind:change="onParamChange">
             <van-cell-group>
-                <van-cell wx:for="{{ list }}" wx:key="index" title="复选框 {{ item }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="onStandardToggle">
+                <van-cell wx:for="{{ paramList }}" wx:key="index" title="{{ item }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="onParamToggle">
                     <van-checkbox shape="square" catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" />
                 </van-cell>
             </van-cell-group>
@@ -86,12 +89,14 @@
     </van-action-sheet>
     <van-action-sheet show="{{ dynamicPickerShow }}" actions="{{ dynamicActions }}" cancel-text="取消" bind:cancel="onPickerClose" bind:select="onPickerSelect" />
     <van-action-sheet show="{{ actionShow }}" round="{{false}}" class="sample-popup" close-on-click-overlay="{{false}}">
-        <view class="action-header">
-            <view class="action-cancel" bindtap="toggleSample">取消</view>
-            <view class="action-title">选择样品</view>
-            <view class="action-confirm" bindtap="onSampleConfirm">确认</view>
+        <view class="action--header__sticky">
+            <view class="action-header">
+                <view class="action-cancel" bindtap="toggleSample">取消</view>
+                <view class="action-title">选择样品</view>
+                <view class="action-confirm" bindtap="onSampleConfirm">确认</view>
+            </view>
+            <van-search class="custom-class" value="{{searchValue}}" shape="round" background="#fff" placeholder="可输入关键词进行筛选" bind:search="onSearch" bind:clear="onSearchClear" />
         </view>
-        <van-search class="custom-class" value="{{searchValue}}" shape="round" background="#fff" placeholder="可输入关键词进行筛选" bind:search="onSearch" bind:clear="onSearchClear" />
         <van-collapse accordion value="{{ activeName }}" bind:change="onCollapseChange">
             <van-collapse-item wx:for="{{sampleList}}" wx:key="id" title="{{item.name}}" name="{{item.id}}">
                 <van-radio-group value="{{ sampleId }}" bind:change="onRadioChange">

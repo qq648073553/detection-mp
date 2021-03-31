@@ -2,7 +2,7 @@
  * @Author: zfd
  * @Date: 2020-10-25 09:21:59
  * @LastEditors: holder
- * @LastEditTime: 2021-03-31 08:29:25
+ * @LastEditTime: 2021-03-31 14:52:17
  * @Description:
  */
 // const formatTime = date => {
@@ -223,10 +223,37 @@ const parseSampleConfig = (attStr, cAttStr) => {
       result.push(sample)
       continue
     }
+    console.log('配置项检测出错')
     // 否则解析错误
     return null
   }
   return result
+}
+
+function compareVersion(v1, v2) {
+  v1 = v1.split('.')
+  v2 = v2.split('.')
+  const len = Math.max(v1.length, v2.length)
+
+  while (v1.length < len) {
+    v1.push('0')
+  }
+  while (v2.length < len) {
+    v2.push('0')
+  }
+
+  for (let i = 0; i < len; i++) {
+    const num1 = parseInt(v1[i])
+    const num2 = parseInt(v2[i])
+
+    if (num1 > num2) {
+      return 1
+    } else if (num1 < num2) {
+      return -1
+    }
+  }
+
+  return 0
 }
 module.exports = {
   parseTime,
@@ -239,5 +266,6 @@ module.exports = {
   notEmptyObj,
   formatMoney,
   urlJointParams,
-  parseSampleConfig
+  parseSampleConfig,
+  compareVersion
 }

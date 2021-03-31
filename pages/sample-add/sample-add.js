@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-03-31 14:05:02
+ * @LastEditTime: 2021-03-31 16:13:37
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -13,7 +13,7 @@ const fetch = new Request({
   header: App.globalData.header,
   baseURL: App.globalData.baseURL
 })
-const Utils = require('../..//utils/util')
+const Utils = require('../../utils/util')
 Page({
   data: {
     observer: '',
@@ -21,31 +21,36 @@ Page({
     project: '苏州中心',
     proId: '20201212',
     delegation: '',
+    // container:null,
     message: '',
     statusOptions: [
       { value: 0, text: '已完成' },
       { value: 1, text: '未完成' }
     ],
-    form: {},
+    paramSelected:[],
+    form: {
+      parameterName:''
+    },
     navTitle: '新增送样',
     padBottom: 0,
     fileList: [],
     lastScroll: 0,
     actionShow: false,
-    paramShow:true,
+    paramShow: false,
     activeName: '1',
     sampleId: null, //iid 样品id
     normalId: null, //standardNum 标准编号id
-    list: ['a', 'b', 'c'],
-    result: ['a', 'b'],
+    paramList: [],
+    result: [],
     searchValue: '',
     normalName: null,
     sampleName: '请选择',
+    paramName:'',
     sampleList: [],
     dynamicParams: [],
     dynamicPickerShow: false,
     dynamicActions: [],
-    pzResponse:null, // 缓存pz表数据，较少请求次数
+    pzResponse: null, // 缓存pz表数据，较少请求次数
     currentProp: null // actionSheet使用，input不用
   },
   onDynamicInput(event) {
@@ -58,32 +63,42 @@ Page({
     });
     return event.detail
   },
-  // 获取标准名
+  // 获取标准名 + 设置参数
   async getNormalName() {
     const normalId = this.data.normalId
-    const normalRes = this.data.pzResponse ||  await fetch.get(`infoCfg/getPz/${this.data.sampleId}`).then((pzResponse) => {
-      this.setData({pzResponse})
+    const normalRes = this.data.pzResponse || await fetch.get(`infoCfg/getPz/${this.data.sampleId}`).then((pzResponse) => {
+      this.setData({ pzResponse })
     })
     try {
       if (normalRes.length === 1) {
+        const paramRes = await fetch.get(`infoCfg/getPzjczx/${normalRes[0].standardNum}`)
+        const paramList = (paramRes && paramRes.map(v=>v.name)) || []
         this.setData({
+          paramList,
+          normalId:normalRes[0].standardNum,
           normalName: normalRes[0].standard
         })
         return
       }
       if (!normalId && normalRes.length > 1) {
         this.setData({
+          normalId:null,
           normalName: null
         })
         return
       }
       const normalObj = normalRes.find(v => v.standardNum === normalId)
+      const paramRes = await fetch.get(`infoCfg/getPzjczx/${normalObj.standardNum}`)
+      const paramList = (paramRes && paramRes.map(v=>v.name)) || []
       this.setData({
+        paramList,
+        normalId:normalObj.standardNum,
         normalName: normalObj.standard
       })
     } catch (error) {
       console.log('标准名获取失败', error)
       this.setData({
+        normalId:null,
         normalName: null
       })
     }
@@ -94,7 +109,8 @@ Page({
       if (table === 'pz') {
         // 查询样品名称下拉框
         const pzRes = this.data.pzResponse || await fetch.get(`infoCfg/getPz/${this.data.sampleId}`).then((pzResponse) => {
-          this.setData({pzResponse})})
+          this.setData({ pzResponse })
+        })
         return pzRes.map(v => ({ normalId: v.standardNum, name: v.name }))
       } else if (table === 'gg') {
         // 查询牌号下拉框
@@ -109,7 +125,8 @@ Page({
       } else if (table === 'cc') {
         // 查询规格下拉框
         const ccRes = this.data.pzResponse || await fetch.get(`infoCfg/getPz/${this.data.sampleId}`).then((pzResponse) => {
-          this.setData({pzResponse})})
+          this.setData({ pzResponse })
+        })
         if (ccRes.length === 1) {
 
           // "cc": "3#6#6.5#7#8#9#10#12#12.70#15.20#14#16#18#20#22#25#28#32#36#40",
@@ -197,25 +214,15 @@ Page({
   onSearchClear() {
     this.getSampleParent()
   },
-  // onStandardChange(event) {
-  //   this.setData({
-  //     result: event.detail
-  //   });
-  // },
 
-  // onStandardToggle(event) {
-  //   const { index } = event.currentTarget.dataset;
-  //   const checkbox = this.selectComponent(`.checkboxes-${index}`);
-  //   checkbox.toggle();
-  // },
 
-  // noop() { },
+  noop() { },
   // 确认选择样品
   onSampleConfirm() {
     const { sampleId } = this.data
     if (sampleId === null) {
       wx.showToast({
-        title: '暂未选择样品',
+        title: '请先选择样品',
         icon: 'none',
         duration: 1000
       })
@@ -232,7 +239,7 @@ Page({
         if (c) {
           const configRes = await fetch.get(`infoCfg/get/${childId}`)
           const { attribute, correspondingAttribute } = configRes
-          const dynamicParams = Utils.parseSampleConfig(attribute, correspondingAttribute)
+          const dynamicParams = Utils.parseSampleConfig(attribute, correspondingAttribute) || []
           const form = {}
           dynamicParams.forEach(v => { form[v.prop] = null })
           console.log(dynamicParams)
@@ -282,12 +289,44 @@ Page({
       sampleName: '请选择',
     }
     )
+    // wx.nextTick(()=>{
+    //   this.setData({
+    //     container: () => {
+    //       console.log(wx.createSelectorQuery().select('#container'))
+    //       return wx.createSelectorQuery().select('#container')
+    //     }
+    //   })
+    // })
   },
-  toggleParam(){
-    this.setData({paramShow:!this.data.paramShow})
+  toggleParam() {
+    this.setData({ paramShow: !this.data.paramShow })
   },
-  onParamConfirm(){
-    this.setData({paramShow:!this.data.paramShow})
+  onParamConfirm() {
+    if(!this.data.form.parameterName) {
+      wx.showToast({
+        title: '请先选择参数',
+        icon: 'none',
+        duration: 1000
+      })
+      return
+    }
+    this.setData({ 
+      paramShow: !this.data.paramShow,
+    })
+  },
+  onParamChange(event) {
+    const form = this.data.form
+    form.parameterName = event.detail.join('，')
+    this.setData({
+      paramSelected:event.detail,
+      form
+    });
+  },
+
+  onParamToggle(event) {
+    const { index } = event.currentTarget.dataset;
+    const checkbox = this.selectComponent(`.checkboxes-${index}`);
+    checkbox.toggle();
   },
   // onTabChange(event) {
   //   this.setData({
@@ -316,7 +355,7 @@ Page({
   },
   // 设置高度
   setHeight(e) {
-    const height = Math.max(e.detail.height-110, this.data.lastScroll)
+    const height = Math.max(e.detail.height - 110, this.data.lastScroll)
     this.setData({
       padBottom: height * -1
     })

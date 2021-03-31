@@ -3,7 +3,7 @@
     <view id="proList">
 <!--        <van-toast id="van-toast" />-->
 
-        <view class="fd-card"  wx:for="{{list}}" wx:key="title" >
+        <view class="fd-card"  wx:for="{{list}}" wx:key="index" >
         <!-- data-status="{{item.status}}" -->
                 <view class="fd-card-header" catch:tap="goBusiness" data-gid="{{item.projectKey.gid}}" data-jid="{{item.projectKey.jid}}" data-wid="{{item.projectKey.wid}}" >
                     <view class="pro-ymd">{{item.ymd}}</view>

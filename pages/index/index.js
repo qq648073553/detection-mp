@@ -6,7 +6,7 @@ const fetch = new Request({
     header: App.globalData.header,
     baseURL: App.globalData.baseURL
 })
-const Utils = require('../..//utils/util')
+const Utils = require('../../utils/util')
 
 Page({
 
