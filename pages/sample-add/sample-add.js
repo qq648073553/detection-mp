@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-03-31 16:13:37
+ * @LastEditTime: 2021-03-31 16:35:29
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -66,8 +66,10 @@ Page({
   // 获取标准名 + 设置参数
   async getNormalName() {
     const normalId = this.data.normalId
+
     const normalRes = this.data.pzResponse || await fetch.get(`infoCfg/getPz/${this.data.sampleId}`).then((pzResponse) => {
       this.setData({ pzResponse })
+      return pzResponse
     })
     try {
       if (normalRes.length === 1) {
@@ -110,6 +112,7 @@ Page({
         // 查询样品名称下拉框
         const pzRes = this.data.pzResponse || await fetch.get(`infoCfg/getPz/${this.data.sampleId}`).then((pzResponse) => {
           this.setData({ pzResponse })
+          return pzResponse
         })
         return pzRes.map(v => ({ normalId: v.standardNum, name: v.name }))
       } else if (table === 'gg') {
@@ -126,6 +129,7 @@ Page({
         // 查询规格下拉框
         const ccRes = this.data.pzResponse || await fetch.get(`infoCfg/getPz/${this.data.sampleId}`).then((pzResponse) => {
           this.setData({ pzResponse })
+          return pzResponse
         })
         if (ccRes.length === 1) {
 
@@ -287,6 +291,9 @@ Page({
       normalName: null,
       dynamicParams: [],
       sampleName: '请选择',
+      paramList:[],
+      paramName:null,
+      form:{}
     }
     )
     // wx.nextTick(()=>{

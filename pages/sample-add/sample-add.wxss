@@ -1,12 +1,18 @@
 .add-container {
     position: absolute;
     width: 100vw;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     padding: 10px 10px 30px;
-    background: #F3F3F2;
+    /* background: #F3F3F2; */
 }
 .sample-popup .van-popup {
     height: 80vh;
+}
+.param-popup .van-popup {
+    height: 30vh;
+}
+.dynamic-popup .van-popup {
+    max-height: 80vh !important;
 }
 /* .sample-popup .van-popup{
     position: relative; 

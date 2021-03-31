@@ -4,12 +4,12 @@
         <van-cell title="工程名称" title-width="88px" value="{{project}}" />
         <van-cell title="工程编号" title-width="88px" value="{{proId}}" />
         <van-cell title="检测项目" title-width="88px" model:value="{{sampleName}}" is-link bindtap="toggleSample" />
-        <van-cell title="标准" title-width="88px" value="{{normalName}}" />
+        <van-cell wx:if="{{normalName}}" title="标准" title-width="88px" value="{{normalName}}" />
         <view wx:for="{{dynamicParams}}" wx:key="prop">
             <van-field wx:if="{{item.isInput}}" value="{{ form[item.prop] }}" clearable label="{{item.name}}" title-width="76px" data-prop="{{item.prop}}" adjust-position="{{false}}" placeholder="请输入" bind:focus="setHeight" bind:input="onDynamicInput" />
             <van-cell wx:else title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDynamicPicker" />
         </view>
-        <van-cell title="参数" title-width="88px" model:value="{{form.parameterName}}" is-link bindtap="toggleParam" />
+        <van-cell wx:if="{{paramList.length > 0}}" title="参数" title-width="88px" model:value="{{form.parameterName}}" is-link bindtap="toggleParam" />
         <!-- <van-field -->
         <!-- model:value="{{ delegation }}" -->
         <!-- label="检测项目" -->
@@ -32,7 +32,7 @@
         </view> -->
         <button class="submit-btn" bindtap="formSubmit">下一步</button>
     </view>
-    <van-action-sheet show="{{ paramShow }}" round="{{false}}" close-on-click-overlay="{{false}}">
+    <van-action-sheet show="{{ paramShow }}" round="{{false}}" class="param-popup" close-on-click-overlay="{{false}}">
         <view class="action--header__sticky">
             <view class="action-header">
                 <view class="action-cancel" bindtap="toggleParam">取消</view>
@@ -87,7 +87,7 @@
             </van-tabs> -->
         <!-- </view> -->
     </van-action-sheet>
-    <van-action-sheet show="{{ dynamicPickerShow }}" actions="{{ dynamicActions }}" cancel-text="取消" bind:cancel="onPickerClose" bind:select="onPickerSelect" />
+    <van-action-sheet show="{{ dynamicPickerShow }}" round="{{false}}" class="dynamic-popup" actions="{{ dynamicActions }}" cancel-text="取消" bind:cancel="onPickerClose" bind:select="onPickerSelect" />
     <van-action-sheet show="{{ actionShow }}" round="{{false}}" class="sample-popup" close-on-click-overlay="{{false}}">
         <view class="action--header__sticky">
             <view class="action-header">
