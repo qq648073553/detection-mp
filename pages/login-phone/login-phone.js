@@ -17,7 +17,9 @@ Page({
     // loginByOtp: true,
     otpText: '获取验证码',
     otpTimer: null,
+   
   },
+
   // loginSwitch() {
   //   this.setData({
   //     loginByOtp: !this.data.loginByOtp

@@ -1,8 +1,8 @@
 /*
  * @Author: zfd
  * @Date: 2020-10-25 09:21:59
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-03-23 10:37:02
+ * @LastEditors: holder
+ * @LastEditTime: 2021-03-31 08:29:25
  * @Description:
  */
 // const formatTime = date => {
@@ -184,11 +184,11 @@ const parseCattr = cAttStr => {
 class SampleConfig {
   name //属性中文名string
   prop //属性string f1-f13
-  data //数据string
+  // data //数据string
   isInput //输入框boolean
   isPicker //选择器，静态数据源boolean
   table //选择器，动态请求表数据源string
-  source //数据源array
+  resource //数据源array
 }
 const parseSampleConfig = (attStr, cAttStr) => {
   const valid = typeof attStr === 'string' && typeof cAttStr === 'string'
@@ -202,7 +202,8 @@ const parseSampleConfig = (attStr, cAttStr) => {
     const left = splits[0]
     const right = splits[1]
     sample.name = left
-    sample.prop = attrMap.get(left)
+    // 修复面积(mm2)
+    sample.prop = attrMap.get(left.replace(/(\(\w.\))/,''))
     if(right.length === 0) {
       sample.isInput = true
       result.push(sample)
@@ -210,13 +211,14 @@ const parseSampleConfig = (attStr, cAttStr) => {
     }
     if(right.includes('#')) {
       sample.isPicker = true
-      sample.source = right.split('#')
+      // vant actionSheet actions
+      sample.resource = right.split('#').map(v=>({name:v}))
       result.push(sample)
       continue
     }
     if(right === 'pz' || right === 'cc' || right === 'gg') {
       sample.isPicker = true
-      sample.source = []
+      sample.resource = null
       sample.table = right
       result.push(sample)
       continue

@@ -145,7 +145,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.setData({ list: [] }, this.getList(0, 10, null)    )
+    this.setData({ list: [],isRemained:true,pageIndex: 0 }, this.getList(0, 10, null)    )
   },
 
   /**

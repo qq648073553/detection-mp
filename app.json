@@ -34,8 +34,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3FABFF",
     "navigationBarTitleText": "检测系统",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh":true
+    "navigationBarTextStyle": "white"
   },
   "usingComponents": {
     "navbar": "/navbar/index",
