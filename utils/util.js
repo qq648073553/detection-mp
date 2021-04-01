@@ -187,6 +187,7 @@ class SampleConfig {
   // data //数据string
   isInput //输入框boolean
   isPicker //选择器，静态数据源boolean
+  isDate //年月日选择
   table //选择器，动态请求表数据源string
   resource //数据源array
 }
@@ -204,6 +205,11 @@ const parseSampleConfig = (attStr, cAttStr) => {
     sample.name = left
     // 修复面积(mm2)
     sample.prop = attrMap.get(left.replace(/(\(\w.\))/,''))
+    if(left.includes('日期')) {
+      sample.isDate = true
+      result.push(sample)
+      continue
+    }
     if(right.length === 0) {
       sample.isInput = true
       result.push(sample)
@@ -230,6 +236,7 @@ const parseSampleConfig = (attStr, cAttStr) => {
   return result
 }
 
+// 小程序版本比较
 function compareVersion(v1, v2) {
   v1 = v1.split('.')
   v2 = v2.split('.')

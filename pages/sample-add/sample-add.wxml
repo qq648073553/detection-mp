@@ -7,9 +7,11 @@
         <van-cell wx:if="{{normalName}}" title="标准" title-width="88px" value="{{normalName}}" />
         <view wx:for="{{dynamicParams}}" wx:key="prop">
             <van-field wx:if="{{item.isInput}}" value="{{ form[item.prop] }}" clearable label="{{item.name}}" title-width="76px" data-prop="{{item.prop}}" adjust-position="{{false}}" placeholder="请输入" bind:focus="setHeight" bind:input="onDynamicInput" />
-            <van-cell wx:else title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDynamicPicker" />
+            <van-cell wx:elif="{{item.isPicker}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDynamicPicker" />
+            <van-cell wx:elif="{{item.isDate}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDatePicker" />
         </view>
-        <van-cell wx:if="{{paramList.length > 0}}" title="参数" title-width="88px" model:value="{{form.parameterName}}" is-link bindtap="toggleParam" />
+        <van-cell wx:if="{{paramList.length > 0}}" title="参数" title-width="88px" model:value="{{form.parameterName}}" data-name="paramShow" is-link bindtap="togglePicker" />
+        <van-cell title="检测数量" title-width="88px" model:value="{{form['number']}}" data-name="numberShow" is-link bindtap="togglePicker" />
         <!-- <van-field -->
         <!-- model:value="{{ delegation }}" -->
         <!-- label="检测项目" -->
@@ -32,10 +34,14 @@
         </view> -->
         <button class="submit-btn" bindtap="formSubmit">下一步</button>
     </view>
+    <van-popup show="{{ dateShow }}" position="bottom" >
+        <van-datetime-picker  type="date" value="{{ currentDate }}" data-name="dateShow" bind:cancel="togglePicker" bind:confirm="onDateConfirm"  min-date="{{ minDate }}" formatter="{{ Dateformatter }}" />
+    </van-popup>
+    <van-action-sheet show="{{ numberShow }}" round="{{false}}" actions="{{ numberActions }}" cancel-text="取消" data-name="numberShow" bind:cancel="togglePicker" bind:select="onNumberSelect" />
     <van-action-sheet show="{{ paramShow }}" round="{{false}}" class="param-popup" close-on-click-overlay="{{false}}">
         <view class="action--header__sticky">
             <view class="action-header">
-                <view class="action-cancel" bindtap="toggleParam">取消</view>
+                <view class="action-cancel" bindtap="togglePicker">取消</view>
                 <view class="action-title">选择参数</view>
                 <view class="action-confirm" bindtap="onParamConfirm">确认</view>
             </view>
@@ -87,7 +93,7 @@
             </van-tabs> -->
         <!-- </view> -->
     </van-action-sheet>
-    <van-action-sheet show="{{ dynamicPickerShow }}" round="{{false}}" class="dynamic-popup" actions="{{ dynamicActions }}" cancel-text="取消" bind:cancel="onPickerClose" bind:select="onPickerSelect" />
+    <van-action-sheet show="{{ dynamicPickerShow }}" round="{{false}}" class="dynamic-popup" actions="{{ dynamicActions }}" data-name="dynamicPickerShow" cancel-text="取消" bind:cancel="togglePicker" bind:select="onPickerSelect" />
     <van-action-sheet show="{{ actionShow }}" round="{{false}}" class="sample-popup" close-on-click-overlay="{{false}}">
         <view class="action--header__sticky">
             <view class="action-header">
@@ -97,7 +103,7 @@
             </view>
             <van-search class="custom-class" value="{{searchValue}}" shape="round" background="#fff" placeholder="可输入关键词进行筛选" bind:search="onSearch" bind:clear="onSearchClear" />
         </view>
-        <van-collapse accordion value="{{ activeName }}" bind:change="onCollapseChange">
+        <van-collapse accordion value="{{ collpaseActive }}" bind:change="onCollapseChange">
             <van-collapse-item wx:for="{{sampleList}}" wx:key="id" title="{{item.name}}" name="{{item.id}}">
                 <van-radio-group value="{{ sampleId }}" bind:change="onRadioChange">
                     <van-cell-group>

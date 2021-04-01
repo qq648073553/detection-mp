@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-03-31 16:35:29
+ * @LastEditTime: 2021-04-01 10:47:26
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -23,6 +23,16 @@ Page({
     delegation: '',
     // container:null,
     message: '',
+    currentDate:new Date().getTime(),
+    minDate:new Date().getTime(),
+    Dateformatter(type, value) {
+      if (type === 'year') {
+        return `${value}年`;
+      } else if (type === 'month') {
+        return `${value}月`;
+      }
+      return value;
+    },
     statusOptions: [
       { value: 0, text: '已完成' },
       { value: 1, text: '未完成' }
@@ -37,7 +47,9 @@ Page({
     lastScroll: 0,
     actionShow: false,
     paramShow: false,
-    activeName: '1',
+    numberShow: false,
+    dateShow:false,
+    collpaseActive: '1',
     sampleId: null, //iid 样品id
     normalId: null, //standardNum 标准编号id
     paramList: [],
@@ -49,6 +61,7 @@ Page({
     sampleList: [],
     dynamicParams: [],
     dynamicPickerShow: false,
+    numberActions:[{name:10},{name:20}],
     dynamicActions: [],
     pzResponse: null, // 缓存pz表数据，较少请求次数
     currentProp: null // actionSheet使用，input不用
@@ -167,12 +180,30 @@ Page({
       currentProp: prop
     })
   },
+  onClickDatePicker(e){
+    const idx = e.target.dataset.index
+    const { dateShow,dynamicParams } = this.data
+    const { prop } = dynamicParams[idx]
+    this.setData({
+      dateShow: !dateShow,
+      currentProp: prop
+    })
+  },
+  // 选择日期
+  onDateConfirm(event){
+    const form = this.data.form
+    const date = Utils.parseTime(event.detail,'{y}-{m}-{d}')
+    form[this.data.currentProp] = date
+    this.setData({
+      currentDate: date,
+      form,
+      dateShow:!this.data.dateShow
+    });
+  },
   // 选择
   onPickerSelect(event) {
     // 标准id
     const normalId = event.detail.normalId
-
-
     const form = this.data.form
     form[this.data.currentProp] = event.detail.name
     this.setData({
@@ -183,10 +214,6 @@ Page({
       // 设置标准名第二次，当前仅当f1或选择样品时
       this.data.currentProp === 'f1' && this.getNormalName()
     });
-  },
-  // 关闭取消
-  onPickerClose() {
-    this.setData({ dynamicPickerShow: !this.data.dynamicPickerShow });
   },
   // 获取样品父级
   getSampleParent(filterValue) {
@@ -305,8 +332,12 @@ Page({
     //   })
     // })
   },
-  toggleParam() {
-    this.setData({ paramShow: !this.data.paramShow })
+  // 选择器开关
+  togglePicker(event){
+    const name = event.target.dataset.name
+    const obj = {}
+    obj[name] = !this.data[name]
+    this.setData(obj)
   },
   onParamConfirm() {
     if(!this.data.form.parameterName) {
@@ -344,13 +375,21 @@ Page({
   async onCollapseChange(event) {
     const { detail } = event
     this.setData({
-      activeName: detail,
+      collpaseActive: detail,
     });
     const sampleList = this.data.sampleList
     const parent = sampleList.find(v => v.id === detail)
     if (parent) {
       !parent.responses && (await this.getSampleChild(detail))
     }
+  },
+  onNumberSelect(event){
+    const form = this.data.form
+    form.number = event.detail.name
+    this.setData({
+      form,
+      numberShow:!this.data.numberShow
+    });
   },
   afterRead() {
 
