@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/delegation-list/delegation-list",
     "pages/sample-add/sample-add",
     "pages/login/login",
     "pages/human-resource/human-resource",
@@ -21,7 +22,6 @@
     "pages/settle/settle",
     "pages/login-phone/login-phone",
     "pages/function-list/function-list",
-    "pages/delegation-list/delegation-list",
     "pages/pro-detail/pro-detail",
     "pages/check-in/check-in", 
     "navbar/index",

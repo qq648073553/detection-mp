@@ -5,3 +5,21 @@
     text-align: center;
     color: grey;
 }
+.image__fixed {
+    width: 80rpx; 
+    height: 80rpx; 
+    /* background-color: #eeeeee; */
+    position: fixed;
+    top: 70%;
+    right: 60rpx;
+}
+.image-fixed__circled {
+    width: 80rpx; 
+    height: 80rpx; 
+    /* background-color: #eeeeee; */
+    border-radius: 50%;
+    background-color: #fff;
+    position: fixed;
+    top: 70%;
+    right: 60rpx;
+}

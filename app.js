@@ -2,7 +2,7 @@
  * @Author: holder
  * @Date: 2021-01-08 14:01:21
  * @LastEditors: holder
- * @LastEditTime: 2021-03-31 14:39:43
+ * @LastEditTime: 2021-04-02 14:41:37
  * @Description: 
  */
 //app.js
@@ -38,7 +38,7 @@ App({
   globalData: {
     userInfo: {},
     header: {},
-    baseURL: 'http://192.168.0.191:8344/api/',
+    baseURL: 'http://192.168.9.31:8345/api/',
     proStatus: {
       beforeConfirm: 1,
       confirmed: 0,
