@@ -1,8 +1,11 @@
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="{{navTitle}}" showNav showHome></navbar>
     <view class="add-container custom-class" style="top:{{padBottom}}px">
-        <van-cell title="工程名称" title-width="88px" value="{{project}}" />
+        <van-field model:value="{{ project }}" clearable label="工程名称" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
         <van-cell title="工程编号" title-width="88px" value="{{proId}}" />
+        <van-cell title="委托人" title-width="88px" value="{{proId}}" />
+        <van-field model:value="{{ seeName }}" clearable label="见证人" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
+        <van-field model:value="{{ seeId }}" clearable label="见证号" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
         <van-cell title="检测项目" title-width="88px" model:value="{{sampleName}}" is-link bindtap="toggleSample" />
         <van-cell wx:if="{{normalName}}" title="标准" title-width="88px" value="{{normalName}}" />
         <view wx:for="{{dynamicParams}}" wx:key="prop">
@@ -10,8 +13,8 @@
             <van-cell wx:elif="{{item.isPicker}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDynamicPicker" />
             <van-cell wx:elif="{{item.isDate}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDatePicker" />
         </view>
-        <van-cell wx:if="{{paramList.length > 0}}" title="参数" title-width="88px" model:value="{{form.parameterName}}" data-name="paramShow" is-link bindtap="togglePicker" />
-        <van-cell title="检测数量" title-width="88px" model:value="{{form['number']}}" data-name="numberShow" is-link bindtap="togglePicker" />
+        <van-cell wx:if="{{paramList.length > 0}}" title="参数" title-width="88px" value="{{form['parameterName']}}" data-name="paramShow" is-link bindtap="togglePicker" />
+        <van-cell title="检测数量" title-width="88px" value="{{form['number']}}" data-name="numberShow" is-link bindtap="togglePicker" />
         <!-- <van-field -->
         <!-- model:value="{{ delegation }}" -->
         <!-- label="检测项目" -->
@@ -34,8 +37,8 @@
         </view> -->
         <button class="submit-btn" bindtap="formSubmit">下一步</button>
     </view>
-    <van-popup show="{{ dateShow }}" position="bottom" >
-        <van-datetime-picker  type="date" value="{{ currentDate }}" data-name="dateShow" bind:cancel="togglePicker" bind:confirm="onDateConfirm"  min-date="{{ minDate }}" formatter="{{ Dateformatter }}" />
+    <van-popup show="{{ dateShow }}" position="bottom">
+        <van-datetime-picker type="date" value="{{ currentDate }}" data-name="dateShow" bind:cancel="togglePicker" bind:confirm="onDateConfirm" min-date="{{ minDate }}" formatter="{{ Dateformatter }}" />
     </van-popup>
     <van-action-sheet show="{{ numberShow }}" round="{{false}}" actions="{{ numberActions }}" cancel-text="取消" data-name="numberShow" bind:cancel="togglePicker" bind:select="onNumberSelect" />
     <van-action-sheet show="{{ paramShow }}" round="{{false}}" class="param-popup" close-on-click-overlay="{{false}}">

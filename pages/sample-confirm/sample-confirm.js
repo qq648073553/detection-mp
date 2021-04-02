@@ -7,6 +7,13 @@
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
  */
 const App = getApp();
+const Request = require('../../utils/request')
+const fetch = new Request({
+  auth: true,
+  header: App.globalData.header,
+  baseURL: App.globalData.baseURL
+})
+const Utils = require('../../utils/util')
 Page({
   data: {
     observer: '',
@@ -20,9 +27,21 @@ Page({
       { value: 1, text: '未完成' }
     ],
     navTitle: '送样确认',
-    padBottom: 0,
+    dateShow:false,
+    currentDate: new Date().getTime(),
+    sampleDate:'',
+    minDate:new Date().getTime(),
+    Dateformatter(type, value) {
+      if (type === 'year') {
+        return `${value}年`;
+      } else if (type === 'month') {
+        return `${value}月`;
+      }
+      return value;
+    },
+    // padBottom: 0,
     fileList:[],
-    lastScroll:0,
+    // lastScroll:0,
     actionShow: false,
     actionTitle: '建设单位',
     active:1,
@@ -35,22 +54,20 @@ Page({
       { name: '未完成', value: false }
   ],
   },
-  onStandardChange(event) {
+    // 选择器开关
+    togglePicker(event){
+      const name = event.target.dataset.name
+      const obj = {}
+      obj[name] = !this.data[name]
+      this.setData(obj)
+    },
+  // 选择日期
+  onDateConfirm(event){
+    const date = Utils.parseTime(event.detail,'{y}-{m}-{d}')
     this.setData({
-      result: event.detail
-    });
-  },
-
-  onStandardToggle(event) {
-    const { index } = event.currentTarget.dataset;
-    const checkbox = this.selectComponent(`.checkboxes-${index}`);
-    checkbox.toggle();
-  },
-
-  noop() {},
-  onRadioChange(event){
-    this.setData({
-      radio: event.detail,
+      currentDate: event.detail,
+      sampleDate:date,
+      dateShow:!this.data.dateShow
     });
   },
   onSampleClick(event) {
@@ -76,44 +93,44 @@ Page({
   formSubmit() {
  
   },
-  setHeight(e) {
-    const height = Math.max(e.detail.height, this.data.lastScroll)
-    this.setData({
-      padBottom:height * -1
-    })
-  },
+  // setHeight(e) {
+  //   const height = Math.max(e.detail.height, this.data.lastScroll)
+  //   this.setData({
+  //     padBottom:height * -1
+  //   })
+  // },
   onLoad: function (options) {
     const {type} = options
     // const title = type === 'modify' ? '送样修改' : '新增送样'
     this.setData({
       navHeight: App.globalData.navHeight,
-      padBottom:App.globalData.navHeight,
+      // padBottom:App.globalData.navHeight,
       // navTitle: title
     })
   },
   onShow() {
-    wx.onKeyboardHeightChange(res => {
-      if(res.height === 0){
-        const scrollTop = this.data.lastScroll
-        this.setData({
-          padBottom:this.data.navHeight
-        },()=>{
-          wx.pageScrollTo({
-            scrollTop:scrollTop,
-            fail(err) {
-              console.log(err)
-            }
-          })
-        })
-      }
-    })
+    // wx.onKeyboardHeightChange(res => {
+    //   if(res.height === 0){
+    //     const scrollTop = this.data.lastScroll
+    //     this.setData({
+    //       padBottom:this.data.navHeight
+    //     },()=>{
+    //       wx.pageScrollTo({
+    //         scrollTop:scrollTop,
+    //         fail(err) {
+    //           console.log(err)
+    //         }
+    //       })
+    //     })
+    //   }
+    // })
   },
   onPageScroll(obj) {
-    if(obj.scrollTop !== 0){
-      this.setData({
-        lastScroll:obj.scrollTop
-      })
-    }
+    // if(obj.scrollTop !== 0){
+    //   this.setData({
+    //     lastScroll:obj.scrollTop
+    //   })
+    // }
   }
 })
 

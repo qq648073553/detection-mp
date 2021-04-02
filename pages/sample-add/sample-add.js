@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-04-01 10:47:26
+ * @LastEditTime: 2021-04-01 13:41:47
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -21,10 +21,12 @@ Page({
     project: '苏州中心',
     proId: '20201212',
     delegation: '',
+    seeName: '蒋怡凡',
+    seeId: '110',
     // container:null,
     message: '',
-    currentDate:new Date().getTime(),
-    minDate:new Date().getTime(),
+    currentDate: new Date().getTime(),
+    minDate: new Date().getTime(),
     Dateformatter(type, value) {
       if (type === 'year') {
         return `${value}年`;
@@ -37,9 +39,9 @@ Page({
       { value: 0, text: '已完成' },
       { value: 1, text: '未完成' }
     ],
-    paramSelected:[],
+    paramSelected: [],
     form: {
-      parameterName:''
+      parameterName: ''
     },
     navTitle: '新增送样',
     padBottom: 0,
@@ -48,7 +50,7 @@ Page({
     actionShow: false,
     paramShow: false,
     numberShow: false,
-    dateShow:false,
+    dateShow: false,
     collpaseActive: '1',
     sampleId: null, //iid 样品id
     normalId: null, //standardNum 标准编号id
@@ -57,11 +59,11 @@ Page({
     searchValue: '',
     normalName: null,
     sampleName: '请选择',
-    paramName:'',
+    paramName: '',
     sampleList: [],
     dynamicParams: [],
     dynamicPickerShow: false,
-    numberActions:[{name:10},{name:20}],
+    numberActions: [{ name: 10 }, { name: 20 }],
     dynamicActions: [],
     pzResponse: null, // 缓存pz表数据，较少请求次数
     currentProp: null // actionSheet使用，input不用
@@ -87,33 +89,33 @@ Page({
     try {
       if (normalRes.length === 1) {
         const paramRes = await fetch.get(`infoCfg/getPzjczx/${normalRes[0].standardNum}`)
-        const paramList = (paramRes && paramRes.map(v=>v.name)) || []
+        const paramList = (paramRes && paramRes.map(v => v.name)) || []
         this.setData({
           paramList,
-          normalId:normalRes[0].standardNum,
+          normalId: normalRes[0].standardNum,
           normalName: normalRes[0].standard
         })
         return
       }
       if (!normalId && normalRes.length > 1) {
         this.setData({
-          normalId:null,
+          normalId: null,
           normalName: null
         })
         return
       }
       const normalObj = normalRes.find(v => v.standardNum === normalId)
       const paramRes = await fetch.get(`infoCfg/getPzjczx/${normalObj.standardNum}`)
-      const paramList = (paramRes && paramRes.map(v=>v.name)) || []
+      const paramList = (paramRes && paramRes.map(v => v.name)) || []
       this.setData({
         paramList,
-        normalId:normalObj.standardNum,
+        normalId: normalObj.standardNum,
         normalName: normalObj.standard
       })
     } catch (error) {
       console.log('标准名获取失败', error)
       this.setData({
-        normalId:null,
+        normalId: null,
         normalName: null
       })
     }
@@ -130,14 +132,20 @@ Page({
         return pzRes.map(v => ({ normalId: v.standardNum, name: v.name }))
       } else if (table === 'gg') {
         // 查询牌号下拉框
-        const ggRes = await fetch.get(`infoCfg/getGg/${this.data.normalId}`)
-        if (ggRes.length === 1) {
-          // "cc": "3#6#6.5#7#8#9#10#12#12.70#15.20#14#16#18#20#22#25#28#32#36#40",
-          return ggRes[0].gg.split('#').map(v => ({ name: v }))
-        } else {
-          const ggObj = ccRes.find(v => v.standardNum === this.data.normalId)
-          return ggObj.gg.split('#').map(v => ({ name: v }))
+        if (!!this.data.normalId) {
+          const ggRes = await fetch.get(`infoCfg/getGg/${this.data.normalId}`)
+          const ggData = ggRes.filter(v => v.standardNum === this.data.normalId)
+          return ggData.map(v => ({ name: v.name }))
         }
+        return []
+
+        // if (ggRes.length === 1) {
+        //   // "cc": "3#6#6.5#7#8#9#10#12#12.70#15.20#14#16#18#20#22#25#28#32#36#40",
+        //   return ggRes[0].gg.split('#').map(v => ({ name: v }))
+        // } else {
+        //   const ggObj = ccRes.find(v => v.standardNum === this.data.normalId)
+        //   return ggObj.gg.split('#').map(v => ({ name: v }))
+        // }
       } else if (table === 'cc') {
         // 查询规格下拉框
         const ccRes = this.data.pzResponse || await fetch.get(`infoCfg/getPz/${this.data.sampleId}`).then((pzResponse) => {
@@ -180,9 +188,9 @@ Page({
       currentProp: prop
     })
   },
-  onClickDatePicker(e){
+  onClickDatePicker(e) {
     const idx = e.target.dataset.index
-    const { dateShow,dynamicParams } = this.data
+    const { dateShow, dynamicParams } = this.data
     const { prop } = dynamicParams[idx]
     this.setData({
       dateShow: !dateShow,
@@ -190,14 +198,14 @@ Page({
     })
   },
   // 选择日期
-  onDateConfirm(event){
+  onDateConfirm(event) {
     const form = this.data.form
-    const date = Utils.parseTime(event.detail,'{y}-{m}-{d}')
+    const date = Utils.parseTime(event.detail, '{y}-{m}-{d}')
     form[this.data.currentProp] = date
     this.setData({
-      currentDate: date,
+      currentDate: event.detail,
       form,
-      dateShow:!this.data.dateShow
+      dateShow: !this.data.dateShow
     });
   },
   // 选择
@@ -318,9 +326,9 @@ Page({
       normalName: null,
       dynamicParams: [],
       sampleName: '请选择',
-      paramList:[],
-      paramName:null,
-      form:{}
+      paramList: [],
+      paramName: null,
+      form: {}
     }
     )
     // wx.nextTick(()=>{
@@ -333,14 +341,14 @@ Page({
     // })
   },
   // 选择器开关
-  togglePicker(event){
+  togglePicker(event) {
     const name = event.target.dataset.name
     const obj = {}
     obj[name] = !this.data[name]
     this.setData(obj)
   },
   onParamConfirm() {
-    if(!this.data.form.parameterName) {
+    if (!this.data.form.parameterName) {
       wx.showToast({
         title: '请先选择参数',
         icon: 'none',
@@ -348,7 +356,7 @@ Page({
       })
       return
     }
-    this.setData({ 
+    this.setData({
       paramShow: !this.data.paramShow,
     })
   },
@@ -356,7 +364,7 @@ Page({
     const form = this.data.form
     form.parameterName = event.detail.join('，')
     this.setData({
-      paramSelected:event.detail,
+      paramSelected: event.detail,
       form
     });
   },
@@ -383,21 +391,51 @@ Page({
       !parent.responses && (await this.getSampleChild(detail))
     }
   },
-  onNumberSelect(event){
+  onNumberSelect(event) {
     const form = this.data.form
     form.number = event.detail.name
     this.setData({
       form,
-      numberShow:!this.data.numberShow
+      numberShow: !this.data.numberShow
     });
   },
   afterRead() {
 
   },
+  checkForm(form) {
+    const entries = Object.entries(form)
+    for (const entry of entries) {
+      if (!entry[1]) {
+        const propObj = this.data.dynamicParams.find(v => v.prop === entry[0])
+        let title = '请补全信息'
+        if(!!propObj){
+          title = '请先填写' + propObj.name
+        }
+        wx.showToast({
+          title,
+          icon: 'none',
+          duration: 1000
+        })
+        return false
+      }
+    }
+    return true
+  },
   formSubmit() {
+    const form = this.data.form
+    form.seeName = this.data.seeName
+    form.seeId = this.data.seeId
+    form.sampleName = this.data.sampleName
+    form.sampleId = this.data.sampleId
     wx.navigateTo({
       url: '/pages/sample-confirm/sample-confirm',
     })
+    // if (this.checkForm(form)) {
+    //   wx.navigateTo({
+    //     url: '/pages/sample-confirm/sample-confirm',
+    //   })
+    // }
+
   },
   // 设置高度
   setHeight(e) {

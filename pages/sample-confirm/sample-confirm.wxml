@@ -3,21 +3,18 @@
     <view class="add-container custom-class" style="top:{{padBottom}}px">
         <van-cell title="样品编号" title-width="88px" value="{{project}}" />
         <van-cell title="委托单编号" title-width="88px" value="{{proId}}" />
+        <van-cell title="站点" title-width="88px" value="请选择" is-link bindtap="onCancel" />
+        <van-field model:value="{{ project }}" clearable label="部位（结构）" title-width="76px" placeholder="请输入" />
         <van-cell title="委托类型" title-width="88px" value="请选择" is-link bindtap="onCancel" />
-                <van-cell title="来样方式" title-width="88px" value="请选择" is-link bindtap="onCancel" />
+        <van-cell title="来样方式" title-width="88px" value="请选择" is-link bindtap="onCancel" />
         <van-cell title="检测部门" title-width="88px" value="请选择" is-link bindtap="onCancel" />
-        <van-cell title="收样日期" title-width="88px" value="请选择" is-link bindtap="onCancel" />
+        <van-cell title="收样日期" title-width="88px" value="{{sampleDate}}" is-link data-name="dateShow" bindtap="togglePicker" />
         <van-cell title="本次检测费" title-width="88px" value="{{project}}" />
         <van-cell title="样品处理" title-width="88px" value="请选择" is-link bindtap="onCancel" />
-
-          <van-action-sheet
-            show="{{ actionShow }}"
-            actions="{{ statusOptions }}"
-            cancel-text="取消"
-            bind:cancel="onCancel"
-            bind:select="onCancel"
-    />
         <button class="submit-btn" bindtap="formSubmit">提 交</button>
     </view>
-
+    <van-popup show="{{ dateShow }}" position="bottom">
+        <van-datetime-picker type="date" value="{{ currentDate }}" data-name="dateShow" bind:cancel="togglePicker" bind:confirm="onDateConfirm" min-date="{{ minDate }}" formatter="{{ Dateformatter }}" />
+    </van-popup>
+    <van-action-sheet show="{{ actionShow }}" actions="{{ statusOptions }}" cancel-text="取消" bind:cancel="onCancel" bind:select="onCancel" />
 </view>
