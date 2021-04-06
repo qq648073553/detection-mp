@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-04-06 13:28:35
+ * @LastEditTime: 2021-04-06 17:08:59
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -26,6 +26,7 @@ Page({
     // container:null,
     message: '',
     currentDate: new Date().getTime(),
+    appointmentDate:'请选择',
     minDate: new Date().getTime(),
     Dateformatter(type, value) {
       if (type === 'year') {
@@ -40,15 +41,18 @@ Page({
       { value: 1, text: '未完成' }
     ],
     paramSelected: [],
-    form: {
-      parameterName: '请选择',
-      number: '请选择'
-    },
+    deliverWay: '请选择',
+    parameterName: '请选择',
+    number: '请选择',
+    sampleAddress:'请选择',
+    sampleTime:'请选择',
+    form: {},
     navTitle: '新增委托',
     padBottom: 0,
     fileList: [],
     lastScroll: 0,
     actionShow: false,
+    appointmentDateShow:false,
     paramShow: false,
     numberShow: false,
     dateShow: false,
@@ -189,6 +193,16 @@ Page({
       currentProp: prop
     })
   },
+  // 点击送样方式选择器
+  onClickWayPicker() {
+    const dynamicActions = [{ name: '自送检' }, { name: '待取样' }, { name: '现场检测' }]
+    const { dynamicPickerShow } = this.data
+    this.setData({
+      dynamicPickerShow: !dynamicPickerShow,
+      dynamicActions,
+      currentProp: 'deliverWay'
+    })
+  },
   onClickDatePicker(e) {
     const idx = e.target.dataset.index
     const { dateShow, dynamicParams } = this.data
@@ -197,6 +211,15 @@ Page({
       dateShow: !dateShow,
       currentProp: prop
     })
+  },
+  // 选择预约日期
+  onAppointmentDateConfirm(event){
+    const date = Utils.parseTime(event.detail, '{y}-{m}-{d}')
+    this.setData({
+      appointmentDate: event.detail,
+      sampleTime:date,
+      appointmentDateShow: !this.data.appointmentDateShow
+    });
   },
   // 选择日期
   onDateConfirm(event) {
@@ -212,21 +235,29 @@ Page({
   // 选择
   onPickerSelect(event) {
     // 标准id
-    const normalId = event.detail.normalId
-    const form = this.data.form
-    form[this.data.currentProp] = event.detail.name
-    this.setData({
-      dynamicPickerShow: !this.data.dynamicPickerShow,
-      form,
-      normalId
-    }, () => {
-      // 设置标准名第二次，当前仅当f1或选择样品时
-      this.data.currentProp === 'f1' && this.getNormalName()
-    });
+    // const normalId = event.detail.normalId
+    if (this.data.currentProp === 'deliverWay') {
+      this.setData({
+        deliverWay: event.detail.name,
+        dynamicPickerShow: !this.data.dynamicPickerShow
+      })
+    } else {
+      const form = this.data.form
+      form[this.data.currentProp] = event.detail.name
+      this.setData({
+        dynamicPickerShow: !this.data.dynamicPickerShow,
+        form,
+        // normalId
+      }, () => {
+        // 设置标准名第二次，当前仅当f1或选择样品时
+        this.data.currentProp === 'f1' && this.getNormalName()
+      });
+    }
+
   },
   // 获取样品父级
-  getSampleParent(filterValue) {
-    fetch.post('itemsKind/getItemsKind', { content: filterValue })
+  async getSampleParent(filterValue) {
+    await fetch.post('itemsKind/getItemsKind', { content: filterValue })
       .then((sampleList) => {
         this.setData({ sampleList })
       })
@@ -271,34 +302,38 @@ Page({
     this.setSample(sampleId)
 
   },
+  async setDynamicParams(childId,sampleName){
+    const configRes = await fetch.get(`infoCfg/get/${childId}`)
+    const { attribute, correspondingAttribute } = configRes
+    const dynamicParams = Utils.parseSampleConfig(attribute, correspondingAttribute) || []
+    const form = {}
+    dynamicParams.forEach(v => {
+      if (v.isDate || v.isPicker) {
+        form[v.prop] = '请选择'
+      } else {
+        form[v.prop] = null
+      }
+    })
+    console.log(dynamicParams)
+    this.setData({
+      actionShow: false,
+      dynamicParams,
+      form,
+      sampleId:childId,
+      sampleName,
+      pzResponse: null
+    }, () => {
+      // 选择检测项目设置标注名 第一次
+      this.getNormalName()
+    })
+  },
   // 设置样品
   async setSample(childId) {
     for (const p of this.data.sampleList) {
       if (p.responses) {
         const c = p.responses.find(v => v.id === childId)
         if (c) {
-          const configRes = await fetch.get(`infoCfg/get/${childId}`)
-          const { attribute, correspondingAttribute } = configRes
-          const dynamicParams = Utils.parseSampleConfig(attribute, correspondingAttribute) || []
-          const form = {}
-          dynamicParams.forEach(v => { 
-            if(v.isDate || v.isPicker) {
-              form[v.prop] = '请选择'
-            }else {
-              form[v.prop] = null
-            }
-           })
-          console.log(dynamicParams)
-          this.setData({
-            actionShow: !this.data.actionShow,
-            dynamicParams,
-            form,
-            sampleName: p.name + '/' + c.name,
-            pzResponse: null
-          }, () => {
-            // 选择检测项目设置标注名 第一次
-            this.getNormalName()
-          })
+          await this.setDynamicParams(childId,p.name + '/' + c.name,)
           return
         }
       }
@@ -335,10 +370,7 @@ Page({
       sampleName: '请选择',
       paramList: [],
       paramName: null,
-      form: {
-        parameterName: '请选择',
-        number: '请选择'
-      }
+      form: {}
     }
     )
     // wx.nextTick(()=>{
@@ -358,7 +390,7 @@ Page({
     this.setData(obj)
   },
   onParamConfirm() {
-    if (!this.data.form.parameterName) {
+    if (!this.data.parameterName) {
       wx.showToast({
         title: '请先选择参数',
         icon: 'none',
@@ -371,11 +403,12 @@ Page({
     })
   },
   onParamChange(event) {
-    const form = this.data.form
-    form.parameterName = event.detail.join('，')
+    // const form = this.data.form
+    // form.parameterName = event.detail.join('，')
+    const parameterName = event.detail.join('，')
     this.setData({
-      paramSelected: event.detail,
-      form
+      parameterName,
+      paramSelected: event.detail
     });
   },
 
@@ -402,15 +435,64 @@ Page({
     }
   },
   onNumberSelect(event) {
-    const form = this.data.form
-    form.number = event.detail.name
+    // const form = this.data.form
+    // form.number = event.detail.name
+    const number = event.detail.name
     this.setData({
-      form,
+      // form,
+      number,
       numberShow: !this.data.numberShow
     });
   },
-  afterRead() {
-
+    // 读取完立即上传
+    afterRead(event) {
+      const { file } = event.detail;
+      if(Array.isArray(file)) {
+          for(const f of file) {
+              this.uploadFile(f)
+          }
+      }else {
+          this.uploadFile(file)
+      }
+  },
+  uploadFile(file) {
+      const value = wx.getStorageSync('Authorization')
+      wx.uploadFile({
+          url: App.globalData.baseURL + 'file/file',
+          filePath: file.url,
+          name: 'file',
+          header: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': value,//这是要token
+          },
+          success: (res) => {
+              const data = JSON.parse(res.data).data
+              // 暂未绑定，只是文件上传了 uid做标识
+              file.uid = data.uid
+              this.setData({
+                  fileList:[...this.data.fileList, data]
+              })
+          },
+          fail:() => {
+              wx.showToast({
+                  title: '文件保存失败,请重新上传',
+                  icon: 'none',
+                  duration: 2000
+              })
+          }
+      })
+  },
+  fileDelete(e) {
+      // 删除文件 包括已绑定和未绑定
+      const id = e.detail.file.uid || e.detail.file.id
+      fetch.delete(`file/${id}`)
+      .catch(() => {
+          wx.showToast({
+              title: '文件删除失败',
+              icon: 'error',
+              duration: 2000
+          })
+      })
   },
   checkForm(form) {
     const entries = Object.entries(form)
@@ -418,7 +500,7 @@ Page({
       if (!entry[1]) {
         const propObj = this.data.dynamicParams.find(v => v.prop === entry[0])
         let title = '请补全信息'
-        if(!!propObj){
+        if (!!propObj) {
           title = '请先填写' + propObj.name
         }
         wx.showToast({
@@ -437,6 +519,8 @@ Page({
     form.seeId = this.data.seeId
     form.sampleName = this.data.sampleName
     form.sampleId = this.data.sampleId
+    form.parameterName = this.data.parameterName
+    form.number = number
     wx.navigateTo({
       url: '/pages/sample-confirm/sample-confirm',
     })
@@ -454,17 +538,34 @@ Page({
       padBottom: height * -1
     })
   },
-  onLoad: function (options) {
-    const { type } = options
-    const title = type === 'modify' ? '送样修改' : '新增送样'
+  async onLoad(options) {
+    const { type,sampleId=1736 } = options
+    let title = '新增送样'
+    
+    
+    await this.getSampleParent()
+    if(type === 'modify') { 
+      title = '送样修改'
+      
+      this.setDynamicParams(sampleId,'测试修改')
+    }
     this.setData({
       navHeight: App.globalData.navHeight,
       padBottom: App.globalData.navHeight,
       navTitle: title,
     })
-    this.getSampleParent()
   },
   onShow() {
+    try {
+      let value = wx.getStorageSync('location')
+      if (value) {
+        this.setData({
+          sampleAddress:value
+        })
+      }
+    } catch (error) {
+      
+    }
     wx.onKeyboardHeightChange(res => {
       if (res.height === 0) {
         const scrollTop = this.data.lastScroll

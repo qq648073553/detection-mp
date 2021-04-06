@@ -68,7 +68,6 @@
     max-width: 76px;
     min-width: 76px;
     margin: 10px 12px 10px 16px ;
-
 }
 .value-class {
     flex: none !important;
@@ -90,6 +89,9 @@
 .action-confirm{
     font-size: 16px;
     color: #4387F6;
+}
+.custom-class .van-cell__value {
+    color: #323233;
 }
 /* .action-filter{
     display: table;

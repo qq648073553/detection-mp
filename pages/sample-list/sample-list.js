@@ -52,7 +52,8 @@ Page({
         tags: ['报告数10']
       }
     ],
-    histories:['苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影','苏州中心', '华纳电影']
+    histories:[],
+    isRemained: true
 
   },
 
@@ -60,7 +61,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const {status} = options
     this.setData({
       navHeight: App.globalData.navHeight,
       proStatus: App.globalData.proStatus,
@@ -68,7 +68,7 @@ Page({
       list: this.data.list
     })
     wx.getStorage({
-      key: 'histories',
+      key: 'sampleHistories',
       success (res) {
         console.log(res.data)
         this.setData({
@@ -77,7 +77,32 @@ Page({
       }
     })
   },
-
+  onSearch(event){
+    const { detail } = event
+    if (detail) {
+      this.data.histories.unshift(detail)
+    }
+    // 保存最新的3个搜索记录
+    this.data.histories = this.data.histories.slice(0, 3)
+    wx.setStorage({ key: 'sampleHistories', data: this.data.histories })
+    this.setData({
+      searchValue: detail,
+      list: [],
+      isRemained: true,
+      pageIndex: 0,
+      histories: this.data.histories
+    })
+    // this.getList(0, 10, detail)
+  },
+  onFastSearch(event) {
+    this.setData({
+      searchValue: event.target.dataset.title,
+      list: [],
+      isRemained: true,
+      pageIndex: 0,
+    })
+    // this.getList(0, 10, event.target.dataset.title)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

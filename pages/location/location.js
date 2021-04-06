@@ -72,7 +72,9 @@ Page({
   onSave() {
     const { areas, detail, remarks} = this.data
     if(areas.length > 0 && detail.length > 0) {
-      wx.setStorageSync('locationPro',[areas,detail,remarks].join('|'))
+      
+      // wx.redirectTo
+      wx.setStorageSync('location',[areas,detail,remarks].join('|'))
       wx.navigateBack()
     }else {
       wx.showToast({

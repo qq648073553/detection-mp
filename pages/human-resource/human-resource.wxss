@@ -73,13 +73,13 @@
 .text__confirm{
     color: #4387F6;
 }
-.action--header__sticky{
+/* .action--header__sticky{
     width: 100%;
     position: sticky;
     z-index: 100;
     background-color: #fff;
     top: 0;
-}
+} */
 .action-header{
     padding: 10px 15px;
     display: flex;

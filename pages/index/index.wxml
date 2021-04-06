@@ -23,7 +23,7 @@
 
 
        <navigator url="/pages/pro-search/pro-search" hover-class="none">
-           <van-cell title="请输入搜索关键词" class="index-search" icon="search" border="{{false}}" />
+           <van-cell title="根据工程名称进行检索" class="index-search" icon="search" border="{{false}}" />
        </navigator>
 
 

@@ -13,7 +13,7 @@
         </view>
         <view class="banner-right">
             <block wx:if="{{status == 0}}">
-                <navigator url="/pages/delegation-add/delegation-add?id={{degId}}}&type=modify" class="deg-detail-btn" hover-class="none">修改</navigator>
+                <navigator url="/pages/sample-add/sample-add?id={{degId}}}&type=modify" class="deg-detail-btn" hover-class="none">修改</navigator>
                 <navigator url="/pages/pro-cancel/pro-cancel?type=1&id={{degId}}" class="deg-detail-btn" hover-class="none">撤单</navigator>
             </block>
             <block wx:elif="{{status == 4}}">

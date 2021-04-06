@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/human-resource/human-resource",
     "pages/sample-add/sample-add",
     "pages/my/my",
-    "pages/human-resource/human-resource",
     "pages/login/login",
     "pages/delegation-list/delegation-list",
     "pages/sample-list/sample-list",

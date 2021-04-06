@@ -2,7 +2,7 @@
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="人员管理" showNav showHome></navbar>
     <van-tabs active="{{ activeName }}" bind:change="onChange" swipeable>
-        <van-tab title="送样人" name="send">
+        <van-tab title="送样员" name="ROLE_DELIVERER">
             <view class="hr-table">
                 <view class="hr-table--head">
                     <view class="th__delete">删除</view>
@@ -20,7 +20,7 @@
                 </view>
             </view>
         </van-tab>
-        <van-tab title="见证员" name="witness">
+        <van-tab title="见证员" name="ROLE_WITNESSES">
             <view class="hr-table">
                 <view class="hr-table--head">
                     <view class="th__delete">删除</view>
@@ -38,7 +38,7 @@
                 </view>
             </view>
         </van-tab>
-        <van-tab title="质监员" name="builder">
+        <van-tab title="质监员" name="ROLE_QUALITY">
             <view class="hr-table">
                 <view class="hr-table--head">
                     <view class="th__delete">删除</view>
@@ -56,7 +56,7 @@
                 </view>
             </view>
         </van-tab>
-        <van-tab title="建设单位" name="inspector">
+        <van-tab title="建设单位" name="ROLE_CONSTRUCTION">
             <view class="hr-table">
                 <view class="hr-table--head">
                     <view class="th__delete">删除</view>
@@ -66,7 +66,7 @@
                 </view>
                 <view class="hr-table--tbody">
                     <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
-                        <van-icon class="td__delete" name="clear" color="red" />
+                        <van-icon class="td__delete" name="clear" color="red" data-id="{{item.uid}}" bind:tap="peopleDelete" />
                         <view class="td__name">{{item.name}}</view>
                         <view class="td__phone">{{item.phone}}</view>
                         <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
@@ -91,19 +91,20 @@
         </view>
     </van-popup> -->
     <van-action-sheet show="{{ addShow }}" round="{{false}}" class="param-popup" close-on-click-overlay="{{false}}">
-        <view class="action--header__sticky">
             <view class="action-header">
                 <view class="action-cancel" bindtap="toggleAddShow">取消</view>
-                <view class="action-title">新增用户</view>
+                <view class="action-title">{{actionTitle}}</view>
                 <view class="action-confirm" bindtap="onAddConfirm">确认</view>
             </view>
-        </view>
-        <van-checkbox-group value="{{ AddSelected }}" bind:change="onAddChange">
+            <van-search class="custom-class" value="{{searchValue}}" shape="round" background="#fff" placeholder="根据手机号精确查找" bind:search="onSearch" />
+        <van-cell  title="{{ searchPeople }}" value-class="value-class">
+        </van-cell>
+        <!-- <van-checkbox-group value="{{ addSelected }}" bind:change="onAddChange">
             <van-cell-group>
                 <van-cell wx:for="{{ peopleList }}" wx:key="index" title="{{ item }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="onAddToggle">
                     <van-checkbox shape="square" catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" />
                 </van-cell>
             </van-cell-group>
-        </van-checkbox-group>
+        </van-checkbox-group> -->
     </van-action-sheet>
 </view>
