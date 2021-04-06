@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-04-01 13:41:47
+ * @LastEditTime: 2021-04-06 13:28:35
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -41,9 +41,10 @@ Page({
     ],
     paramSelected: [],
     form: {
-      parameterName: ''
+      parameterName: '请选择',
+      number: '请选择'
     },
-    navTitle: '新增送样',
+    navTitle: '新增委托',
     padBottom: 0,
     fileList: [],
     lastScroll: 0,
@@ -280,7 +281,13 @@ Page({
           const { attribute, correspondingAttribute } = configRes
           const dynamicParams = Utils.parseSampleConfig(attribute, correspondingAttribute) || []
           const form = {}
-          dynamicParams.forEach(v => { form[v.prop] = null })
+          dynamicParams.forEach(v => { 
+            if(v.isDate || v.isPicker) {
+              form[v.prop] = '请选择'
+            }else {
+              form[v.prop] = null
+            }
+           })
           console.log(dynamicParams)
           this.setData({
             actionShow: !this.data.actionShow,
@@ -328,7 +335,10 @@ Page({
       sampleName: '请选择',
       paramList: [],
       paramName: null,
-      form: {}
+      form: {
+        parameterName: '请选择',
+        number: '请选择'
+      }
     }
     )
     // wx.nextTick(()=>{

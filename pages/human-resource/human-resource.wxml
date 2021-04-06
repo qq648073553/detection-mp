@@ -1,40 +1,109 @@
 <!-- pages/human-resource/human-resource.wxml -->
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="人员管理" showNav showHome></navbar>
-    <van-tabs active="{{ activeName }}" bind:change="onChange">
-        <van-tab title="送样人">
+    <van-tabs active="{{ activeName }}" bind:change="onChange" swipeable>
+        <van-tab title="送样人" name="send">
             <view class="hr-table">
-                            <view class="hr-table--head">
-                <view class="th__delete">删除</view>
-                <view class="th__name">姓名</view>
-                <view class="th__phone">手机号</view>
-                <view class="th__edit">修改</view>
-            </view>
-               <view class="hr-table--tbody">
-                    <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
-                    <van-icon class="td__delete" name="clear" color="red" />
-                    <view class="td__name">{{item.name}}</view>
-                    <view class="td__phone">{{item.phone}}</view>
-                    <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleShow" />
+                <view class="hr-table--head">
+                    <view class="th__delete">删除</view>
+                    <view class="th__name">姓名</view>
+                    <view class="th__phone">手机号</view>
+                    <!-- <view class="th__edit">修改</view> -->
                 </view>
-               </view>
-            <view class="hr-table--foot">
-                <van-icon color="red" name="add-o" size="26" />
-                新增用户
+                <view class="hr-table--tbody">
+                    <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
+                        <van-icon class="td__delete" name="clear" color="red" />
+                        <view class="td__name">{{item.name}}</view>
+                        <view class="td__phone">{{item.phone}}</view>
+                        <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
+                    </view>
+                </view>
             </view>
+        </van-tab>
+        <van-tab title="见证员" name="witness">
+            <view class="hr-table">
+                <view class="hr-table--head">
+                    <view class="th__delete">删除</view>
+                    <view class="th__name">姓名</view>
+                    <view class="th__phone">手机号</view>
+                    <!-- <view class="th__edit">修改</view> -->
+                </view>
+                <view class="hr-table--tbody">
+                    <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
+                        <van-icon class="td__delete" name="clear" color="red" />
+                        <view class="td__name">{{item.name}}</view>
+                        <view class="td__phone">{{item.phone}}</view>
+                        <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
+                    </view>
+                </view>
             </view>
-
+        </van-tab>
+        <van-tab title="质监员" name="builder">
+            <view class="hr-table">
+                <view class="hr-table--head">
+                    <view class="th__delete">删除</view>
+                    <view class="th__name">姓名</view>
+                    <view class="th__phone">手机号</view>
+                    <!-- <view class="th__edit">修改</view> -->
+                </view>
+                <view class="hr-table--tbody">
+                    <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
+                        <van-icon class="td__delete" name="clear" color="red" />
+                        <view class="td__name">{{item.name}}</view>
+                        <view class="td__phone">{{item.phone}}</view>
+                        <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
+                    </view>
+                </view>
+            </view>
+        </van-tab>
+        <van-tab title="建设单位" name="inspector">
+            <view class="hr-table">
+                <view class="hr-table--head">
+                    <view class="th__delete">删除</view>
+                    <view class="th__name">姓名</view>
+                    <view class="th__phone">手机号</view>
+                    <!-- <view class="th__edit">修改</view> -->
+                </view>
+                <view class="hr-table--tbody">
+                    <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
+                        <van-icon class="td__delete" name="clear" color="red" />
+                        <view class="td__name">{{item.name}}</view>
+                        <view class="td__phone">{{item.phone}}</view>
+                        <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
+                    </view>
+                </view>
+            </view>
         </van-tab>
     </van-tabs>
-    <van-popup show="{{ show }}" class="custom-class" round bind:close="toggleShow">
-       <view class="popup--body">
+    <view class="hr-table--foot">
+        <van-icon color="red" name="add-o" size="26" bind:tap="toggleAddShow" />
+        新增用户
+    </view>
+    <!-- <van-popup show="{{ editShow }}" class="custom-class" round bind:close="toggleEditShow">
+        <view class="popup--body">
             <view class="popup--title">修改用户信息</view>
-        <van-field model:value="{{ name }}" clearable label="姓名" title-width="76px"  placeholder="请输入" />
-        <van-field border="{{false}}" model:value="{{ phone }}" clearable label="手机号" title-width="76px"  placeholder="请输入" />
-       </view>
+            <van-field model:value="{{ name }}" clearable label="姓名" title-width="76px" placeholder="请输入" />
+            <van-field border="{{false}}" model:value="{{ phone }}" clearable label="手机号" title-width="76px" placeholder="请输入" />
+        </view>
         <view class="popup--bottom">
-            <view bind:tap="toggleShow">取消</view>
-            <view class="text__confirm" bind:tap="toggleShow">确定</view>
-        </view> 
-    </van-popup>
+            <view bind:tap="toggleEditShow">取消</view>
+            <view class="text__confirm" bind:tap="toggleEditShow">确定</view>
+        </view>
+    </van-popup> -->
+    <van-action-sheet show="{{ addShow }}" round="{{false}}" class="param-popup" close-on-click-overlay="{{false}}">
+        <view class="action--header__sticky">
+            <view class="action-header">
+                <view class="action-cancel" bindtap="toggleAddShow">取消</view>
+                <view class="action-title">新增用户</view>
+                <view class="action-confirm" bindtap="onAddConfirm">确认</view>
+            </view>
+        </view>
+        <van-checkbox-group value="{{ AddSelected }}" bind:change="onAddChange">
+            <van-cell-group>
+                <van-cell wx:for="{{ peopleList }}" wx:key="index" title="{{ item }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="onAddToggle">
+                    <van-checkbox shape="square" catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" />
+                </van-cell>
+            </van-cell-group>
+        </van-checkbox-group>
+    </van-action-sheet>
 </view>

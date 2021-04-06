@@ -1,9 +1,18 @@
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="个人中心" showNav></navbar>
-    <van-cell title="手机号" is-link value="{{phone}}"  link-type="navigateTo" url="/pages/update-phone/update-phone" />
-    <van-cell title="邮箱" is-link value="{{email}}"  link-type="navigateTo" url="/pages/update-email/update-email" />
-    <van-cell title="人员管理" is-link   link-type="navigateTo" url="/pages/human-resource/human-resource" />
-
+    <van-cell title="姓名" is-link value="{{name}}" data-name="name" bindtap="toggleEditShow" />
+    <van-cell title="手机号" is-link value="{{phone}}" link-type="navigateTo" url="/pages/update-phone/update-phone" />
+    <van-cell title="邮箱" is-link value="{{email}}" data-name="email" bindtap="toggleEditShow" />
+    <van-cell title="人员管理" is-link link-type="navigateTo" url="/pages/human-resource/human-resource" />
     <button bindtap="logOut" class="my-logout-btn">退 出 登 录</button>
-
+        <van-popup show="{{ editShow }}" class="custom-class" round bind:close="toggleEditShow">
+        <view class="popup--body">
+            <view class="popup--title">{{popName}}</view>
+            <input model:value="{{input}}" type="text" placeholder="{{popTips}}" ></input>
+        </view>
+        <view class="popup--bottom">
+            <view bind:tap="toggleEditShow">取消</view>
+            <view class="text__confirm" bind:tap="toggleEditShow">确定</view>
+        </view>
+    </van-popup>
 </view>

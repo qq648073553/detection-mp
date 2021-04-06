@@ -63,12 +63,12 @@ Page({
   onLoad: function (options) {
     const {gid,jid,wid,status} = options
     this.setData({
-      gid:+gid,
-      jid:+jid,
-      wid:+wid,
-      status:+status,
+      gid,
+      jid,
+      wid,
+      status,
       navHeight: App.globalData.navHeight,
-      proStatus: App.globalData.proStatus
+      // proStatus: App.globalData.proStatus
     })
     // this.getDetail(gid,jid,wid)
   },

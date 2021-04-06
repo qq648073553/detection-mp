@@ -1,7 +1,7 @@
 <import src="/template/sample-list/index.wxml" />
 
 <view class="container" style="padding-top:{{navHeight}}px">
-    <navbar page-name="送样列表" showNav showHome></navbar>
+    <navbar page-name="委托列表" showNav showHome></navbar>
     <van-sticky>
         <van-search
                 class="custom-class"

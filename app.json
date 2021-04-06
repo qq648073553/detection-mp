@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/delegation-list/delegation-list",
     "pages/sample-add/sample-add",
-    "pages/login/login",
-    "pages/human-resource/human-resource",
     "pages/my/my",
+    "pages/human-resource/human-resource",
+    "pages/login/login",
+    "pages/delegation-list/delegation-list",
     "pages/sample-list/sample-list",
     "pages/update-email/update-email",
     "pages/update-phone/update-phone",

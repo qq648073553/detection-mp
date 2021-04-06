@@ -4,7 +4,7 @@
     <navbar page-name="{{proTitle}}" showNav showHome></navbar>
     <view class="pro-module">
         <view class="pro-m-header">
-            <view class="pro-m-title">送样</view>
+            <view class="pro-m-title">委托</view>
                         <navigator url="/pages/sample-add/sample-add" hover-class="none" class="dg-add-btn">新 增</navigator>
 
         </view>

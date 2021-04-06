@@ -100,12 +100,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const email = App.globalData.userInfo.email
-    if(!email) wx.navigateBack({delta: 1})
-    this.setData({
-      navHeight: App.globalData.navHeight,
-      oldEmail:email
-    })
+    // const email = App.globalData.userInfo.email
+    // if(!email) wx.navigateBack({delta: 1})
+    // this.setData({
+    //   navHeight: App.globalData.navHeight,
+    //   oldEmail:email
+    // })
   },
 
   /**

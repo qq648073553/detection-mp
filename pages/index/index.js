@@ -25,7 +25,7 @@ Page({
     },
     goBusiness(e) {
         const { gid, jid, wid } = e.currentTarget.dataset
-        const url = Utils.urlJointParams('/pages/delegation-list/delegation-list', { gid, jid, wid })
+        const url = Utils.urlJointParams('/pages/delegation-overview/delegation-overview', { gid, jid, wid })
         wx.navigateTo({
             url
         })
@@ -40,7 +40,22 @@ Page({
         // }
 
     },
-
+    // 获取用户信息
+    getUserInfo() {
+        fetch.get('auth/userInfo', {}).then((info) => {
+            if (!info.name) {
+                wx.showToast({
+                    title: '请先补全用户信息',
+                    icon: 'none',
+                    duration: 1000
+                })
+                wx.navigateTo({
+                    url: '/pages/my/my'
+                })
+            }
+            App.globalData.userInfo = info
+        })
+    },
     lower(e) {
         wx.navigateTo({
             url: '/pages/pro-search/pro-search'
@@ -87,6 +102,7 @@ Page({
             proStatus: App.globalData.proStatus
         })
         this.getList(0, 5, null)
+        // this.getUserInfo()
     },
 
     /**

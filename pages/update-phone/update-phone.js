@@ -100,12 +100,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const phone = App.globalData.userInfo.phone
-    if(!phone) wx.navigateBack({delta: 1})
-    this.setData({
-      navHeight: App.globalData.navHeight,
-      oldPhone:phone.replace(/(^[0-9]{3})[0-9]{4}([0-9]{4}$)/,'$1****$2')
-    })
+    // const phone = App.globalData.userInfo.phone
+    // if(!phone) wx.navigateBack({delta: 1})
+    // this.setData({
+    //   navHeight: App.globalData.navHeight,
+    //   oldPhone:phone.replace(/(^[0-9]{3})[0-9]{4}([0-9]{4}$)/,'$1****$2')
+    // })
   },
 
   /**

@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-03-25 16:32:37
- * @LastEditTime: 2021-03-26 09:00:46
- * @LastEditors: your name
+ * @LastEditTime: 2021-04-06 09:22:48
+ * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\human-resource\human-resource.js
  */
@@ -15,7 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activeName:0,
+    activeName:'send',
     list:[
       {
         id:1,
@@ -35,17 +35,32 @@ Page({
     ],
     name:'蒋',
     phone:'13776',
-    show: false,
+    editShow: false,
+    addShow:false
   },
-  toggleShow() {
-    this.setData({ show: !this.data.show });
+  toggleEditShow() {
+    this.setData({ editShow: !this.data.editShow });
+  },
+  onAddConfirm(){
+    this.setData({ addShow: !this.data.addShow });
   },
   onChange(event) {
     this.setData({
-      activeName: event.detail,
+      activeName: event.detail.name,
     });
   },
-
+  toggleAddShow(){
+    this.setData({ addShow: !this.data.addShow });
+  },
+  onAddChange(event){
+    console.log(event)
+  },
+  onAddToggle(event){
+    const { index } = event.currentTarget.dataset;
+    const checkbox = this.selectComponent(`.checkboxes-${index}`);
+    checkbox.toggle();
+  },
+  noop() { },
   /**
    * 生命周期函数--监听页面加载
    */
