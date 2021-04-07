@@ -38,12 +38,16 @@ App({
   globalData: {
     userInfo: {},
     header: {},
-    baseURL: 'http://192.168.9.31:8345/api/',
+    baseURL: 'http://192.168.0.191:8344/api/',
     proStatus: {
       beforeConfirm: 1,
       confirmed: 0,
       deprecated: 2
     },
-    degStatus: ['待受理', '已受理', '出具报告中', '报告审核中', '已出具报告']
+    degStatus: ['待受理', '已受理', '出具报告中', '报告审核中', '已出具报告'],
+    // 主账号，送样员，质监员，见证员，建设单位联系人
+    roles:['ROLE_PRINCIPAL','ROLE_DELIVERER','ROLE_QUALITY','ROLE_WITNESSES','ROLE_CONSTRUCTION'],
+    // 用户对项目具备的角色
+    userProRoles:null
   }
 })

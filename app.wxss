@@ -16,7 +16,9 @@
   /*background-color: #fff;*/
 
 }
-
+.block-hidden{
+  display: none;
+}
 .tab-container {
   padding-bottom: 53px;
 }

@@ -1,12 +1,12 @@
-<!--pages/pro-delegation/pro-delegation.wxml-->
-
+<!-- pages/pro-delegation/pro-delegation.wxml -->
 <view class="container pro-dg-container" style="padding-top:{{navHeight}}px;">
     <navbar page-name="{{proTitle}}" showNav showHome></navbar>
     <view class="pro-module">
         <view class="pro-m-header">
             <view class="pro-m-title">委托</view>
-                        <navigator url="/pages/sample-add/sample-add" hover-class="none" class="dg-add-btn">新 增</navigator>
-
+            <navigator url="/pages/sample-add/sample-add" hover-class="none" class="dg-add-btn">
+                新 增
+            </navigator>
         </view>
         <view class="pro-m-body">
             <navigator url="/pages/sample-list/sample-list?status=0" hover-class="none" class="pro-m-nav">
@@ -23,7 +23,6 @@
             </navigator>
         </view>
         <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
-
     </view>
     <view class="pro-module">
         <view class="pro-m-header">
@@ -44,29 +43,22 @@
             </navigator>
         </view>
         <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
-
     </view>
-    <view class="pro-module">
+    <view class="pro-module {{pageForbiddens.includes('settle') ? 'block-hidden' : ''}}">
         <view class="pro-m-header">
             <view class="pro-m-title">结算</view>
         </view>
         <view class="pro-m-body">
             <navigator url="/pages/summary/summary" hover-class="none" class="pro-m-nav">
-                <view class="pro-m-link link-message link-medium text-line-public">
-                    工作量汇总
-                </view>
-                <!--                <view class="pro-m-link">-->
-<!--                    <view class="link-message link-medium text-line-public">工作量汇总</view>-->
-<!--                </view>-->
+                <view class="pro-m-link link-message link-medium text-line-public">工作量汇总</view>
+                <!-- <view class="pro-m-link"> -->
+                <!-- <view class="link-message link-medium text-line-public">工作量汇总</view> -->
+                <!-- </view> -->
             </navigator>
             <navigator url="/pages/settle/settle" class="pro-m-nav" hover-class="none">
-                <view class="pro-m-link link-message link-medium text-line-public">
-                    结算清单
-                </view>
+                <view class="pro-m-link link-message link-medium text-line-public">结算清单</view>
             </navigator>
         </view>
         <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
-
     </view>
 </view>
-

@@ -2,7 +2,7 @@
  * @Author: zfd
  * @Date: 2020-10-25 09:21:59
  * @LastEditors: holder
- * @LastEditTime: 2021-03-31 14:52:17
+ * @LastEditTime: 2021-04-07 11:35:13
  * @Description:
  */
 // const formatTime = date => {
@@ -100,6 +100,15 @@ const validateEmail = (value) => {
   }
 }
 
+// 校验真实姓名
+const validateTrueName = (value) => {
+  const reg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/
+  if (!!value && reg.test(value)) {
+    return true
+  }
+  return false
+}
+
 // 校验纯数字验证码
 const validateNumberCode = (value, length) => {
   if (typeof length !== 'number') {
@@ -157,6 +166,7 @@ function formatMoney(val) {
   }
   return val
 }
+// 拼接queryUrl
 const urlJointParams = (url, obj) => {
   if (notEmptyObj(obj)) {
     const keys = Object.keys(obj)
@@ -204,25 +214,25 @@ const parseSampleConfig = (attStr, cAttStr) => {
     const right = splits[1]
     sample.name = left
     // 修复面积(mm2)
-    sample.prop = attrMap.get(left.replace(/(\(\w.\))/,''))
-    if(left.includes('日期')) {
+    sample.prop = attrMap.get(left.replace(/(\(\w.\))/, ''))
+    if (left.includes('日期')) {
       sample.isDate = true
       result.push(sample)
       continue
     }
-    if(right.length === 0) {
+    if (right.length === 0) {
       sample.isInput = true
       result.push(sample)
       continue
     }
-    if(right.includes('#')) {
+    if (right.includes('#')) {
       sample.isPicker = true
       // vant actionSheet actions
-      sample.resource = right.split('#').map(v=>({name:v}))
+      sample.resource = right.split('#').map(v => ({ name: v }))
       result.push(sample)
       continue
     }
-    if(right === 'pz' || right === 'cc' || right === 'gg') {
+    if (right === 'pz' || right === 'cc' || right === 'gg') {
       sample.isPicker = true
       sample.resource = null
       sample.table = right
@@ -235,7 +245,48 @@ const parseSampleConfig = (attStr, cAttStr) => {
   }
   return result
 }
+// 判断页面权限
+const projectForbiddenControl = (roles, url) => {
+  const arr = url.split('/')
+  url = arr[arr.length - 1]
+  const pageForbiddens = {
+    'ROLE_DELIVERER': [
+      {
+        page: 'delegation-overview',
+        forbiddens: ['settle']
+      }
+    ],
+    'ROLE_QUALITY': [
+      {
+        page: 'delegation-overview',
+        forbiddens: ['settle']
+      }
+    ],
+    'ROLE_WITNESSES': [
+      {
+        page: 'delegation-overview',
+        forbiddens: ['settle']
+      }
+    ],
+    'ROLE_CONSTRUCTION': [
+      {
+        page: 'delegation-overview',
+        forbiddens: ['settle']
+      }
+    ],
+  }
+  const roleForbiddens = []
+  for (const role of roles) {
+    for(const pp of pageForbiddens[role]) {
+      if(pp.page === url) {
+        roleForbiddens = roleForbiddens.concat(pp.forbiddens)
+        break
+      }
+    }
+  }
 
+  return roleForbiddens
+}
 // 小程序版本比较
 function compareVersion(v1, v2) {
   v1 = v1.split('.')
@@ -266,13 +317,15 @@ module.exports = {
   parseTime,
   validatePhone,
   validateNumberCode,
-  parseProStatus,
+  validateTrueName,
   validateEmail,
+  parseProStatus,
   checkType,
   notEmptyArray,
   notEmptyObj,
   formatMoney,
   urlJointParams,
   parseSampleConfig,
-  compareVersion
+  compareVersion,
+  projectForbiddenControl
 }

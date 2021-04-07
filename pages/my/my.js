@@ -2,10 +2,11 @@
  * @Author: holder
  * @Date: 2021-01-08 14:01:21
  * @LastEditors: holder
- * @LastEditTime: 2021-04-06 13:10:22
+ * @LastEditTime: 2021-04-07 09:06:19
  * @Description: 
  */
 const App = getApp();
+const Utils = require('../../utils/util')
 const Request = require('../../utils/request')
 const fetch = new Request({
   auth: true,
@@ -15,15 +16,50 @@ const fetch = new Request({
 Page({
   data: {
     input: '',
-    phone: '137****0390',
-    email: 'zfd_yes@163.com',
-    name: '张三',
+    phone: null,
+    email: null,
+    name: null,
     editShow: false,
     popName: '修改姓名',
     popTips: '请输入真实姓名'
   },
-  updateName() {
+  // 自定义返回上级
+  redirectToIndex() {
+    if (!Utils.validateTrueName(App.globalData.userInfo.name)) {
+      wx.showToast({
+        title: '请先补全用户信息',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      wx.redirectTo({
+        url: '/pages/index/index'
+      })
+    }
 
+  },
+  onConfirm(){
+    if(this.data.popName === '修改姓名') {
+      if (Utils.validateTrueName(this.data.input)) {
+        // 修改姓名
+      }else {
+        wx.showToast({
+          title: '请输入真实姓名',
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    }else if(this.data.popName === '修改邮箱') {
+      if (Utils.validateEmail(this.data.input)) {
+        // 修改邮箱
+      }else {
+        wx.showToast({
+          title: '请输入正确的邮箱',
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    }
   },
   toggleEditShow(event) {
     const name = event.currentTarget.dataset?.name
@@ -57,9 +93,13 @@ Page({
     })
   },
 
-  onLoad: function (options) {
+  onLoad: function () {
+    const {name,email,username} = App.globalData.userInfo
     this.setData({
-      navHeight: App.globalData.navHeight
+      navHeight: App.globalData.navHeight,
+      name,
+      email,
+      phone:username.replace(/(^[0-9]{3})[0-9]{4}([0-9]{4}$)/,'$1****$2')
     })
   }
 })

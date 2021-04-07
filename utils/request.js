@@ -66,7 +66,7 @@ class Request {
   }
   request (method,url,data) {
     return new Promise((resolve,reject) => {
-      if(this.auth === true) {
+      if(this.auth === true) { 
         try {
           const value = wx.getStorageSync('Authorization')
           if (value) {

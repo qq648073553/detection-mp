@@ -12,7 +12,7 @@
                 </view>
                 <view class="hr-table--tbody">
                     <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
-                        <van-icon class="td__delete" name="clear" color="red" />
+                        <van-icon class="td__delete" data-id="{{item.id}}" name="clear" color="red" bind:tap="peopleDelete" />
                         <view class="td__name">{{item.name}}</view>
                         <view class="td__phone">{{item.phone}}</view>
                         <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
@@ -30,7 +30,7 @@
                 </view>
                 <view class="hr-table--tbody">
                     <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
-                        <van-icon class="td__delete" name="clear" color="red" />
+                        <van-icon class="td__delete" data-id="{{item.id}}" name="clear" color="red" bind:tap="peopleDelete"/>
                         <view class="td__name">{{item.name}}</view>
                         <view class="td__phone">{{item.phone}}</view>
                         <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
@@ -48,7 +48,7 @@
                 </view>
                 <view class="hr-table--tbody">
                     <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
-                        <van-icon class="td__delete" name="clear" color="red" />
+                        <van-icon class="td__delete" data-id="{{item.id}}" name="clear" color="red" bind:tap="peopleDelete" />
                         <view class="td__name">{{item.name}}</view>
                         <view class="td__phone">{{item.phone}}</view>
                         <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
@@ -66,7 +66,7 @@
                 </view>
                 <view class="hr-table--tbody">
                     <view class="hr-table--tr" wx:for="{{list}}" wx:key="id">
-                        <van-icon class="td__delete" name="clear" color="red" data-id="{{item.uid}}" bind:tap="peopleDelete" />
+                        <van-icon class="td__delete"  name="clear" color="red" data-id="{{item.id}}" bind:tap="peopleDelete" />
                         <view class="td__name">{{item.name}}</view>
                         <view class="td__phone">{{item.phone}}</view>
                         <!-- <van-icon class="td__edit" name="edit" color="orange" bind:tap="toggleEditShow" /> -->
@@ -90,15 +90,14 @@
             <view class="text__confirm" bind:tap="toggleEditShow">确定</view>
         </view>
     </van-popup> -->
-    <van-action-sheet show="{{ addShow }}" round="{{false}}" class="param-popup" close-on-click-overlay="{{false}}">
-            <view class="action-header">
-                <view class="action-cancel" bindtap="toggleAddShow">取消</view>
-                <view class="action-title">{{actionTitle}}</view>
-                <view class="action-confirm" bindtap="onAddConfirm">确认</view>
-            </view>
-            <van-search class="custom-class" value="{{searchValue}}" shape="round" background="#fff" placeholder="根据手机号精确查找" bind:search="onSearch" />
-        <van-cell  title="{{ searchPeople }}" value-class="value-class">
-        </van-cell>
+    <van-action-sheet show="{{ addShow }}" round="{{false}}" class="custom-popup" close-on-click-overlay="{{false}}">
+        <view class="action-header">
+            <van-icon class="action-cancel" size="20" name="cross" bindtap="toggleAddShow" />
+            <view class="action-title">{{actionTitle}}</view>
+            <!-- <view class="action-confirm" bindtap="onAddConfirm">确认</view> -->
+        </view>
+        <van-search class="custom-class" value="{{searchValue}}" shape="round" background="#fff" placeholder="根据手机号精确查找" bind:search="onSearch" bind:clear="onSearchClear" />
+        <van-cell title="{{ searchPeople }}" value-class="value-class" bindtap="onAddConfirm" ></van-cell>
         <!-- <van-checkbox-group value="{{ addSelected }}" bind:change="onAddChange">
             <van-cell-group>
                 <van-cell wx:for="{{ peopleList }}" wx:key="index" title="{{ item }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="onAddToggle">

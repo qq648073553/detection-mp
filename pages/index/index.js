@@ -23,9 +23,11 @@ Page({
             }
         })
     },
-    goBusiness(e) {
+    async goBusiness(e) {
         // 查看用户在此工程上的角色
         const { gid, jid, wid } = e.currentTarget.dataset
+        const roles = await fetch.post('project/getRoles',{gid, jid, wid})
+        App.globalData.userProRoles = roles
         const url = Utils.urlJointParams('/pages/delegation-overview/delegation-overview', { gid, jid, wid })
         wx.navigateTo({
             url
@@ -43,18 +45,20 @@ Page({
     },
     // 获取用户信息
     getUserInfo() {
-        fetch.get('auth/userInfo', {}).then((info) => {
-            if (!info.name) {
-                wx.showToast({
-                    title: '请先补全用户信息',
-                    icon: 'none',
-                    duration: 1000
-                })
-                wx.navigateTo({
-                    url: '/pages/my/my'
+        fetch.get('users/me').then((info) => {
+            App.globalData.userInfo = info
+            if (!Utils.validateTrueName(info.name)) { 
+                wx.redirectTo({
+                    url: '/pages/my/my',
+                    complete(){
+                        wx.showToast({
+                            title: '请先补全用户信息',
+                            icon: 'none',
+                            duration: 2000
+                        })
+                    }
                 })
             }
-            App.globalData.userInfo = info
         })
     },
     lower(e) {
@@ -97,14 +101,14 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function () {
         this.setData({
             navHeight: App.globalData.navHeight,
             proStatus: App.globalData.proStatus
         })
         this.getList(0, 5, null)
-        // this.getUserInfo()
-    },
+        this.getUserInfo()
+    }, 
 
     /**
      * 生命周期函数--监听页面初次渲染完成

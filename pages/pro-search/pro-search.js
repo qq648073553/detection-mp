@@ -20,8 +20,11 @@ Page({
     isRemained: true
 
   }, 
-  goBusiness(e) {
+  async goBusiness(e) {
+    // 查看用户在此工程上的角色
     const { gid, jid, wid } = e.currentTarget.dataset
+    const roles = await fetch.post('project/getRoles',{gid, jid, wid})
+    App.globalData.userProRoles = roles
     const url = Utils.urlJointParams('/pages/delegation-overview/delegation-overview', { gid, jid, wid })
     wx.navigateTo({
       url

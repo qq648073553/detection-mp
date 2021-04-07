@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 00:06:52
- * @LastEditTime: 2021-04-06 17:08:59
+ * @LastEditTime: 2021-04-07 14:05:29
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\sample-add\sample-add.js
@@ -314,7 +314,7 @@ Page({
         form[v.prop] = null
       }
     })
-    console.log(dynamicParams)
+    // console.log(dynamicParams)
     this.setData({
       actionShow: false,
       dynamicParams,
@@ -323,7 +323,7 @@ Page({
       sampleName,
       pzResponse: null
     }, () => {
-      // 选择检测项目设置标注名 第一次
+      // 选择检测项目设置标准 第一次
       this.getNormalName()
     })
   },
@@ -384,7 +384,7 @@ Page({
   },
   // 选择器开关
   togglePicker(event) {
-    const name = event.target.dataset.name
+    const name = event.currentTarget.dataset.name
     const obj = {}
     obj[name] = !this.data[name]
     this.setData(obj)

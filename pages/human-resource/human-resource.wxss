@@ -46,7 +46,11 @@
 }
 .custom-class .van-popup--center{
     top: 40%;
+    
 }
+/* .custom-popup .van-popup {
+    min-height: 30vh;
+} */
 .popup--body{
     margin:10px;
     width: 500rpx;
@@ -82,16 +86,19 @@
 } */
 .action-header{
     padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
-.action-cancel {
-    font-size: 16px;
+.action-cancel  {
+    float: right;
+    /* position: relative;
+    top: 100; */
     color: #B1B1B1;
 }
 .action-title {
-    font: 16px;
+    font: 20px;
     font-weight: bold;
 }
 .action-confirm{

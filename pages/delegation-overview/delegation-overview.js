@@ -1,12 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 09:22:00
- * @LastEditTime: 2021-03-29 16:13:40
+ * @LastEditTime: 2021-04-07 13:39:56
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\pro-delegation\pro-delegation.js
  */
 // pages/pro-delegation/pro-delegation.js
+const Utils = require('../../utils/util')
 const App = getApp();
 const Request = require('../../utils/request')
 const fetch = new Request({
@@ -28,7 +29,8 @@ Page({
     reporting:0,
     confirmed:0,
     beforeConfirm:0,
-    proTitle: '苏州中心'
+    proTitle: '苏州中心',
+    pageForbiddens:[] // 禁止项
   },
   scan() {
     wx.scanCode({
@@ -61,6 +63,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // const pageForbiddens = Utils.projectForbiddenControl(App.globalData.userProRoles,this.route)
     const {gid,jid,wid,status} = options
     this.setData({
       gid,
@@ -68,6 +71,7 @@ Page({
       wid,
       status,
       navHeight: App.globalData.navHeight,
+      // pageForbiddens
       // proStatus: App.globalData.proStatus
     })
     // this.getDetail(gid,jid,wid)
