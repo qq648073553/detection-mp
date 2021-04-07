@@ -84,17 +84,16 @@
 .scan-btn {
     position: absolute;
     right: 60rpx;
-    top: 10px;
-    width: 100rpx;
-    height: 100rpx;
+    top: 14px;
+    width: 70rpx;
+    height: 70rpx;
 }
 .qrcode-btn {
     position: absolute;
     right: 150rpx;
-    top: 22px;
-    object-fit: scale-down;
-    width: 50rpx;
-    height: 50rpx;
+    top: 14px;
+    width: 70rpx;
+    height: 70rpx;
 }
 .custom-popup .van-popup {
     width: 150px;

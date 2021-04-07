@@ -26,12 +26,12 @@
     margin-bottom: 20rpx;
 }
 .pro-tag {
-    margin: 0 20rpx 10px 0;
+    margin: 10px 20rpx 10px 0;
 
 }
 .custom-class .van-tag{
-    margin: 0 20rpx 10px 0;
+    margin: 10px 20rpx 10px 0;
 }
-.deg-flag-btn {
+/* .deg-flag-btn {
 
-}
+} */
