@@ -75,8 +75,8 @@
             </view>
         </van-tab>
     </van-tabs>
-    <view class="hr-table--foot">
-        <van-icon color="red" name="add-o" size="26" bind:tap="toggleAddShow" />
+    <view class="hr-table--foot" bind:tap="toggleAddShow">
+        <van-icon color="red" name="add-o" size="26"  />
         新增用户
     </view>
     <!-- <van-popup show="{{ editShow }}" class="custom-class" round bind:close="toggleEditShow">
@@ -90,7 +90,7 @@
             <view class="text__confirm" bind:tap="toggleEditShow">确定</view>
         </view>
     </van-popup> -->
-    <van-action-sheet show="{{ addShow }}" round="{{false}}" class="custom-popup" close-on-click-overlay="{{false}}">
+    <van-popup show="{{ addShow }}" round  class="custom-popup" close-on-click-overlay="{{false}}">
         <view class="action-header">
             <van-icon class="action-cancel" size="20" name="cross" bindtap="toggleAddShow" />
             <view class="action-title">{{actionTitle}}</view>
@@ -105,5 +105,5 @@
                 </van-cell>
             </van-cell-group>
         </van-checkbox-group> -->
-    </van-action-sheet>
+    </van-popup>
 </view>

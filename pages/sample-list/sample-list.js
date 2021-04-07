@@ -69,8 +69,7 @@ Page({
     })
     wx.getStorage({
       key: 'sampleHistories',
-      success (res) {
-        console.log(res.data)
+      success:res=> {
         this.setData({
           histories: res.data || []
         })

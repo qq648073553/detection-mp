@@ -2,7 +2,7 @@
  * @Author: zfd
  * @Date: 2020-10-25 09:21:59
  * @LastEditors: holder
- * @LastEditTime: 2021-04-07 11:35:13
+ * @LastEditTime: 2021-04-07 16:46:24
  * @Description:
  */
 // const formatTime = date => {
@@ -247,6 +247,9 @@ const parseSampleConfig = (attStr, cAttStr) => {
 }
 // 判断页面权限
 const projectForbiddenControl = (roles, url) => {
+  if(!roles || !url || roles.includes("ROLE_PRINCIPAL")) {
+    return []
+  }
   const arr = url.split('/')
   url = arr[arr.length - 1]
   const pageForbiddens = {
@@ -275,8 +278,9 @@ const projectForbiddenControl = (roles, url) => {
       }
     ],
   }
-  const roleForbiddens = []
+  let roleForbiddens = []
   for (const role of roles) {
+    if(pageForbiddens[role] === undefined) continue
     for(const pp of pageForbiddens[role]) {
       if(pp.page === url) {
         roleForbiddens = roleForbiddens.concat(pp.forbiddens)

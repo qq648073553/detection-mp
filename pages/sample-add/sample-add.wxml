@@ -11,11 +11,14 @@
         <van-cell wx:if="{{deliverWay==='待取样' || deliverWay==='现场检测'}}" title="预约时间" title-width="88px" value="{{sampleTime}}" data-name="appointmentDateShow" bindtap="togglePicker" is-link />
         <van-cell title="检测项目" title-width="88px" model:value="{{sampleName}}" is-link bindtap="toggleSample" />
         <van-cell wx:if="{{normalName}}" title="标准" title-width="88px" value="{{normalName}}" />
+        <van-field wx:else model:value="{{ normalName }}" clearable label="标准" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
+
         <view wx:for="{{dynamicParams}}" wx:key="prop">
             <van-field wx:if="{{item.isInput}}" value="{{ form[item.prop] }}" clearable label="{{item.name}}" title-width="76px" data-prop="{{item.prop}}" adjust-position="{{false}}" placeholder="请输入" bind:focus="setHeight" bind:input="onDynamicInput" />
             <van-cell wx:elif="{{item.isPicker}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDynamicPicker" />
             <van-cell wx:elif="{{item.isDate}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDatePicker" />
         </view>
+        
         <van-cell wx:if="{{paramList.length > 0}}" title="参数" title-width="88px" value="{{parameterName}}" data-name="paramShow" is-link bindtap="togglePicker" />
         <!-- <van-cell title="检测数量" title-width="88px" value="{{number}}" data-name="numberShow" is-link bindtap="togglePicker" /> -->
         <!-- <view class="custom-field">
@@ -37,7 +40,7 @@
         <van-field model:value="{{ observerId }}" clearable title-width="76px" label="见证号" adjust-position="{{false}}" placeholder="请输入" />
         <van-field model:value="{{ message }}" label="备注" title-width="76px" type="textarea" placeholder="请输入" autosize /> -->
         <button class="submit-btn" bindtap="formSubmit">下一步</button>
-    </view> 
+    </view>
     <van-popup show="{{ dateShow }}" position="bottom">
         <van-datetime-picker type="date" value="{{ currentDate }}" data-name="dateShow" bind:cancel="togglePicker" bind:confirm="onDateConfirm" min-date="{{ minDate }}" formatter="{{ Dateformatter }}" />
     </van-popup>

@@ -1,18 +1,20 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 09:22:00
- * @LastEditTime: 2021-04-07 13:39:56
+ * @LastEditTime: 2021-04-07 17:12:58
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\pro-delegation\pro-delegation.js
  */
 // pages/pro-delegation/pro-delegation.js
 const Utils = require('../../utils/util')
+const QRCode = require('../../utils/weapp-qrcode')
+let qrcode;
 const App = getApp();
 const Request = require('../../utils/request')
 const fetch = new Request({
-  auth:true,
-  header:App.globalData.header,
+  auth: true,
+  header: App.globalData.header,
   baseURL: App.globalData.baseURL
 })
 Page({
@@ -21,27 +23,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    gid:null,
-    wid:null,
-    jid:null,
+    gid: null,
+    wid: null,
+    jid: null,
     status: null,
-    reported:0,
-    reporting:0,
-    confirmed:0,
-    beforeConfirm:0,
+    reported: 0,
+    reporting: 0,
+    confirmed: 0,
+    beforeConfirm: 0,
     proTitle: '苏州中心',
-    pageForbiddens:[] // 禁止项
+    codeShow:false,
+    settleForbidden: [] // 禁止项
   },
   scan() {
     wx.scanCode({
-      success (res) {
+      success(res) {
         console.log(res)
       }
     })
   },
-  getDetail(gid,jid,wid){
+  onCloseCode(){
+    this.setData({codeShow:false})
+  },
+  createQrcode(event) {
+    console.log(event)
+    var value = 'nihao'
+    qrcode.makeCode(value)
+    this.setData({codeShow:true})
+    
+  },
+  getDetail(gid, jid, wid) {
     fetch.get(`project/${gid}/${wid}/${jid}`).then(res => {
-      const {reported,reporting,confirmed,beforeConfirm} = res
+      const { reported, reporting, confirmed, beforeConfirm } = res
       this.setData({
         reported,
         reporting,
@@ -49,31 +62,42 @@ Page({
         beforeConfirm
       })
     })
-    .catch(err => {
-      console.log(err)
-      wx.showToast({
-        title: err,
-        icon:'error',
-        duration:2000
-    })
-    })
+      .catch(err => {
+        console.log(err)
+        wx.showToast({
+          title: err,
+          icon: 'error',
+          duration: 2000
+        })
+      })
 
   },
   /**
    * 生命周期函数--监听页面加载
-   */
+   */ 
   onLoad: function (options) {
-    // const pageForbiddens = Utils.projectForbiddenControl(App.globalData.userProRoles,this.route)
-    const {gid,jid,wid,status} = options
+    const { gid, jid, wid, status } = options
+    const pageForbiddens = Utils.projectForbiddenControl(App.globalData.userProRoles, this.route)
+    const settleForbidden = pageForbiddens.includes('settle')
     this.setData({
       gid,
       jid,
       wid,
       status,
       navHeight: App.globalData.navHeight,
-      // pageForbiddens
-      // proStatus: App.globalData.proStatus
+      proStatus: App.globalData.proStatus,
+      settleForbidden
     })
+    qrcode = new QRCode('canvas', {
+      // usingIn: this,
+      text: "https://github.com/tomfriwel/weapp-qrcode",
+      // image: '/images/bg.jpg',
+      width: 150,
+      height: 150,
+      colorDark: "#1CA4FC",
+      colorLight: "white",
+      correctLevel: QRCode.CorrectLevel.H,
+    });
     // this.getDetail(gid,jid,wid)
   },
 
@@ -88,7 +112,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

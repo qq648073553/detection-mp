@@ -1,5 +1,5 @@
 <template name="degList">
-    <view class="fd-card"  wx:for="{{list}}" wx:key="id" >
+    <view class="fd-card"  wx:for="{{list}}" wx:key="index" >
        <navigator url="/pages/sample-detail/sample-detail?id={{item.id}}&status={{item.status}}">
            <view class="fd-card-header">
                <view class="pro-title">{{item.title}}</view>
@@ -7,7 +7,7 @@
            </view>
            <view class="fd-card-body">
                <view class="pro-remarks text-line-public">{{item.date}}</view>
-               <van-tag  plain class="custom-class" size="medium" wx:for="{{item.tags}}" wx:for-item="tag" color="{{item.color}}">{{tag}}</van-tag>
+               <van-tag  plain class="custom-class" size="medium" wx:for="{{item.tags}}" wx:key="tag" wx:for-item="tag" color="{{item.color}}">{{tag}}</van-tag>
            </view>
        </navigator>
     </view>

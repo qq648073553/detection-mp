@@ -4,7 +4,7 @@
     <van-sticky>
         <van-search class="custom-class" value="{{searchValue}}" shape="round" background="#fff" placeholder="根据检测项目进行检索" bind:search="onSearch" bind:clear="onFastSearch" />
         <view wx:if="{{histories.length > 0}}" class="index-histories">
-            <view wx:for="{{histories}}" class="history-item">{{item}}</view>
+            <view wx:for="{{histories}}" wx:key="index" class="history-item">{{item}}</view>
         </view>
     </van-sticky>
     <view class="search-content">

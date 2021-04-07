@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/delegation-overview/delegation-overview",
     "pages/human-resource/human-resource",
     "pages/login/login",
     "pages/sample-add/sample-add",
@@ -8,7 +9,6 @@
     "pages/sample-list/sample-list",
     "pages/update-email/update-email",
     "pages/update-phone/update-phone",
-    "pages/delegation-overview/delegation-overview",
     "pages/index/index",
     "pages/pro-search/pro-search",
     "pages/pro-add/pro-add",

@@ -23,6 +23,7 @@
             </navigator>
         </view>
         <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
+        <image src="../../assets/images/qrcode.png" class="qrcode-btn" data-type="0" catch:tap="createQrcode"></image>
     </view>
     <view class="pro-module">
         <view class="pro-m-header">
@@ -43,8 +44,9 @@
             </navigator>
         </view>
         <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
+        <image src="../../assets/images/qrcode.png" class="qrcode-btn" data-type="1" catch:tap="createQrcode"></image>
     </view>
-    <view class="pro-module {{pageForbiddens.includes('settle') ? 'block-hidden' : ''}}">
+    <view class="pro-module {{settleForbidden ? 'block-hidden' : ''}}">
         <view class="pro-m-header">
             <view class="pro-m-title">结算</view>
         </view>
@@ -60,5 +62,9 @@
             </navigator>
         </view>
         <image src="../../assets/images/scan.png" class="scan-btn" catch:tap="scan"></image>
+        <image src="../../assets/images/qrcode.png" class="qrcode-btn" data-type="2" catch:tap="createQrcode"></image>
     </view>
 </view>
+<van-popup show="{{ codeShow }}" class="custom-popup" bind:click-overlay="onCloseCode" >
+    <canvas class='canvas' canvas-id='canvas'></canvas>
+</van-popup>
