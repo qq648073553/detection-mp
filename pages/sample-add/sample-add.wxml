@@ -2,24 +2,24 @@
     <navbar page-name="{{navTitle}}" showNav showHome></navbar>
     <view class="add-container custom-class" style="top:{{padBottom}}px">
         <van-field model:value="{{ project }}" clearable label="工程名称" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
-        <van-cell title="工程编号" title-width="88px" value="{{proId}}" />
-        <van-cell title="委托人" title-width="88px" value="{{proId}}" />
+        <van-cell title="工程编号" title-width="88px" class="cell-readonly" value="{{proId}}" />
+        <van-cell title="委托人" title-width="88px" class="cell-readonly" value="{{proId}}" />
         <van-field model:value="{{ seeName }}" clearable label="见证人" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
         <van-field model:value="{{ seeId }}" clearable label="见证号" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
-        <van-cell title="送检方式" title-width="88px" value="{{deliverWay}}" is-link bind:tap="onClickWayPicker" />
-        <van-cell wx:if="{{deliverWay==='待取样' || deliverWay==='现场检测'}}" title="预约地点" title-width="88px" value="{{sampleAddress}}" url="/pages/location/location" is-link />
-        <van-cell wx:if="{{deliverWay==='待取样' || deliverWay==='现场检测'}}" title="预约时间" title-width="88px" value="{{sampleTime}}" data-name="appointmentDateShow" bindtap="togglePicker" is-link />
-        <van-cell title="检测项目" title-width="88px" model:value="{{sampleName}}" is-link bindtap="toggleSample" />
-        <van-cell wx:if="{{normalName}}" title="标准" title-width="88px" value="{{normalName}}" />
+        <van-cell class="cell-readonly" title="送检方式" title-width="88px" value="{{deliverWay}}" is-link bind:tap="onClickWayPicker" />
+        <van-cell class="cell-readonly" wx:if="{{deliverWayId!==0}}" title="预约地点" title-width="88px" value="{{sampleAddress}}" url="/pages/location/location" is-link />
+        <van-cell class="cell-readonly" wx:if="{{deliverWayId!==0}}" title="预约时间" title-width="88px" value="{{sampleTime}}" data-name="appointmentDateShow" bindtap="togglePicker" is-link />
+        <van-cell class="cell-readonly" title="检测项目" title-width="88px" model:value="{{sampleName}}" is-link bindtap="toggleSample" />
+        <van-cell class="cell-readonly" wx:if="{{normalName}}" title="标准" title-width="88px" value="{{normalName}}" />
         <van-field wx:else model:value="{{ normalName }}" clearable label="标准" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
-
         <view wx:for="{{dynamicParams}}" wx:key="prop">
             <van-field wx:if="{{item.isInput}}" value="{{ form[item.prop] }}" clearable label="{{item.name}}" title-width="76px" data-prop="{{item.prop}}" adjust-position="{{false}}" placeholder="请输入" bind:focus="setHeight" bind:input="onDynamicInput" />
-            <van-cell wx:elif="{{item.isPicker}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDynamicPicker" />
-            <van-cell wx:elif="{{item.isDate}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDatePicker" />
+            <van-cell class="cell-readonly" wx:elif="{{item.isPicker}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDynamicPicker" />
+            <van-cell class="cell-readonly" wx:elif="{{item.isDate}}" title="{{item.name}}" title-width="88px" model:value="{{form[item.prop]}}" data-index="{{index}}" is-link bind:tap="onClickDatePicker" />
         </view>
-        
-        <van-cell wx:if="{{paramList.length > 0}}" title="参数" title-width="88px" value="{{parameterName}}" data-name="paramShow" is-link bindtap="togglePicker" />
+        <van-cell wx:if="{{paramList.length > 0}}" class="cell-readonly" title="参数" title-width="88px" value="{{parameterName}}" data-name="paramShow" is-link bindtap="togglePicker" />
+        <van-field model:value="{{ part }}" clearable label="部位(结构)" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
+        <van-cell title="参考费用" class="cell-readonly" title-width="88px" value="{{cost}}" />
         <!-- <van-cell title="检测数量" title-width="88px" value="{{number}}" data-name="numberShow" is-link bindtap="togglePicker" /> -->
         <!-- <view class="custom-field">
             <view class="module-title">送检方式</view>
@@ -27,7 +27,7 @@
         </view> -->
         <view class="module-title">相关资料</view>
         <view class="module-upload">
-            <van-uploader file-list="{{ fileList }}" multiple="{{true}}" accept="all" bind:after-read="afterRead" bind:delete="fileDelete" />
+            <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" multiple="{{true}}" accept="image" bind:after-read="afterRead" bind:delete="fileDelete" />
         </view>
         <!-- <van-field -->
         <!-- model:value="{{ delegation }}" -->
@@ -39,7 +39,7 @@
         <!-- <van-field model:value="{{ observer }}" clearable label="见证人" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
         <van-field model:value="{{ observerId }}" clearable title-width="76px" label="见证号" adjust-position="{{false}}" placeholder="请输入" />
         <van-field model:value="{{ message }}" label="备注" title-width="76px" type="textarea" placeholder="请输入" autosize /> -->
-        <button class="submit-btn" bindtap="formSubmit">下一步</button>
+        <button class="submit-btn" bindtap="formSubmit">提 交</button>
     </view>
     <van-popup show="{{ dateShow }}" position="bottom">
         <van-datetime-picker type="date" value="{{ currentDate }}" data-name="dateShow" bind:cancel="togglePicker" bind:confirm="onDateConfirm" min-date="{{ minDate }}" formatter="{{ Dateformatter }}" />
@@ -58,8 +58,8 @@
         </view>
         <van-checkbox-group value="{{ paramSelected }}" bind:change="onParamChange">
             <van-cell-group>
-                <van-cell wx:for="{{ paramList }}" wx:key="index" title="{{ item }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="onParamToggle">
-                    <van-checkbox shape="square" catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" />
+                <van-cell wx:for="{{ paramList }}" wx:key="index" title="{{ item.name }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="onParamToggle">
+                    <van-checkbox shape="square" catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item.name }}" />
                 </van-cell>
             </van-cell-group>
         </van-checkbox-group>

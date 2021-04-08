@@ -4,7 +4,7 @@
     <view class="pro-module">
         <view class="pro-m-header">
             <view class="pro-m-title">委托</view>
-            <navigator url="/pages/sample-add/sample-add" hover-class="none" class="dg-add-btn">
+            <navigator url="/pages/sample-add/sample-add?gid={{gid}}&jid={{jid}}&wid={{wid}}" hover-class="none" class="dg-add-btn">
                 新 增
             </navigator>
         </view>
@@ -65,6 +65,10 @@
         <image src="../../assets/images/qrcode.png" class="qrcode-btn" data-type="2" catch:tap="createQrcode"></image>
     </view>
 </view>
+    <canvas   class='popup-canvas-hidden' canvas-id='canvas' ></canvas>
+
 <van-popup show="{{ codeShow }}" class="custom-popup" bind:click-overlay="onCloseCode" >
-    <canvas class='canvas' canvas-id='canvas'></canvas>
+
+            <image class='popup-canvas' mode="aspectFit" src="{{qrImagePath}}"></image>
+
 </van-popup>

@@ -1,60 +1,47 @@
-<!--pages/pro-evaluate/pro-evaluate.wxml-->
-
+<!-- pages/pro-evaluate/pro-evaluate.wxml -->
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="报告评价" showNav showHome></navbar>
     <view class="pro-evaluate-container">
         <van-row>
             <van-col span="6" class="evaluate-emphasis">报告评价</van-col>
             <van-col span="6">
-                <van-rate value="{{ value }}" bind:change="onChange" />
-
+                <van-rate value="{{ overview.rate }}" data-name="overview" bind:change="onChange" />
             </van-col>
-            <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">{{overview.tip}}</van-col>
         </van-row>
-
         <view class="evaluate-line"></view>
         <van-row>
             <van-col span="6">报告排版</van-col>
             <van-col span="6">
-                <van-rate value="{{ value }}" bind:change="onChange" />
-
+                <van-rate value="{{ componse.rate }}" data-name="componse" bind:change="onChange" />
             </van-col>
-            <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">{{ componse.tip }}</van-col>
         </van-row>
         <van-row>
             <van-col span="6">报告内容</van-col>
             <van-col span="6">
-                <van-rate value="{{ value }}" bind:change="onChange" />
-
+                <van-rate value="{{ content.rate }}" data-name="content" bind:change="onChange" />
             </van-col>
-            <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">{{ content.tip }}</van-col>
         </van-row>
         <van-row>
             <van-col span="6">出具速度</van-col>
             <van-col span="6">
-                <van-rate value="{{ value }}" bind:change="onChange" />
-
+                <van-rate value="{{ speed.rate }}" data-name="speed" bind:change="onChange" />
             </van-col>
-            <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">{{ speed.tip }}</van-col>
         </van-row>
         <van-row>
-
-        <van-col span="6">文本语法</van-col>
-        <van-col span="6">
-            <van-rate value="{{ value }}" bind:change="onChange" />
-
-        </van-col>
-        <van-col offset="6" span="6" class="evaluate-tip">非常好</van-col>
-    </van-row>
-
-        <textarea class="evaluate-textarea" bindblur="bindTextAreaBlur" auto-height placeholder="请填写您的评价，这将帮助我们为您提供更好的服务~" />
+            <van-col span="6">文本语法</van-col>
+            <van-col span="6">
+                <van-rate value="{{ grammar.rate }}" data-name="grammar" bind:change="onChange" />
+            </van-col>
+            <van-col offset="6" span="6" class="evaluate-tip">{{ grammar.tip }}</van-col>
+        </van-row>
+        <textarea class="evaluate-textarea" value="{{evaluate}}" bindblur="bindTextAreaBlur" auto-height placeholder="请填写您的评价，这将帮助我们为您提供更好的服务~" />
         <view class="module-upload">
-            <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+            <van-uploader file-list="{{ fileList }}" multiple="{{true}}" accept="all" bind:after-read="afterRead" bind:delete="fileDelete" />
         </view>
         <button class="submit-btn" bindtap="formSubmit">提 交</button>
-
     </view>
-
 </view>
-
-

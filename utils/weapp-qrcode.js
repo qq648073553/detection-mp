@@ -414,7 +414,7 @@ var QRCode;
             destHeight: this._htOption.height,
             canvasId: this.canvasId,
             success: (res) => {
-              this._htOption.callback({path: res.tempFilePath})
+                this._htOption.callback({path: res.tempFilePath})
             }
         })
       } 

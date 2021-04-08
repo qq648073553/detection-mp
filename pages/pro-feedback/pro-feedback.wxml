@@ -1,28 +1,17 @@
-<!--pages/pro-feedback/pro-feedback.wxml-->
-<!--反馈页，报告反馈-->
+<!-- pages/pro-feedback/pro-feedback.wxml -->
+<!-- 反馈页，报告反馈 -->
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="报告反馈" show-nav showHome></navbar>
-    <view class="feedback-container custom-class" >
-            <van-cell title="工程名称" title-width="88px" value="{{project}}" />
-            <van-cell title="工程编号" title-width="88px" value="{{proId}}" />
-            <van-cell title="检测项目" title-width="88px" value="{{proDeg}}" />
-            <van-cell title="委托编号" title-width="88px" value="{{proDegId}}" />
-            <van-field
-                    title-width="76px"
-                    model:value="{{ message }}"
-                    label="报告反馈"
-                    type="textarea"
-                    placeholder="请输入"
-                    autosize
-            />
+    <view class="feedback-container custom-class">
+        <van-cell title="工程名称" title-width="88px" value="{{project}}" />
+        <van-cell title="工程编号" title-width="88px" value="{{proId}}" />
+        <van-cell title="检测项目" title-width="88px" value="{{proDeg}}" />
+        <van-cell title="委托编号" title-width="88px" value="{{proDegId}}" />
+        <van-field title-width="76px" model:value="{{ message }}" label="报告反馈" type="textarea" placeholder="请输入" autosize />
         <view class="module-title">照片</view>
         <view class="module-upload">
-            <van-uploader file-list="{{ fileList }}"  />
+            <van-uploader file-list="{{ fileList }}" multiple="{{true}}" accept="all" bind:after-read="afterRead" bind:delete="fileDelete" />
         </view>
         <button class="submit-btn" bindtap="formSubmit">提 交</button>
-
     </view>
-
-
 </view>
-

@@ -2,7 +2,7 @@
  * @Author: zfd
  * @Date: 2020-10-25 09:21:59
  * @LastEditors: holder
- * @LastEditTime: 2021-04-07 16:46:24
+ * @LastEditTime: 2021-04-08 14:51:53
  * @Description:
  */
 // const formatTime = date => {
@@ -181,7 +181,7 @@ const urlJointParams = (url, obj) => {
 }
 // 解析f1=>样品名称，返回map
 const parseCattr = cAttStr => {
-  cAttStr = cAttStr.replace(/\s/g, '')
+  cAttStr = cAttStr.replace(/[\s|\[|\]]/g, '')
   const arr = cAttStr.split(',')
   const map = new Map()
   for (const a of arr) {
@@ -214,7 +214,7 @@ const parseSampleConfig = (attStr, cAttStr) => {
     const right = splits[1]
     sample.name = left
     // 修复面积(mm2)
-    sample.prop = attrMap.get(left.replace(/(\(\w.\))/, ''))
+    sample.prop = attrMap.get(left.replace(/(\(.*\))/g, ''))
     if (left.includes('日期')) {
       sample.isDate = true
       result.push(sample)

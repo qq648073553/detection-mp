@@ -3,6 +3,7 @@
     width: 100vw;
     /* min-height: 100vh; */
     padding: 10px 10px 30px;
+   
     /* background: #F3F3F2; */
 }
 .sample-popup .van-popup {
@@ -65,6 +66,7 @@
     border: 1px solid #000;
 }
 .module-title{
+    font-size: 32rpx;
     max-width: 76px;
     min-width: 76px;
     margin: 10px 12px 10px 16px ;
@@ -90,8 +92,18 @@
     font-size: 16px;
     color: #4387F6;
 }
+.custom-class .van-field__input,
+.custom-class .van-field__label,
+.custom-class .van-cell__title{
+    font-size: 32rpx;
+}
 .custom-class .van-cell__value {
     color: #323233;
+    font-size: 32rpx;
+}
+.cell-readonly .van-cell__value{
+    color: #8f8c8c;
+    font-size: 32rpx;
 }
 /* .action-filter{
     display: table;

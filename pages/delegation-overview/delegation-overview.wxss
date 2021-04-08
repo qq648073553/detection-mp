@@ -23,12 +23,12 @@
 }
 .dg-add-btn {
     position: absolute;
-    top: 2px;
+    top: 10rpx;
     left: 60px;
-    height: 30px;
-    line-height: 30px;
+    height: 55rpx;
+    line-height: 55rpx;
     text-align: center;
-    width: 120rpx;
+    width: 100rpx;
     border-radius: 6px;
     color: #fff;
     background: #4387F6;
@@ -43,7 +43,6 @@
     display: flex;
     height: 67%;
     justify-content: space-between;
-
 }
 .pro-m-nav{
     position: relative;
@@ -96,9 +95,22 @@
     height: 70rpx;
 }
 .custom-popup .van-popup {
-    width: 150px;
-    height: 150px;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
     /* width: 90%;
     margin: auto; */
+}
+.custom-popup .popup-canvas{
+    /* margin:  auto; */
+    width: 150px;
+    height: 150px;
+}
+.popup-canvas-hidden{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    z-index: -1;
 }

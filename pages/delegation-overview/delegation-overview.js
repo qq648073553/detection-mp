@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-27 09:22:00
- * @LastEditTime: 2021-04-07 17:12:58
+ * @LastEditTime: 2021-04-08 16:46:27
  * @LastEditors: holder
  * @Description: In User Settings Edit
  * @FilePath: \detection-mp\pages\pro-delegation\pro-delegation.js
@@ -30,9 +30,11 @@ Page({
     reported: 0,
     reporting: 0,
     confirmed: 0,
+    // qrImagePath:'#',
     beforeConfirm: 0,
     proTitle: '苏州中心',
-    codeShow:false,
+    codeShow: false,
+    // codeShow2:false,
     settleForbidden: [] // 禁止项
   },
   scan() {
@@ -42,15 +44,15 @@ Page({
       }
     })
   },
-  onCloseCode(){
-    this.setData({codeShow:false})
+  onCloseCode() {
+    this.setData({ codeShow: false })
   },
   createQrcode(event) {
-    console.log(event)
     var value = 'nihao'
     qrcode.makeCode(value)
-    this.setData({codeShow:true})
-    
+    // qrcode.makeImage()
+    this.setData({ codeShow: true })
+
   },
   getDetail(gid, jid, wid) {
     fetch.get(`project/${gid}/${wid}/${jid}`).then(res => {
@@ -74,7 +76,7 @@ Page({
   },
   /**
    * 生命周期函数--监听页面加载
-   */ 
+   */
   onLoad: function (options) {
     const { gid, jid, wid, status } = options
     const pageForbiddens = Utils.projectForbiddenControl(App.globalData.userProRoles, this.route)
@@ -90,13 +92,19 @@ Page({
     })
     qrcode = new QRCode('canvas', {
       // usingIn: this,
-      text: "https://github.com/tomfriwel/weapp-qrcode",
+      text: "",
       // image: '/images/bg.jpg',
       width: 150,
       height: 150,
       colorDark: "#1CA4FC",
       colorLight: "white",
       correctLevel: QRCode.CorrectLevel.H,
+      callback:  (res) => {
+        this.setData({qrImagePath:res.path})
+        // wx.saveImageToPhotosAlbum({
+        //   filePath: path,
+        // })
+      }
     });
     // this.getDetail(gid,jid,wid)
   },
@@ -112,7 +120,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
