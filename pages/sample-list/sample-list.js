@@ -10,11 +10,13 @@ Page({
     searchValue: '',
     proId:null,
     status: null,
+    refreshStatus:false,
+
     list: [
       {
         id:1,
         title: '检测项目1',
-        status: 0,
+        status: 1,
         color: '#4387F6',
         date: '2021/01/19 15:17',
         tags: ['未受理']
@@ -22,7 +24,7 @@ Page({
       {
         id:2,
         title: '检测项目2',
-        status: 1,
+        status: 2,
         color: '#F0641F',
         date: '2021/01/19 15:17',
         tags: ['待取样']
@@ -30,7 +32,7 @@ Page({
       {
         id:3,
         title: '检测项目3',
-        status: 2,
+        status: 3,
         color: '#3333CC',
         date: '2021/01/19 15:17',
         tags: ['等待报告']
@@ -38,7 +40,7 @@ Page({
       {
         id:4,
         title: '检测项目4',
-        status: 3,
+        status: 4,
         color: '#AE202C',
         date: '2021/01/19 15:17',
         tags: ['等待审核']
@@ -46,7 +48,7 @@ Page({
       {
         id:5,
         title: '检测项目5',
-        status: 4,
+        status: 5,
         color: '#33CC33',
         date: '2021/01/19 15:17',
         tags: ['报告数10']
@@ -64,8 +66,9 @@ Page({
     this.setData({
       navHeight: App.globalData.navHeight,
       proStatus: App.globalData.proStatus,
-      degStatus: App.globalData.degStatus,
-      list: this.data.list
+      degStatus: App.globalData.degStatusMap,
+      list: this.data.list,
+      scrollHeight:App.globalData.scrollHeight
     })
     wx.getStorage({
       key: 'sampleHistories',
@@ -129,7 +132,25 @@ Page({
   onUnload: function () {
 
   },
-
+  // 下拉刷新
+  upper(){
+    // this.setData({
+    //   list:[],
+    //   isRemained: true,
+    //   pageIndex: 0,
+    //   refreshStatus:true
+    // },this.getList(0, 10, null))
+    // setTimeout(()=>{
+    //   this.setData({refreshStatus:false})
+    // },1000)
+  },
+  // 上拉加载
+  lower(){
+    // if (this.data.isRemained) {
+    //   this.getList(this.data.pageIndex + 1, 10, this.data.searchValue)
+    //   this.setData({ pageIndex: this.data.pageIndex + 1 })
+    // }
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

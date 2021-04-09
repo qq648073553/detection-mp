@@ -8,7 +8,9 @@
         </view>
     </van-sticky>
     <view class="search-content">
-        <template is="degList" data="{{list,degStatus}}"></template>
+        <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;" refresher-triggered="{{refreshStatus}}" refresher-enabled bindrefresherrefresh="upper" bindscrolltolower="lower">
+            <template is="degList" data="{{list,degStatus}}"></template>
+        </scroll-view>
     </view>
     <!-- <navigator url="/pages/sample-add/sample-add" hover-class="none" >
                         <image class="image__fixed" mode="aspectFit" src="../../assets/images/plus.png"></image>

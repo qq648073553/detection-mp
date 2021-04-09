@@ -1,8 +1,11 @@
 {
   "pages": [
+    "pages/pro-search/pro-search",
+    "pages/sample-add/sample-add",
+    "pages/pro-add/pro-add",
+    "pages/index/index",
     "pages/delegation-overview/delegation-overview",
     "pages/login/login",
-    "pages/sample-add/sample-add",
     "pages/pro-cancel/pro-cancel",
     "pages/pro-feedback/pro-feedback",
     "pages/pro-evaluate/pro-evaluate",
@@ -12,9 +15,6 @@
     "pages/sample-list/sample-list",
     "pages/update-email/update-email",
     "pages/update-phone/update-phone",
-    "pages/index/index",
-    "pages/pro-search/pro-search",
-    "pages/pro-add/pro-add",
     "pages/location/location",
     "pages/signature/signature",
     "pages/summary/summary",

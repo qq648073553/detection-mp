@@ -78,17 +78,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { gid, jid, wid, status } = options
-    const pageForbiddens = Utils.projectForbiddenControl(App.globalData.userProRoles, this.route)
+    const { gid, jid, wid, status,navHeight, proStatus,userProRoles,proTitle} = App.globalData
+    const pageForbiddens = Utils.projectForbiddenControl(userProRoles, this.route)
     const settleForbidden = pageForbiddens.includes('settle')
     this.setData({
       gid,
       jid,
       wid,
+      proTitle,
       status,
-      navHeight: App.globalData.navHeight,
-      proStatus: App.globalData.proStatus,
-      settleForbidden
+      navHeight,
+      proStatus,
+      settleForbidden,
     })
     qrcode = new QRCode('canvas', {
       // usingIn: this,

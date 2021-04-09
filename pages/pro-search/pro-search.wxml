@@ -1,26 +1,19 @@
-<!--pages/pro-search/pro-search.wxml-->
+<!-- pages/pro-search/pro-search.wxml -->
 <import src="/template/pro-list/index.wxml" />
 <view class="container" style="padding-top:{{navHeight}}px">
-    <navbar page-name="我的工程" showNav ></navbar>
+    <navbar page-name="我的工程" showNav></navbar>
     <van-sticky offset-top="{{ navHeight }}">
-        <van-search
-                class="custom-class"
-                value="{{searchValue}}"
-                shape="round"
-                background="#fff"
-                placeholder="根据工程名称进行检索"
-                bind:search="onSearch"
-                bind:clear="onFastSearch"
-        />
-
+        <van-search class="custom-class" value="{{searchValue}}" shape="round" background="#fff" placeholder="根据工程名称进行检索" bind:search="onSearch" bind:clear="onFastSearch" />
     </van-sticky>
-    <view wx:if="{{histories.length > 0}}"  class="index-histories">
-        <view wx:for="{{histories}}" wx:key="index" class="history-item" bindtap="onFastSearch" data-title="{{item}}">{{item}}</view>
+    <view wx:if="{{histories.length > 0}}" class="index-histories">
+        <view wx:for="{{histories}}" wx:key="index" class="history-item" bindtap="onFastSearch" data-title="{{item}}">
+            {{item}}
+        </view>
     </view>
 </view>
-
-
 <view class="search-content">
-    <template  is="proList" data="{{list:list, proStatus:proStatus}}"></template>
+    <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;" refresher-triggered="{{refreshStatus}}" refresher-enabled bindrefresherrefresh="upper" bindscrolltolower="lower" >
+    <template is="proList" data="{{list, proStatus}}"></template>
     <view wx:if="{{!isRemained}}" class="search-empty">已加载全部内容</view>
+    </scroll-view>
 </view>

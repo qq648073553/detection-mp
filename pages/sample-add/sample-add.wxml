@@ -6,6 +6,8 @@
         <van-cell title="委托人" title-width="88px" class="cell-readonly" value="{{proId}}" />
         <van-field model:value="{{ seeName }}" clearable label="见证人" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
         <van-field model:value="{{ seeId }}" clearable label="见证号" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
+                <van-cell class="cell-readonly" title="站点" title-width="88px" value="{{station}}" is-link bind:tap="onClickStationPicker" />
+
         <van-cell class="cell-readonly" title="送检方式" title-width="88px" value="{{deliverWay}}" is-link bind:tap="onClickWayPicker" />
         <van-cell class="cell-readonly" wx:if="{{deliverWayId!==0}}" title="预约地点" title-width="88px" value="{{sampleAddress}}" url="/pages/location/location" is-link />
         <van-cell class="cell-readonly" wx:if="{{deliverWayId!==0}}" title="预约时间" title-width="88px" value="{{sampleTime}}" data-name="appointmentDateShow" bindtap="togglePicker" is-link />

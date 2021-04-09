@@ -1,7 +1,8 @@
 /* components/navbar/index.wxss */
 
 .navbar {
-    width: 100vw;
+    /* width: 100vw; */
+    width:100%;
     overflow: hidden;
     position: fixed;
     top: 0;

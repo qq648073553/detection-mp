@@ -2,7 +2,8 @@
 
 <view class="container" style="padding-top:{{navHeight}}px">
     <navbar page-name="检测系统" style="position:relative;" >
-        <image src="../../assets/images/scan-home.png" class="scan-btn" catch:tap="scan"></image>
+        <!-- <image src="../../assets/images/scan-home.png" class="scan-btn" catch:tap="scan"></image> -->
+        <view class="scan-btn" catch:tap="scan">扫一扫关联工程</view>
     </navbar>
 
    <view class="home-container">

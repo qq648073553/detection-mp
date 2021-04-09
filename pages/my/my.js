@@ -2,7 +2,7 @@
  * @Author: holder
  * @Date: 2021-01-08 14:01:21
  * @LastEditors: holder
- * @LastEditTime: 2021-04-07 09:06:19
+ * @LastEditTime: 2021-04-08 16:57:55
  * @Description: 
  */
 const App = getApp();
@@ -71,6 +71,7 @@ Page({
       this.setData(
         {
           editShow: !this.data.editShow,
+          input:this.data.name,
           popName: '修改姓名',
           popTips: '请输入真实姓名'
         });
@@ -78,6 +79,7 @@ Page({
       this.setData(
         {
           editShow: !this.data.editShow,
+          input:this.data.email,
           popName: '修改邮箱',
           popTips: '请输入邮箱号'
         });
