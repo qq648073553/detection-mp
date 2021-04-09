@@ -2,7 +2,7 @@
  * @Author: holder
  * @Date: 2021-04-09 14:34:02
  * @LastEditors: holder
- * @LastEditTime: 2021-04-09 14:41:35
+ * @LastEditTime: 2021-04-09 15:46:51
  * @Description: 
  */
 const App = getApp();
@@ -41,14 +41,16 @@ module.exports = {
                 this.setData({
                     paramList,
                     normalId: normalRes[0].standardNum,
-                    normalName: normalRes[0].standard
+                    normalName: normalRes[0].standard,
+                    isFindNormal:true
                 })
                 return
             }
             if (!normalId && normalRes.length > 1) {
                 this.setData({
                     normalId: null,
-                    normalName: null
+                    normalName: null,
+                    isFindNormal:false
                 })
                 return
             }
@@ -58,13 +60,15 @@ module.exports = {
             this.setData({
                 paramList,
                 normalId: normalObj.standardNum,
-                normalName: normalObj.standard
+                normalName: normalObj.standard,
+                isFindNormal:true
             })
         } catch (error) {
             console.log('标准名获取失败', error)
             this.setData({
                 normalId: null,
-                normalName: null
+                normalName: null,
+                isFindNormal:false
             })
         }
     },
@@ -327,6 +331,7 @@ module.exports = {
             sampleId: null,
             normalId: null,
             normalName: null,
+            isFindNormal:false,
             dynamicParams: [],
             sampleName: '请选择',
             paramList: [],

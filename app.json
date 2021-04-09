@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/pro-search/pro-search",
     "pages/sample-add/sample-add",
     "pages/pro-add/pro-add",
     "pages/index/index",
     "pages/delegation-overview/delegation-overview",
-    "pages/login/login",
     "pages/pro-cancel/pro-cancel",
     "pages/pro-feedback/pro-feedback",
     "pages/pro-evaluate/pro-evaluate",

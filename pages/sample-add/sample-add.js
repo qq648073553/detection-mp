@@ -9,7 +9,9 @@
 const life = require('./life')
 const methods = require('./methods')
 Page({
+  
   data: {
+    isFindNormal:false,//是否查询到标准
     project: '苏州中心',
     proId: '20201212',
     delegation: '',

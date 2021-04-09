@@ -12,7 +12,7 @@
         <van-cell class="cell-readonly" wx:if="{{deliverWayId!==0}}" title="预约地点" title-width="88px" value="{{sampleAddress}}" url="/pages/location/location" is-link />
         <van-cell class="cell-readonly" wx:if="{{deliverWayId!==0}}" title="预约时间" title-width="88px" value="{{sampleTime}}" data-name="appointmentDateShow" bindtap="togglePicker" is-link />
         <van-cell class="cell-readonly" title="检测项目" title-width="88px" model:value="{{sampleName}}" is-link bindtap="toggleSample" />
-        <van-cell class="cell-readonly" wx:if="{{normalName}}" title="标准" title-width="88px" value="{{normalName}}" />
+        <van-cell class="cell-readonly" wx:if="{{isFindNormal}}" title="标准" title-width="88px" value="{{normalName}}" />
         <van-field wx:else model:value="{{ normalName }}" clearable label="标准" title-width="76px" adjust-position="{{false}}" placeholder="请输入" />
         <view wx:for="{{dynamicParams}}" wx:key="prop">
             <van-field wx:if="{{item.isInput}}" value="{{ form[item.prop] }}" clearable label="{{item.name}}" title-width="76px" data-prop="{{item.prop}}" adjust-position="{{false}}" placeholder="请输入" bind:focus="setHeight" bind:input="onDynamicInput" />
